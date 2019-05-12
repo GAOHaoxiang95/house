@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>House Rental Prices Evaluation</title>
+    <link rel="stylesheet" type="text/css" href="background.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="welcome">
+        <p>{% verbatim myblock %} {{ message }} {% endverbatim myblock %}</p>
+    </div>
+    <table border="1" id="container">
+        <tr>
+            <th>Features</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>Number of bedrooms</td>
+            <td><select id="num_beds"></select></td>
+        </tr>
+        <tr>
+            <td>Number of bathrooms</td>
+            <td><select id="num_baths"></select></td>
+        </tr>
+        <tr>
+            <td>Number of receptions</td>
+            <td><select id="num_recepts"></select></td>
+        </tr>
+        <tr>
+            <td>Postcode</td>
+            <td>Not yet</td>
+        </tr>
+    </table>
+    <script>
+    new Vue({
+    el: '#welcome',
+    data: {
+        message: 'Online house rental prices evaluation platform'
+    }
+    })
+    </script>
+    <script src = "menu.js"></script>
+    <script>
+        window.onload = setMenu('num_beds');
+        window.onload = setMenu('num_baths');
+        window.onload = setMenu('num_recepts');
+    </script>
+
+</body>
+</html>
