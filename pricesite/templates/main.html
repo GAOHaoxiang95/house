@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>House Rental Prices Evaluation</title>
-    <link rel="stylesheet" type="text/css" href="background.css">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '_background_.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-    <div id="welcome">
-        <p>{% verbatim myblock %} {{ message }} {% endverbatim myblock %}</p>
-    </div>
-    <table border="1" id="container">
+    <center id="slogan">
+        <p>Online House Rental Prices Evaluation Platform</p>
+    </center>
+    <table border="3" id="container">
         <tr>
             <th>Features</th>
             <th></th>
@@ -29,6 +30,18 @@
         </tr>
         <tr>
             <td>Postcode</td>
+            <td><input type="text" value="SW11 2DL"/></td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>London</td>
+        </tr>
+        <tr>
+            <td>Property type</td>
+            <td><select id="property_type"></select></td>
+        </tr>
+        <tr>
+            <td><button>Valuation</button></td>
             <td>Not yet</td>
         </tr>
     </table>
@@ -36,15 +49,17 @@
     new Vue({
     el: '#welcome',
     data: {
-        message: 'Online house rental prices evaluation platform'
+        message: 'Online House Rental Prices Evaluation Platform'
     }
     })
     </script>
-    <script src = "menu.js"></script>
+    {% load static %}
+    <script src = "{% static '_menu.js' %}"></script>
     <script>
         window.onload = setMenu('num_beds');
         window.onload = setMenu('num_baths');
         window.onload = setMenu('num_recepts');
+        window.onload = setProperty();
     </script>
 
 </body>

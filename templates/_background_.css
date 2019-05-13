@@ -5,6 +5,13 @@ background-attachment: fixed;
 }
 
 #container {
+margin: auto;
+margin-bottom: auto;
 background-color:white;
 filter: alpha(opacity=80); opacity: 0.80;
+}
+
+#slogan {
+    font-size: 30px;
+    color: yellow
 }
