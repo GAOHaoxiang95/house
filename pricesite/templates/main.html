@@ -2,15 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>House Rental Prices Evaluation</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static '_background_.css' %}">
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static '_style.css' %}">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand"><font color="green"><span class="glyphicon glyphicon-home"></span></font></a>
+    </div>
+    <div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">HOME</a></li>
+            <li><a href="/property">PROPERTY</a></li>
+        </ul>
+    </div>
+    </div>
+</nav>
+
+
     <center id="slogan">
         <p>Online House Rental Prices Evaluation Platform</p>
     </center>
+    <form action="/" method="get">
     <table border="3" id="container">
         <tr>
             <th>Features</th>
@@ -18,19 +37,19 @@
         </tr>
         <tr>
             <td>Number of bedrooms</td>
-            <td><select id="num_beds"></select></td>
+            <td><select id="num_beds" name="num_beds"></select></td>
         </tr>
         <tr>
             <td>Number of bathrooms</td>
-            <td><select id="num_baths"></select></td>
+            <td><select id="num_baths" name="num_baths"></select></td>
         </tr>
         <tr>
             <td>Number of receptions</td>
-            <td><select id="num_recepts"></select></td>
+            <td><select id="num_recepts" name="num_recepts"></select></td>
         </tr>
         <tr>
             <td>Postcode</td>
-            <td><input type="text" value="SW11 2DL"/></td>
+            <td><input type="text" name="postcode" value="SW11 2DL"/></td>
         </tr>
         <tr>
             <td>City</td>
@@ -41,20 +60,14 @@
             <td><select id="property_type"></select></td>
         </tr>
         <tr>
-            <td><button>Valuation</button></td>
-            <td>Not yet</td>
+            <td><input type="submit" value="Valuation"></td>
+            <td>{{ price }}</td>
         </tr>
     </table>
-    <script>
-    new Vue({
-    el: '#welcome',
-    data: {
-        message: 'Online House Rental Prices Evaluation Platform'
-    }
-    })
-    </script>
-    {% load static %}
-    <script src = "{% static '_menu.js' %}"></script>
+    </form>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src = "{% static 'menu.js' %}"></script>
     <script>
         window.onload = setMenu('num_beds');
         window.onload = setMenu('num_baths');

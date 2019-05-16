@@ -1,12 +1,10 @@
 body {
 background-image: url(london.jpg);
 background-size: cover;
-background-repeat:no-repeat;
 }
 
 #container {
 margin: auto;
-margin-bottom: auto;
 background-color:white;
 filter: alpha(opacity=80); opacity: 0.80;
 }
