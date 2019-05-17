@@ -6,10 +6,12 @@ background-size: cover;
 #container {
 margin: auto;
 background-color:white;
-filter: alpha(opacity=80); opacity: 0.80;
+filter: alpha(opacity=80); opacity: 0.85;
+font-size: 18px;
 }
 
 #slogan {
+    line-height:60px;
     font-size: 30px;
-    color: yellow
+    color: yellow;
 }

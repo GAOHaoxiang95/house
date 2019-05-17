@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>House Rental Prices Evaluation</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static '_style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main_style.css' %}">
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -14,7 +14,7 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
     <div class="navbar-header">
-        <a class="navbar-brand"><font color="green"><span class="glyphicon glyphicon-home"></span></font></a>
+        <a class="navbar-brand"><font color="blue"><span class="glyphicon glyphicon-home"></span></font></a>
     </div>
     <div>
         <ul class="nav navbar-nav">
@@ -30,7 +30,7 @@
         <p>Online House Rental Prices Evaluation Platform</p>
     </center>
     <form action="/" method="get">
-    <table border="3" id="container">
+    <table id="container" class="table table-hover table-striped">
         <tr>
             <th>Features</th>
             <th></th>
@@ -49,7 +49,7 @@
         </tr>
         <tr>
             <td>Postcode</td>
-            <td><input type="text" name="postcode" value="SW11 2DL"/></td>
+            <td><input style="width:180px;" type="text" name="postcode" value="SW11 2DL"/></td>
         </tr>
         <tr>
             <td>City</td>
@@ -58,6 +58,10 @@
         <tr>
             <td>Property type</td>
             <td><select id="property_type"></select></td>
+        </tr>
+        <tr>
+            <td>Furniture state</td>
+            <td><select id="furniture_state"></select></td>
         </tr>
         <tr>
             <td><input type="submit" value="Valuation"></td>
