@@ -20,3 +20,15 @@ function setProperty()
         select.appendChild(opt);
     }
 }
+
+function setFurniture()
+{
+    var select = document.getElementById('furniture_state');
+    var items = ['unfurnished', 'part furnished', 'furnished']
+    for(var i=0;i<items.length;i++){
+        var opt = document.createElement("option");
+        opt.value=i;
+        opt.innerHTML=items[i];
+        select.appendChild(opt);
+    }
+}

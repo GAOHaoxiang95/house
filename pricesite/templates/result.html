@@ -17,6 +17,7 @@
         </div>
         <div>
             <ul class="nav navbar-nav">
+
                 <li class="active"><a href="/">HOME</a></li>
                 <li><a href="/property/">PROPERTY</a></li>
             </ul>
@@ -24,10 +25,9 @@
         </div>
     </nav>
     <center id="slogan">
-        <p>Online House Rental Prices Evaluation</p>
+        <p>House Rental Prices Evaluation Report</p>
     </center>
-    <form action="/result/" method="GET">
-        {% csrf_token %}
+
     <table id="container" class="table table-hover table-striped">
         <tr>
             <th>Features</th>
@@ -35,15 +35,15 @@
         </tr>
         <tr>
             <td>Number of bedrooms</td>
-            <td><select id="num_beds" name="num_beds"></select></td>
+            <td>{{ num_beds }}</td>
         </tr>
         <tr>
             <td>Number of bathrooms</td>
-            <td><select id="num_baths" name="num_baths"></select></td>
+            <td>{{ num_baths }}</td>
         </tr>
         <tr>
             <td>Number of receptions</td>
-            <td><select id="num_recepts" name="num_recepts"></select></td>
+            <td>{{ num_recepts }}</td>
         </tr>
         <tr>
             <td>Postcode</td>
@@ -66,20 +66,10 @@
             <td>London</td>
         </tr>
         <tr>
-            <td><input type="submit" value="Valuation"></td>
-
+            <td>Expected rental price</td>
+            <td>{{ price }}</td>
         </tr>
     </table>
-    </form>
-
-    <script src = "{% static 'menu.js' %}"></script>
-    <script>
-        window.onload = setMenu('num_beds');
-        window.onload = setMenu('num_baths');
-        window.onload = setMenu('num_recepts');
-        window.onload = setProperty();
-        window.onload = setFurniture();
-    </script>
 
 </body>
 </html>
