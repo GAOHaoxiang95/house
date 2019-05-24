@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from pricesite import models, parsePostcode
+from sklearn.externals import joblib
+import numpy as np
 # Create your views here.
 
 
@@ -16,16 +18,18 @@ def result(request):
     try:
         num_beds = request.GET['num_beds']
         num_baths = request.GET['num_baths']
-        num_recepts = request.GET['num_recepts']
         postcode = request.GET['postcode']
         property_type = request.GET['pt']
         furniture_state = request.GET['fs']
-        latitude, longitude = parsePostcode.parse_postcode('parse_postcode')
-
+        latitude, longitude = parsePostcode.parse_postcode(postcode)
+        model = joblib.load("train_model.mt")
+        result = model.predict([[latitude, longitude, num_beds, num_baths, property_type, furniture_state]])
+        price = np.exp(result)
     except:
         num_beds = 0
         num_baths = 0
         num_recepts = 0
-    #clf = joblib.load("train_model.mt")
-    price = 90 + int(num_beds) + int(num_baths) + int(num_recepts)
+        postcode = 'Invalid postcode!'
+        price = 'Unknown'
+
     return render(request, 'result.html', locals())

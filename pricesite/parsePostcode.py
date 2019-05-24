@@ -13,5 +13,5 @@ def parse_postcode(postcode):
 
 
 if __name__=='__main__':
-    la, long = parse_postcode('sw11')
+    la, long = parse_postcode('sw11 2dl')
     print(la, long)

@@ -17,7 +17,7 @@
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">HOME</a></li>
+                <li class="active"><a href="/">VALUATION</a></li>
                 <li><a href="/property/">PROPERTY</a></li>
             </ul>
         </div>
@@ -40,10 +40,6 @@
         <tr>
             <td>Number of bathrooms</td>
             <td><select id="num_baths" name="num_baths"></select></td>
-        </tr>
-        <tr>
-            <td>Number of receptions</td>
-            <td><select id="num_recepts" name="num_recepts"></select></td>
         </tr>
         <tr>
             <td>Postcode</td>
@@ -69,11 +65,10 @@
     </table>
     </form>
 
-    <script src = "{% static 'menu_.js' %}"></script>
+    <script src = "{% static 'menu.js' %}"></script>
     <script>
         window.onload = setMenu('num_beds');
         window.onload = setMenu('num_baths');
-        window.onload = setMenu('num_recepts');
         window.onload = setProperty();
         window.onload = setFurniture();
     </script>
