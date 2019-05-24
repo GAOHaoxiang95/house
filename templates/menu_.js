@@ -12,7 +12,7 @@ function setMenu(id)
 function setProperty()
 {
     var select = document.getElementById('property_type');
-    var items = ['Flat', 'Studio', 'House']
+    var items = ['Detached House', 'Semi-detached House', 'Terraced House', 'Townhouse', 'Bungalow', 'Studio', 'Flat', 'Maisonette']
     for(var i=0;i<items.length;i++){
         var opt = document.createElement("option");
         opt.value=i;
@@ -24,7 +24,7 @@ function setProperty()
 function setFurniture()
 {
     var select = document.getElementById('furniture_state');
-    var items = ['unfurnished', 'part furnished', 'furnished']
+    var items = ['Unfurnished', 'Part furnished', 'Furnished']
     for(var i=0;i<items.length;i++){
         var opt = document.createElement("option");
         opt.value=i;

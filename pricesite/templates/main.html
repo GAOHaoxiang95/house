@@ -47,19 +47,16 @@
         </tr>
         <tr>
             <td>Postcode</td>
-            <td><input style="width:180px;" type="text" name="postcode" value="SW11 2DL"/></td>
+            <td><input style="width:180px;" type="text" name="postcode"/></td>
         </tr>
-        <tr>
-            <td>Home Insurance</td>
-            <td><input style="width:180px;" type="number" name="insurance" value="20"/></td>
-        </tr>
+
         <tr>
             <td>Property type</td>
-            <td><select id="property_type"></select></td>
+            <td><select id="property_type" name="pt"></select></td>
         </tr>
         <tr>
             <td>Furniture state</td>
-            <td><select id="furniture_state"></select></td>
+            <td><select id="furniture_state" name="fs"></select></td>
         </tr>
         <tr>
             <td>City</td>
@@ -67,12 +64,12 @@
         </tr>
         <tr>
             <td><input type="submit" value="Valuation"></td>
-
+            <td></td>
         </tr>
     </table>
     </form>
 
-    <script src = "{% static 'menu.js' %}"></script>
+    <script src = "{% static 'menu_.js' %}"></script>
     <script>
         window.onload = setMenu('num_beds');
         window.onload = setMenu('num_baths');

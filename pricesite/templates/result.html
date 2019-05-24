@@ -25,7 +25,7 @@
         </div>
     </nav>
     <center id="slogan">
-        <p>House Rental Prices Evaluation Report</p>
+        <p>Evaluation Report</p>
     </center>
 
     <table id="container" class="table table-hover table-striped">
@@ -47,19 +47,15 @@
         </tr>
         <tr>
             <td>Postcode</td>
-            <td><input style="width:180px;" type="text" name="postcode" value="SW11 2DL"/></td>
-        </tr>
-        <tr>
-            <td>Home Insurance</td>
-            <td><input style="width:180px;" type="number" name="insurance" value="20"/></td>
+            <td>{{ postcode }}</td>
         </tr>
         <tr>
             <td>Property type</td>
-            <td><select id="property_type"></select></td>
+            <td>{{ property_type }}</td>
         </tr>
         <tr>
             <td>Furniture state</td>
-            <td><select id="furniture_state"></select></td>
+            <td>{{ furniture_state }}</td>
         </tr>
         <tr>
             <td>City</td>
