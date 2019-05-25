@@ -32,5 +32,5 @@ def result(request):
         num_recepts = 0
         postcode = 'Invalid postcode!'
         price = 'Unknown'
-   
+
     return render(request, 'result.html', locals())
