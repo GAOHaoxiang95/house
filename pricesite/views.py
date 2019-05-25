@@ -32,5 +32,6 @@ def result(request):
         num_recepts = 0
         postcode = 'Invalid postcode!'
         price = 'Unknown'
-
+    with open('test.txt', 'a') as f:
+        f.writelines('ddd')
     return render(request, 'result.html', locals())
