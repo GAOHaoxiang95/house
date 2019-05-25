@@ -24,7 +24,8 @@ def result(request):
         latitude, longitude = parsePostcode.parse_postcode(postcode)
         model = joblib.load("train_model.mt")
         result = model.predict([[latitude, longitude, num_beds, num_baths, property_type, furniture_state]])
-        price = np.exp(result)
+        # change later, property type is int
+        price = '£' + str(int(np.exp(result)[0])) + ' pcm'
     except:
         num_beds = 0
         num_baths = 0
