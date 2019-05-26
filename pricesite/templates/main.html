@@ -35,11 +35,20 @@
         </tr>
         <tr>
             <td>Number of bedrooms</td>
-            <td><select id="num_beds" name="num_beds"></select></td>
+            <td><select id="num_beds" name="num_beds">
+                {% for i in num_option  %}
+                <option value="{{ i }}">{{ i }}</option>
+
+                {% endfor %}
+            </select></td>
         </tr>
         <tr>
             <td>Number of bathrooms</td>
-            <td><select id="num_baths" name="num_baths"></select></td>
+            <td><select id="num_baths" name="num_baths">
+                {% for i in num_option  %}
+                <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+            </select></td>
         </tr>
         <tr>
             <td>Postcode</td>
@@ -48,11 +57,19 @@
 
         <tr>
             <td>Property type</td>
-            <td><select id="property_type" name="pt"></select></td>
+            <td><select id="property_type" name="pt">
+                {% for i in pt  %}
+                <option value={{ forloop.counter }}>{{ i }}</option>
+                {% endfor %}
+            </select></td>
         </tr>
         <tr>
             <td>Furniture state</td>
-            <td><select id="furniture_state" name="fs"></select></td>
+            <td><select id="furniture_state" name="fs">
+                {% for i in fs  %}
+                <option value={{ forloop.counter }}>{{ i }}</option>
+                {% endfor %}
+            </select></td>
         </tr>
         <tr>
             <td>City</td>
@@ -64,14 +81,6 @@
         </tr>
     </table>
     </form>
-
-    <script src = "{% static 'menu.js' %}"></script>
-    <script>
-        window.onload = setMenu('num_beds');
-        window.onload = setMenu('num_baths');
-        window.onload = setProperty();
-        window.onload = setFurniture();
-    </script>
 
 </body>
 </html>

@@ -7,6 +7,9 @@ import numpy as np
 
 
 def homepage(request):
+    pt = ['Detached House', 'Semi-detached House', 'Terraced House', 'Townhouse', 'Bungalow', 'Studio', 'Flat', 'Maisonette']
+    fs = ['Unfurnished', 'Part furnished', 'Furnished']
+    num_option = [0, 1 ,2, 3, 4, 5, 6, 7, 8, 9]
     return render(request, 'main.html', locals())
 
 
@@ -19,8 +22,8 @@ def result(request):
         num_beds = request.GET['num_beds']
         num_baths = request.GET['num_baths']
         postcode = request.GET['postcode']
-        property_type = request.GET['pt']
-        furniture_state = request.GET['fs']
+        property_type = float(request.GET['pt']) - 1
+        furniture_state = float(request.GET['fs']) - 1
         latitude, longitude = parsePostcode.parse_postcode(postcode)
         model = joblib.load("train_model.mt")
         result = model.predict([[latitude, longitude, num_beds, num_baths, property_type, furniture_state]])
