@@ -30,10 +30,13 @@ def result(request):
         # change later, property type is int
         price = '£' + str(int(np.exp(result)[0])) + ' pcm'
     except:
+
         num_beds = 0
         num_baths = 0
-        num_recepts = 0
-        postcode = 'Invalid postcode!'
+        property_type = 0
+        furniture_state = 0
+        latitude = 'Unknown'
+        longitude = 'Unknown'
         price = 'Unknown'
 
     return render(request, 'result.html', locals())
