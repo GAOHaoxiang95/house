@@ -1,28 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>House Rental Prices Evaluation</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'main_style.css' %}">
-    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand"><font color="blue"><span class="glyphicon glyphicon-home"></span></font></a>
-        </div>
-        <div>
-            <ul class="nav navbar-nav">
+{% extends "base.html" %}
+{% block navbar %}
                 <li class="active"><a href="/"><b>VALUATION</b></a></li>
                 <li><a href="/property/"><b>PROPERTY</b></a></li>
-            </ul>
-        </div>
-        </div>
-    </nav>
+{% endblock %}
+
+{% block content %}
     <center id="slogan">
         <p>Online House Rental Prices Evaluation</p>
     </center>
@@ -75,5 +57,4 @@
         window.onload = setProperty();
         window.onload = setFurniture();
     </script>
-</body>
-</html>
+{% endblock %}
