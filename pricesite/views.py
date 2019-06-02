@@ -14,7 +14,8 @@ def homepage(request):
 def properties(request):
     return render(request, 'property.html', locals())
 
-@cache_page(60 * 15)
+
+
 def result(request):
     try:
         num_beds = request.GET['num_beds']
