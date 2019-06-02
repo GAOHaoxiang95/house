@@ -3,21 +3,19 @@ from django.http import HttpResponse, Http404
 from pricesite import models, parsePostcode
 from sklearn.externals import joblib
 import numpy as np
+from django.views.decorators.cache import cache_page
 # Create your views here.
 
 
 def homepage(request):
-
-    num_option = [0, 1 ,2, 3, 4, 5, 6, 7, 8, 9]
     return render(request, 'main.html', locals())
 
 
-def property(request):
+def properties(request):
     return render(request, 'property.html', locals())
 
-
+@cache_page(60 * 15)
 def result(request):
-
     try:
         num_beds = request.GET['num_beds']
         num_baths = request.GET['num_baths']
@@ -30,7 +28,6 @@ def result(request):
         # change later, property type is int
         price = '£' + str(int(np.exp(result)[0])) + ' pcm'
     except:
-
         num_beds = 0
         num_baths = 0
         property_type = 0
