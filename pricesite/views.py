@@ -14,6 +14,8 @@ def homepage(request):
 def properties(request):
     return render(request, 'property.html', locals())
 
+def sign_up(request):
+    return render(request, 'sign_up.html', locals())
 
 @cache_page(60 * 15)
 def result(request):
