@@ -28,9 +28,7 @@ def result(request):
         result = model.predict([[latitude, longitude, num_beds, num_baths, property_type, furniture_state]])
         # change later, property type is int
         price = '£' + str(int(np.exp(result)[0])) + ' pcm'
-        j = 0
-        for i in range(1000000000):
-            j = j + 1
+
     except:
         num_beds = 0
         num_baths = 0
