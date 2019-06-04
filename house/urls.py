@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import staticfiles
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,re_path
 from pricesite.views import homepage, properties, result
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage),
     path('property/', properties),
-    path('result/', result)
+    path('result/', result),
+
 ]
 urlpatterns += staticfiles_urlpatterns()
