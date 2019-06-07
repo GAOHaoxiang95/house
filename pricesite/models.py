@@ -15,10 +15,11 @@ class Preference(models.Model):
     furniture_state = models.PositiveIntegerField(default=0)
 
 
+
 class User(models.Model):
     name = models.CharField(max_length=20, null=False)
     password = models.CharField(max_length=20, null=False)
-    email = models.EmailField()
+    email = models.EmailField(primary_key=True)
     prefer = models.ForeignKey(Preference, on_delete=models.CASCADE)
 
     def __str__(self):

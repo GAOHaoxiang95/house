@@ -41,3 +41,9 @@ def result(request):
         price = 'Unknown'
 
     return render(request, 'result.html', locals())
+
+def login(request):
+    if request.method == 'POST':
+        pass
+
+    return render(request, '', locals())
