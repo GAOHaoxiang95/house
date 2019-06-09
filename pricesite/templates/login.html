@@ -2,12 +2,12 @@
 {% block navbar %}
     <li><a href="/"><b>VALUATION</b></a></li>
     <li><a href="/property"><b>PROPERTY</b></a></li>
-    <li class="active"><a href="/register"><b>ENROLL</b></a></li>
+    <li><a href="/register"><b>ENROLL</b></a></li>
 {% endblock %}
 
 {% block content %}
     <center id="slogan">
-        <p><b>Enroll</b></p>
+        <p><b>Login</b></p>
     </center>
     <br/>
     <center>
@@ -15,9 +15,8 @@
         {% csrf_token %}
         <br/>
         <table>
-            {{ post_form.as_table }}
+            {{ form.as_table }}
         </table>
-
         <br/>
         <div class = "key">
         <input type="submit" value="Submit" style="width:300px;"/></div>

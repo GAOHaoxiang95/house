@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
-from pricesite import models, parsePostcode
+from pricesite import models, parsePostcode, forms
 from sklearn.externals import joblib
 import numpy as np
 from django.views.decorators.cache import cache_page
@@ -14,8 +14,6 @@ def homepage(request):
 def properties(request):
     return render(request, 'property.html', locals())
 
-def sign_up(request):
-    return render(request, 'sign_up.html', locals())
 
 @cache_page(60 * 15)
 def result(request):
@@ -30,7 +28,6 @@ def result(request):
         result = model.predict([[latitude, longitude, num_beds, num_baths, property_type, furniture_state]])
         # change later, property type is int
         price = '£' + str(int(np.exp(result)[0])) + ' pcm'
-
     except:
         num_beds = 0
         num_baths = 0
@@ -42,8 +39,29 @@ def result(request):
 
     return render(request, 'result.html', locals())
 
+
+def enroll(request):
+    if request.method == 'POST':
+        post_form = forms.LoginForm(request.POST)
+        #print(post_form.cleaned_data['email'])
+        if post_form.is_valid():
+            post_form.save()
+            #print('no')
+        else:
+            pass
+    else:
+        post_form = forms.LoginForm()
+
+    return render(request, 'sign_up.html', locals())
+
+
 def login(request):
     if request.method == 'POST':
-        pass
-
-    return render(request, '', locals())
+        form = forms.AuthenticationForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            print(email)
+    else:
+        form = forms.AuthenticationForm()
+    return render(request, 'login.html', locals())

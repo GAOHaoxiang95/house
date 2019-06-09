@@ -17,14 +17,15 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import staticfiles
 from django.contrib import admin
 from django.urls import path,re_path
-from pricesite.views import homepage, properties, result, sign_up
+from pricesite.views import homepage, properties, result, enroll, login
 from django.conf.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage),
     path('property/', properties),
     path('result/', result),
-    path('sign_up/', sign_up),
+    path('register/', enroll),
+    path('login/', login),
     path('accounts/', include('registration.backends.default.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns()
