@@ -56,12 +56,20 @@ def enroll(request):
 
 
 def login(request):
+    message = ""
     if request.method == 'POST':
         form = forms.AuthenticationForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            print(email)
+            try:
+                user = models.User.objects.get(email = email)
+                if user.password == password:
+                    print("login")
+                else:
+                    message = "Please check your password."
+            except:
+                message = "Please check your email."
     else:
         form = forms.AuthenticationForm()
     return render(request, 'login.html', locals())

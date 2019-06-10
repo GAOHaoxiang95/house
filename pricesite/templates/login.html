@@ -13,6 +13,7 @@
     <center>
     <form id="container" action="."  method="post">
         {% csrf_token %}
+        {{ message }}
         <br/>
         <table>
             {{ form.as_table }}
