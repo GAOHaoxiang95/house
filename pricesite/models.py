@@ -16,7 +16,7 @@ class Preference(models.Model):
 
 
 class User(models.Model):
-    name = models.CharField(max_length=20, default="Visitor")
+    name = models.CharField(max_length=20, default="Tourist")
     password = models.CharField(max_length=20, null=False)
     email = models.EmailField(primary_key=True)
     prefer = models.ForeignKey(Preference, on_delete=models.CASCADE, default=1)

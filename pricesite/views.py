@@ -60,8 +60,9 @@ def login(request):
     if request.method == 'POST':
         form = forms.AuthenticationForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
+            email = request.POST['email']
+            password = request.POST['password']
+            #print(email)
             try:
                 user = models.User.objects.get(email = email)
                 if user.password == password:
