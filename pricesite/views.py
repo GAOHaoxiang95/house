@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from pricesite import models, parsePostcode, forms
 from sklearn.externals import joblib
@@ -8,15 +8,30 @@ from django.views.decorators.cache import cache_page
 
 
 def homepage(request):
+    if 'email' in request.session and request.session['email'] is not None:
+        status = 'Logout'
+        name = request.session['email']
+    else:
+        status = 'Login'
     return render(request, 'main.html', locals())
 
 
 def properties(request):
+    if 'email' in request.session and request.session['email'] is not None:
+        status = 'Logout'
+        name = request.session['email']
+    else:
+        status = 'Login'
     return render(request, 'property.html', locals())
 
 
 @cache_page(60 * 15)
 def result(request):
+    if 'email' in request.session and request.session['email'] is not None:
+        status = 'Logout'
+        name = request.session['email']
+    else:
+        status = 'Login'
     try:
         num_beds = request.GET['num_beds']
         num_baths = request.GET['num_baths']
@@ -41,6 +56,11 @@ def result(request):
 
 
 def enroll(request):
+    if 'email' in request.session and request.session['email'] is not None:
+        status = 'Logout'
+        name = request.session['email']
+    else:
+        status = 'Login'
     if request.method == 'POST':
         post_form = forms.LoginForm(request.POST)
         #print(post_form.cleaned_data['email'])
@@ -55,7 +75,22 @@ def enroll(request):
     return render(request, 'sign_up.html', locals())
 
 
+def logout(request):
+    if 'email' in request.session and request.session['email'] is not None:
+        status = 'Logout'
+        name = request.session['email']
+    else:
+        status = 'Login'
+    request.session['email'] = None
+    return redirect('/')
+
+
 def login(request):
+    if 'email' in request.session and request.session['email'] is not None:
+        status = 'Logout'
+        name = request.session['email']
+    else:
+        status = 'Login'
     message = ""
     if request.method == 'POST':
         form = forms.AuthenticationForm(request.POST)
@@ -64,9 +99,11 @@ def login(request):
             password = request.POST['password']
             #print(email)
             try:
-                user = models.User.objects.get(email = email)
+                user = models.User.objects.get(email=email)
                 if user.password == password:
-                    print("login")
+                    request.session['email'] = email#login successfully
+                    request.session['name'] = user.name
+                    return redirect('/')
                 else:
                     message = "Please check your password."
             except:

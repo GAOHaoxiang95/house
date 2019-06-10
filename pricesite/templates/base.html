@@ -13,15 +13,17 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
         <div class="navbar-header">
-            <a href="/login" class="navbar-brand"><font color="blue"><span class="glyphicon glyphicon-home"></span>   Login</font></a>
+            <a href="/{{ status }}" class="navbar-brand"><font color="blue"><span class="glyphicon glyphicon-home"></span> {{ status }}</font></a>
         </div>
         <div>
             <ul class="nav navbar-nav">
                 {% block navbar %}{% endblock %}
+
             </ul>
         </div>
         </div>
     </nav>
+    <p id="greeting">{{ name }}</p>
     {% block content %}{% endblock %}
 </body>
 </html>
