@@ -85,6 +85,8 @@ def logout(request):
     else:
         status = 'Login'
     request.session['email'] = None
+    request.session['name'] = None
+    messages.add_message(request, messages.SUCCESS, 'Logout successfully!')
     return redirect('/')
 
 
