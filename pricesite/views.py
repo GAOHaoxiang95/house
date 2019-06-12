@@ -4,13 +4,14 @@ from pricesite import models, parsePostcode, forms
 from sklearn.externals import joblib
 import numpy as np
 from django.views.decorators.cache import cache_page
+from django.contrib import messages
 # Create your views here.
 
 
 def homepage(request):
     if 'email' in request.session and request.session['email'] is not None:
         status = 'Logout'
-        name = request.session['email']
+        name = request.session['name']
     else:
         status = 'Login'
     return render(request, 'main.html', locals())
@@ -19,7 +20,7 @@ def homepage(request):
 def properties(request):
     if 'email' in request.session and request.session['email'] is not None:
         status = 'Logout'
-        name = request.session['email']
+        name = request.session['name']
     else:
         status = 'Login'
     return render(request, 'property.html', locals())
@@ -29,7 +30,7 @@ def properties(request):
 def result(request):
     if 'email' in request.session and request.session['email'] is not None:
         status = 'Logout'
-        name = request.session['email']
+        name = request.session['name']
     else:
         status = 'Login'
     try:
@@ -58,7 +59,7 @@ def result(request):
 def enroll(request):
     if 'email' in request.session and request.session['email'] is not None:
         status = 'Logout'
-        name = request.session['email']
+        name = request.session['name']
     else:
         status = 'Login'
     if request.method == 'POST':
@@ -66,6 +67,8 @@ def enroll(request):
         #print(post_form.cleaned_data['email'])
         if post_form.is_valid():
             post_form.save()
+            messages.add_message(request, messages.SUCCESS, 'Enroll successfully!')
+            return redirect('/')
             #print('no')
         else:
             pass
@@ -78,7 +81,7 @@ def enroll(request):
 def logout(request):
     if 'email' in request.session and request.session['email'] is not None:
         status = 'Logout'
-        name = request.session['email']
+        name = request.session['name']
     else:
         status = 'Login'
     request.session['email'] = None
@@ -88,7 +91,7 @@ def logout(request):
 def login(request):
     if 'email' in request.session and request.session['email'] is not None:
         status = 'Logout'
-        name = request.session['email']
+        name = request.session['name']
     else:
         status = 'Login'
     message = ""
@@ -103,6 +106,7 @@ def login(request):
                 if user.password == password:
                     request.session['email'] = email#login successfully
                     request.session['name'] = user.name
+                    messages.add_message(request, messages.SUCCESS, 'Login successfully!')
                     return redirect('/')
                 else:
                     message = "Please check your password."

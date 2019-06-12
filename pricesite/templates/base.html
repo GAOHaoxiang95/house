@@ -14,6 +14,7 @@
         <div class="container-fluid">
         <div class="navbar-header">
             <a href="/{{ status }}" class="navbar-brand"><font color="blue"><span class="glyphicon glyphicon-home"></span> {{ status }}</font></a>
+
         </div>
         <div>
             <ul class="nav navbar-nav">
@@ -21,9 +22,19 @@
 
             </ul>
         </div>
+            <span id="greeting">
+                <i>
+                <span class="glyphicon glyphicon-user"></span> {{ name }}
+                </i>
+            </span>
         </div>
+
     </nav>
-    <p id="greeting">{{ name }}</p>
+   {% for i in messages %}
+    <div class="alert alert-{{i.tags}}">
+        {{ i }}
+    </div>
+    {% endfor %}
     {% block content %}{% endblock %}
 </body>
 </html>

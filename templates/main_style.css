@@ -11,7 +11,9 @@ filter: alpha(opacity=80); opacity: 0.85;
 font-size: 18px;
 }
 #greeting {
-    float:right;
+    float: right;
+    color: blue;
+    font-size: 26px;
 }
 #slogan {
     line-height:50px;
