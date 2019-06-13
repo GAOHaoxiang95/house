@@ -5,6 +5,7 @@ from sklearn.externals import joblib
 import numpy as np
 from django.views.decorators.cache import cache_page
 from django.contrib import messages
+from django.contrib.sessions.models import Session
 # Create your views here.
 
 
@@ -84,9 +85,9 @@ def logout(request):
         name = request.session['name']
     else:
         status = 'Login'
-    request.session['email'] = None
-    request.session['name'] = None
-    messages.add_message(request, messages.SUCCESS, 'Logout successfully!')
+    if 'email' in request.session:
+        Session.objects.all().delete()
+        messages.add_message(request, messages.SUCCESS, 'Logout successfully!')
     return redirect('/')
 
 
@@ -108,6 +109,14 @@ def login(request):
                 if user.password == password:
                     request.session['email'] = email#login successfully
                     request.session['name'] = user.name
+                    '''
+                    request.session['name'] = None
+                    if 'name' in request.session:
+                        print('yes')
+                    else:
+                        print('no')
+                    request.session['name'] = user.name
+                    '''
                     messages.add_message(request, messages.SUCCESS, 'Login successfully!')
                     return redirect('/')
                 else:
@@ -117,3 +126,12 @@ def login(request):
     else:
         form = forms.AuthenticationForm()
     return render(request, 'login.html', locals())
+
+
+def feedback(request):
+    if 'email' in request.session and request.session['email'] is not None:
+        status = 'Logout'
+        name = request.session['name']
+    else:
+        status = 'Login'
+    return render(request, 'feedback.html', locals())

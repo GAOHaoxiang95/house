@@ -17,7 +17,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import staticfiles
 from django.contrib import admin
 from django.urls import path,re_path
-from pricesite.views import homepage, properties, result, enroll, login, logout
+from pricesite.views import homepage, properties, result, enroll, login, logout,feedback
 from django.conf.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +27,7 @@ urlpatterns = [
     path('register/', enroll),
     path('Login/', login),
     path('Logout/', logout),
+    path('feedback/', feedback),
     path('accounts/', include('registration.backends.default.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns()
