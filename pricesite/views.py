@@ -6,6 +6,7 @@ import numpy as np
 from django.views.decorators.cache import cache_page
 from django.contrib import messages
 from django.contrib.sessions.models import Session
+from django.contrib.auth.models import User
 # Create your views here.
 
 
