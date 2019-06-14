@@ -109,14 +109,7 @@ def login(request):
                 if user.password == password:
                     request.session['email'] = email#login successfully
                     request.session['name'] = user.name
-                    '''
-                    request.session['name'] = None
-                    if 'name' in request.session:
-                        print('yes')
-                    else:
-                        print('no')
-                    request.session['name'] = user.name
-                    '''
+
                     messages.add_message(request, messages.SUCCESS, 'Login successfully!')
                     return redirect('/')
                 else:
