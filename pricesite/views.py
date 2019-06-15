@@ -5,7 +5,6 @@ from sklearn.externals import joblib
 import numpy as np
 from django.views.decorators.cache import cache_page
 from django.contrib import messages
-from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
@@ -22,6 +21,7 @@ def homepage(request):
     return render(request, 'main.html', locals())
 
 
+@login_required(login_url='/Login/')
 def properties(request):
     if request.user.is_authenticated:
         status = 'Logout'
@@ -71,17 +71,18 @@ def enroll(request):
         post_form = forms.LoginForm(request.POST)
         #print(post_form.cleaned_data['email'])
         if post_form.is_valid():
-            name = request.POST['name']
+            uname = request.POST['name']
             password = request.POST['password']
             email = request.POST['email']
-            user = User.objects.create_user(name, email, password)
-            user.save()
-
-            messages.add_message(request, messages.SUCCESS, 'Enroll successfully!')
-            return redirect('/')
-            #print('no')
+            try:
+                user = User.objects.create_user(uname, email, password)
+                user.save()
+                messages.add_message(request, messages.SUCCESS, 'Enroll successfully!')
+                return redirect('/')
+            except:
+                messages.add_message(request, messages.WARNING, 'Reduplicated Username!')
         else:
-            pass
+            messages.add_message(request, messages.WARNING, 'Enroll failed!')
     else:
         post_form = forms.LoginForm()
 
@@ -109,11 +110,10 @@ def login(request):
     if request.method == 'POST':
         form = forms.AuthenticationForm(request.POST)
         if form.is_valid():
-            name = request.POST['name'].strip()
+            username = request.POST['name'].strip()
             password = request.POST['password']
-            print(name)
-            user = authenticate(username=name, password=password)
-            print(user)
+            user = authenticate(username=username, password=password)
+
             if user is not None:
                 if user.is_active:
                     auth.login(request, user)
@@ -121,20 +121,6 @@ def login(request):
                     return redirect('/')
             else:
                 message = "Please check your username and password."
-            '''
-            try:
-                user = models.User.objects.get(email=email)
-                if user.password == password:
-                    request.session['email'] = email#login successfully
-                    request.session['name'] = user.name
-
-                    messages.add_message(request, messages.SUCCESS, 'Login successfully!')
-                    return redirect('/')
-                else:
-                    message = "Please check your password."
-            except:
-                message = "Please check your email."
-            '''
     else:
         form = forms.AuthenticationForm()
     return render(request, 'login.html', locals())
