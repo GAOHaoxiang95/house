@@ -7,22 +7,25 @@ from django.views.decorators.cache import cache_page
 from django.contrib import messages
 from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate
+from django.contrib import auth
 # Create your views here.
 
 
 def homepage(request):
-    if 'email' in request.session and request.session['email'] is not None:
+    if request.user.is_authenticated:
         status = 'Logout'
-        name = request.session['name']
+        name = request.user.username
     else:
         status = 'Login'
     return render(request, 'main.html', locals())
 
 
 def properties(request):
-    if 'email' in request.session and request.session['email'] is not None:
+    if request.user.is_authenticated:
         status = 'Logout'
-        name = request.session['name']
+        name = request.user.username
     else:
         status = 'Login'
     return render(request, 'property.html', locals())
@@ -30,9 +33,9 @@ def properties(request):
 
 @cache_page(60 * 15)
 def result(request):
-    if 'email' in request.session and request.session['email'] is not None:
+    if request.user.is_authenticated:
         status = 'Logout'
-        name = request.session['name']
+        name = request.user.username
     else:
         status = 'Login'
     try:
@@ -59,16 +62,21 @@ def result(request):
 
 
 def enroll(request):
-    if 'email' in request.session and request.session['email'] is not None:
+    if request.user.is_authenticated:
         status = 'Logout'
-        name = request.session['name']
+        name = request.user.username
     else:
         status = 'Login'
     if request.method == 'POST':
         post_form = forms.LoginForm(request.POST)
         #print(post_form.cleaned_data['email'])
         if post_form.is_valid():
-            post_form.save()
+            name = request.POST['name']
+            password = request.POST['password']
+            email = request.POST['email']
+            user = User.objects.create_user(name, email, password)
+            user.save()
+
             messages.add_message(request, messages.SUCCESS, 'Enroll successfully!')
             return redirect('/')
             #print('no')
@@ -81,30 +89,39 @@ def enroll(request):
 
 
 def logout(request):
-    if 'email' in request.session and request.session['email'] is not None:
+    if request.user.is_authenticated:
         status = 'Logout'
-        name = request.session['name']
+        name = request.user.username
     else:
         status = 'Login'
-    if 'email' in request.session:
-        Session.objects.all().delete()
-        messages.add_message(request, messages.SUCCESS, 'Logout successfully!')
+    auth.logout(request)
+    messages.add_message(request, messages.SUCCESS, 'Logout successfully!')
     return redirect('/')
 
 
 def login(request):
-    if 'email' in request.session and request.session['email'] is not None:
+    if request.user.is_authenticated:
         status = 'Logout'
-        name = request.session['name']
+        name = request.user.username
     else:
         status = 'Login'
     message = ""
     if request.method == 'POST':
         form = forms.AuthenticationForm(request.POST)
         if form.is_valid():
-            email = request.POST['email']
+            name = request.POST['name'].strip()
             password = request.POST['password']
-            #print(email)
+            print(name)
+            user = authenticate(username=name, password=password)
+            print(user)
+            if user is not None:
+                if user.is_active:
+                    auth.login(request, user)
+                    messages.add_message(request, messages.SUCCESS, 'Login successfully!')
+                    return redirect('/')
+            else:
+                message = "Please check your username and password."
+            '''
             try:
                 user = models.User.objects.get(email=email)
                 if user.password == password:
@@ -117,15 +134,17 @@ def login(request):
                     message = "Please check your password."
             except:
                 message = "Please check your email."
+            '''
     else:
         form = forms.AuthenticationForm()
     return render(request, 'login.html', locals())
 
 
+@login_required(login_url='/Login/')
 def feedback(request):
-    if 'email' in request.session and request.session['email'] is not None:
+    if request.user.is_authenticated:
         status = 'Logout'
-        name = request.session['name']
+        name = request.user.username
     else:
         status = 'Login'
     return render(request, 'feedback.html', locals())
