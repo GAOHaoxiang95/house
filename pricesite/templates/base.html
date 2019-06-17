@@ -24,7 +24,9 @@
         </div>
             <span id="greeting">
                 <i>
+                    {% if status == 'Logout' %}
                 <span class="glyphicon glyphicon-user"></span> {{ name }}
+                    {% endif %}
                 </i>
             </span>
         </div>
