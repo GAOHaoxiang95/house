@@ -67,6 +67,13 @@
         var map = new Microsoft.Maps.Map('#myMap', {
             credentials: "Asc4YCjUop-bfjwQ-HQU7VBMah0qU2PyEySRtz9HhmNSTwL-MjezFcENnqMwCX3b"
         });
+        var loc = new Microsoft.Maps.Location(
+                -0.17911445396727732,
+                51.49869386764022);
+
+            //Add a pushpin at the user's location.
+            var pin = new Microsoft.Maps.Pushpin(loc);
+            map.entities.push(pin);
         //Request the user's location, -0.17911445396727732, api.postcodes.io/postcodes?lon=51.49869386764022&lat=-0.17911445396727732
         navigator.geolocation.getCurrentPosition(function (position) {
             var loc = new Microsoft.Maps.Location(
