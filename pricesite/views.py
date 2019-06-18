@@ -77,10 +77,12 @@ def enroll(request):
             try:
                 user = User.objects.create_user(uname, email, password)
                 user.save()
+                profile = models.Profile.objects.create(user=user)
+                profile.save()
                 messages.add_message(request, messages.SUCCESS, 'Enroll successfully!')
                 return redirect('/')
             except:
-                messages.add_message(request, messages.WARNING, 'Reduplicated Username!')
+                messages.add_message(request, messages.WARNING, 'This account already exists!')
         else:
             messages.add_message(request, messages.WARNING, 'Enroll failed!')
     else:
@@ -134,3 +136,7 @@ def feedback(request):
     else:
         status = 'Login'
     return render(request, 'feedback.html', locals())
+
+
+def map_position(request):
+    return render(request, 'test2.html', locals())
