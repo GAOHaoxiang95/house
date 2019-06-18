@@ -12,8 +12,9 @@
         //Request the user's location, 51.49869386764022, -0.17911445396727732
         navigator.geolocation.getCurrentPosition(function (position) {
             var loc = new Microsoft.Maps.Location(
-                51.49869386764022,
-                -0.17911445396727732);
+                position.coords.latitude,
+                position.coords.longitude);
+
             //Add a pushpin at the user's location.
             var pin = new Microsoft.Maps.Pushpin(loc);
             map.entities.push(pin);
@@ -34,16 +35,12 @@
         {
           alert("The location " + loc.latitude + ", " + loc.longitude + " was clicked.");
         }
-
       }
     }
-
     GetMap();
 
-
-
     </script>
-    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+
 </head>
 <body>
     <div id="myMap" style="position:relative;width:600px;height:400px;"></div>

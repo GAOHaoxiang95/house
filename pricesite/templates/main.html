@@ -6,8 +6,10 @@
 {% endblock %}
 
 {% block content %}
+
     <center id="slogan">
         <p><b>Online House Rental Prices Evaluation</b></p>
+        <div id="myMap" style="position:relative;width:600px;height:400px;"></div>
     </center>
     <br/>
     <form action="/result/" method="GET">
@@ -31,6 +33,14 @@
             <td><input style="width:180px;" type="text" name="postcode"/></td>
         </tr>
         <tr>
+            <td>Latitude</td>
+            <td><input style="width:180px;" type="text" name="latitude"/></td>
+        </tr>
+        <tr>
+            <td>Longitude</td>
+            <td><input style="width:180px;" type="text" name="longitude"/></td>
+        </tr>
+        <tr>
             <td>Property type</td>
             <td><select id="property_type" name="pt">
             </select></td>
@@ -52,6 +62,44 @@
     </form>
     {% load static %}
     <script src = "{% static 'menu.js' %}"></script>
+    <script type='text/javascript'>
+    function GetMap() {
+        var map = new Microsoft.Maps.Map('#myMap', {
+            credentials: "Asc4YCjUop-bfjwQ-HQU7VBMah0qU2PyEySRtz9HhmNSTwL-MjezFcENnqMwCX3b"
+        });
+        //Request the user's location, -0.17911445396727732, api.postcodes.io/postcodes?lon=51.49869386764022&lat=-0.17911445396727732
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var loc = new Microsoft.Maps.Location(
+                position.coords.latitude,
+                position.coords.longitude);
+
+            //Add a pushpin at the user's location.
+            var pin = new Microsoft.Maps.Pushpin(loc);
+            map.entities.push(pin);
+
+            //Center the map on the user's location.
+            map.setView({ center: loc, zoom: 12 });
+        });
+         Microsoft.Maps.Events.addHandler(map, 'click', displayEventInfo);
+    }
+    function displayEventInfo(e) {
+      if (e.targetType == "map") {
+        var point = new Microsoft.Maps.Point(e.getX(), e.getY());
+        var loc = e.target.tryPixelToLocation(point);
+
+        if (loc!=null)
+        {
+              //alert("The location " + loc.latitude + ", " + loc.longitude + " was clicked.");
+              var lat = document.getElementsByName("latitude")[0];
+              var lon = document.getElementsByName("longitude")[0];
+              lat.value = loc.latitude
+              lon.value = loc.longitude
+        }
+      }
+    }
+
+    </script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
     <script>
         window.onload = setMenu('num_beds');
         window.onload = setMenu('num_baths');
