@@ -25,23 +25,21 @@
          Microsoft.Maps.Events.addHandler(map, 'click', displayEventInfo);
     }
 
-    var map = null;
+    function displayEventInfo(e) {
+      if (e.targetType == "map") {
 
-function displayEventInfo(e) {
-  if (e.targetType == "map") {
+        var point = new Microsoft.Maps.Point(e.getX(), e.getY());
+        var loc = e.target.tryPixelToLocation(point);
 
-    var point = new Microsoft.Maps.Point(e.getX(), e.getY());
-    var loc = e.target.tryPixelToLocation(point);
+        if (loc!=null)
+        {
+          alert("The location " + loc.latitude + ", " + loc.longitude + " was clicked.");
+        }
 
-    if (loc!=null)
-    {
-      alert("The location " + loc.latitude + ", " + loc.longitude + " was clicked.");
+      }
     }
 
-  }
-}
-
-GetMap();
+    GetMap();
 
 
 
