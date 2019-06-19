@@ -6,6 +6,22 @@
 {% endblock %}
 
 {% block content %}
+    <center>
+    <p id="container">
 
-<img src="https://www.zoopla.co.uk/static/images/mashery/powered-by-zoopla-150x73.png" width="150" height="73" title="Property information powered by Zoopla" alt="Property information powered by Zoopla" border="0">
+        <a href="#" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-arrow-right"></span>
+        </a>
+
+    </p>
+    </center>
+    <script>
+        $(document).ready(function(){
+            $(".message").css("color","red")
+        });
+    </script>
 {% endblock %}
