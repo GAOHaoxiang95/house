@@ -9,8 +9,10 @@
 
     <center id="slogan">
         <p><b>Online House Rental Prices Evaluation</b></p>
-        <div id="myMap" style="position:relative;width:600px;height:400px;"></div>
+
     </center>
+
+<center><b class="message">Click on the map to choose the location of your property</b><div id="myMap" style="position:relative;width:900px;height:400px;"></div></center>
     <br/>
     <form action="/result/" method="GET">
     <table id="container" class="table table-hover table-striped">
@@ -29,16 +31,16 @@
             </select></td>
         </tr>
         <tr>
-            <td>Postcode</td>
+            <td>Postcode (optional)</td>
             <td><input style="width:180px;" type="text" name="postcode"/></td>
         </tr>
-        <tr>
+        <tr hidden="hidden">
             <td>Latitude</td>
-            <td><input style="width:180px;" type="text" name="latitude"/></td>
+            <td><input style="width:180px;" type="text" name="latitude" value="51.49869386764022"/></td>
         </tr>
-        <tr>
+        <tr hidden="hidden">
             <td>Longitude</td>
-            <td><input style="width:180px;" type="text" name="longitude"/></td>
+            <td><input style="width:180px;" type="text" name="longitude" value="-0.17911445396727732"/></td>
         </tr>
         <tr>
             <td>Property type</td>
@@ -60,6 +62,8 @@
         </tr>
     </table>
     </form>
+    </br>
+    </br>
     {% load static %}
     <script src = "{% static 'menu.js' %}"></script>
     <script type='text/javascript'>
@@ -91,6 +95,19 @@
               lat.value = loc.latitude
               lon.value = loc.longitude
         }
+        var map = new Microsoft.Maps.Map('#myMap', {
+            credentials: "Asc4YCjUop-bfjwQ-HQU7VBMah0qU2PyEySRtz9HhmNSTwL-MjezFcENnqMwCX3b"
+        });
+        var loc = new Microsoft.Maps.Location(
+                loc.latitude,
+                loc.longitude
+                );
+
+            //Add a pushpin at the user's location.
+            var pin = new Microsoft.Maps.Pushpin(loc);
+            map.entities.push(pin);
+            map.setView({ center: loc, zoom: 15 });
+            Microsoft.Maps.Events.addHandler(map, 'click', displayEventInfo);
       }
     }
 

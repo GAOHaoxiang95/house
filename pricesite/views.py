@@ -42,9 +42,15 @@ def result(request):
         num_beds = request.GET['num_beds']
         num_baths = request.GET['num_baths']
         postcode = request.GET['postcode']
+        if postcode == "":
+            latitude = float(request.GET['latitude'])
+            longitude = float(request.GET['longitude'])
+        else:
+            latitude, longitude = parsePostcode.parse_postcode(postcode)
+
         property_type = float(request.GET['pt'])
         furniture_state = float(request.GET['fs'])
-        latitude, longitude = parsePostcode.parse_postcode(postcode)
+
         model = joblib.load("train_model.mt")
         result = model.predict([[latitude, longitude, num_beds, num_baths, property_type, furniture_state]])
         # change later, property type is int

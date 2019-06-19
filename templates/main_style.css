@@ -10,6 +10,7 @@ background-color:white;
 filter: alpha(opacity=80); opacity: 0.85;
 font-size: 18px;
 }
+
 #greeting {
     float: right;
     color: purple;
@@ -19,4 +20,9 @@ font-size: 18px;
     line-height:50px;
     font-size: 30px;
     color: yellow;
+}
+
+.message {
+
+    color: white;
 }
