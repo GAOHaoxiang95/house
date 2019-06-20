@@ -18,7 +18,7 @@ from django.contrib import staticfiles
 from django.contrib import admin
 from django.urls import path,re_path
 from pricesite.views import homepage, properties, result, enroll, login, logout, feedback, map_position
-from django.conf.urls import include
+from django.conf.urls import include, url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage),
@@ -30,5 +30,6 @@ urlpatterns = [
     path('feedback/', feedback),
     path('test/', map_position),
     path('accounts/', include('registration.backends.default.urls')),
+    url(r'^api-auth/', include('rest_framework.urls'))
 ]
 urlpatterns += staticfiles_urlpatterns()

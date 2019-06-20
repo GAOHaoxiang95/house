@@ -146,3 +146,12 @@ def feedback(request):
 
 def map_position(request):
     return render(request, 'test2.html', locals())
+
+from rest_framework import viewsets
+from .models import Preference
+from .serializers import PreferenceSerializer
+
+class PreferenceViewSet(viewsets.ModelViewSet):
+
+    queryset = Preference.objects.order_by('beds')
+    serializer_class = PreferenceSerializer

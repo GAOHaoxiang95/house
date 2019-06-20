@@ -8,20 +8,24 @@
 {% block content %}
     <center>
     <p id="container">
-
-        <a href="#" class="btn btn-info btn-lg">
+        <a id="left" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="#" class="btn btn-info btn-lg">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a id="right" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
-
     </p>
     </center>
     <script>
         $(document).ready(function(){
-            $(".message").css("color","red")
+            $("#left").click(function(){
+		        $.ajax({url:"demo_test.txt",
+
+		        success:function(result){
+			        $("#div1").html(result);
+		        }});
+	        });
         });
     </script>
 {% endblock %}
