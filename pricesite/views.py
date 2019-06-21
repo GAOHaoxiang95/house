@@ -153,5 +153,5 @@ from .serializers import PreferenceSerializer
 
 class PreferenceViewSet(viewsets.ModelViewSet):
 
-    queryset = Preference.objects.order_by('beds')
+    queryset = Preference.objects.all().order_by('beds')
     serializer_class = PreferenceSerializer

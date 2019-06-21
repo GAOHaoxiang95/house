@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'pricesite',
     'registration',
     'rest_framework',
+
 ]
 
 MIDDLEWARE = [
