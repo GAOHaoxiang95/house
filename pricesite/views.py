@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from django.contrib import auth
+from pricesite.models import House
+from django.core.paginator import Paginator
 # Create your views here.
 
 
@@ -28,6 +30,10 @@ def properties(request):
         name = request.user.username
     else:
         status = 'Login'
+    i = House.objects
+    p = Paginator(i, 2)
+    loaded = p.page(2)
+    context = {'Houses':loaded}
     return render(request, 'property.html', locals())
 
 

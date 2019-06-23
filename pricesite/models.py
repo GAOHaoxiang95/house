@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User as u
 
 # Create your models here.
-
+import mongoengine
 
 class Preference(models.Model):
     price = models.PositiveIntegerField(default=0)
@@ -32,3 +32,15 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+mongoengine.connect('Houses',host = '127.0.0.1',port = 27017)
+class House(mongoengine.Document):
+    postcode = mongoengine.StringField()
+    price_actual = mongoengine.IntField(default=0)
+    meta = {'collection':'Features'}
+    is_retirement_home = mongoengine.StringField()
+    num_recepts = mongoengine.IntField(default=0)
+    property_type = mongoengine.StringField()
+    furnished_state = mongoengine.StringField()
+    num_beds = mongoengine.IntField(default=0)
+    num_baths = mongoengine.IntField(default=0)

@@ -6,26 +6,41 @@
 {% endblock %}
 
 {% block content %}
-    <center>
-    <p id="container">
+    <p id="div1">{{ loaded }}</p>
+    <table id="container" class="table table-hover table-striped">
+        <tr>
+            <td>Number of bedrooms</td>
+            <td><select id="num_beds" name="num_beds">
+            </select></td>
+        </tr>
+        <tr>
+            <td>Number of bathrooms</td>
+            <td><select id="num_baths" name="num_baths">
+            </select></td>
+        </tr>
+
+        <tr>
+            <td>
         <a id="left" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+        <td>&nbsp;&nbsp;&nbsp;
         <a id="right" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-arrow-right"></span>
+            <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
-    </p>
-    </center>
+        </td>
+        </tr>
+    </table>
+
+
+
     <script>
         $(document).ready(function(){
-            $("#left").click(function(){
-		        $.ajax({url:"demo_test.txt",
-
-		        success:function(result){
-			        $("#div1").html(result);
-		        }});
-	        });
+            $("#right").click(function(){
+                htmlobj=$.ajax({url:"/api/prefer/",async:false});
+                $("#div1").html(htmlobj.responseText);
+            });
         });
     </script>
 {% endblock %}
