@@ -30,10 +30,12 @@ def properties(request):
         name = request.user.username
     else:
         status = 'Login'
-    i = House.objects
-    p = Paginator(i, 2)
-    loaded = p.page(2)
-    context = {'Houses':loaded}
+
+    all_properties = House.objects
+    p = Paginator(all_properties, 10)
+    page_num = request.GET.get('p', 1)
+    loaded = p.page(page_num)
+
     return render(request, 'property.html', locals())
 
 
@@ -153,9 +155,11 @@ def feedback(request):
 def map_position(request):
     return render(request, 'test2.html', locals())
 
+
 from rest_framework import viewsets
 from .models import Preference
 from .serializers import PreferenceSerializer
+
 
 class PreferenceViewSet(viewsets.ModelViewSet):
 

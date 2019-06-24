@@ -6,41 +6,54 @@
 {% endblock %}
 
 {% block content %}
-    <p id="div1">{{ loaded }}</p>
+
+    </br></br>
     <table id="container" class="table table-hover table-striped">
         <tr>
-            <td>Number of bedrooms</td>
-            <td><select id="num_beds" name="num_beds">
-            </select></td>
+            <b>
+            <td>Bedrooms</td>
+            <td>Bathrooms</td>
+                <td>Receptions</td>
+            <td>Postcode</td>
+            <td>Property Type</td>
+            <td>Furnished State</td>
+            <td>Rental Price</td>
+            </b>
         </tr>
+        {% for item in loaded %}
         <tr>
-            <td>Number of bathrooms</td>
-            <td><select id="num_baths" name="num_baths">
-            </select></td>
+            <td>{{item.num_beds}}</td>
+            <td>{{item.num_baths}}</td>
+            <td>{{item.num_recepts}}</td>
+            <td>{{item.postcode}}</td>
+            <td>{{item.property_type}}</td>
+            <td>{{item.furnished_state}}</td>
+            <td>{{item.price_actual}}</td>
         </tr>
-
+        {% endfor %}
         <tr>
+            <td></td>
+            <td></td>
             <td>
-        <a id="left" class="btn btn-info btn-lg">
+                {% if loaded.has_previous %}
+        <a href="?p={{ loaded.previous_page_number }}" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
+                {% else %}
+                   <a href="#" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+                {% endif %}
             </td>
+            <td><b>{{ loaded }}</b></td>
         <td>&nbsp;&nbsp;&nbsp;
-        <a id="right" class="btn btn-info btn-lg">
+            {% if loaded.has_next %}
+        <a href="?p={{ loaded.next_page_number }}" id="right" class="btn btn-info btn-lg">
             <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
+            {% endif %}
         </td>
+            <td></td>
         </tr>
     </table>
-
-
-
-    <script>
-        $(document).ready(function(){
-            $("#right").click(function(){
-                htmlobj=$.ajax({url:"/api/prefer/",async:false});
-                $("#div1").html(htmlobj.responseText);
-            });
-        });
-    </script>
 {% endblock %}

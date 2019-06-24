@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+
+    <script>
+        $(document).ready(function(){
+            $("#right").click(function(){
+                htmlobj=$.ajax({url:"/api/prefer/",async:false});
+                $("#div1").html(htmlobj.responseText);
+            });
+        });
+    </script>
