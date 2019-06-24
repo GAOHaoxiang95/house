@@ -23,7 +23,6 @@ def homepage(request):
     return render(request, 'main.html', locals())
 
 
-@login_required(login_url='/Login/')
 def properties(request):
     if request.user.is_authenticated:
         status = 'Logout'
@@ -165,3 +164,13 @@ class PreferenceViewSet(viewsets.ModelViewSet):
 
     queryset = Preference.objects.all().order_by('beds')
     serializer_class = PreferenceSerializer
+
+
+@login_required(login_url='/Login/')
+def recommendation(request):
+    if request.user.is_authenticated:
+        status = 'Logout'
+        name = request.user.username
+    else:
+        status = 'Login'
+    return render(request, 'recommendation.html', locals())

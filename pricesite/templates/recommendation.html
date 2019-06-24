@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "base.html" %}
+{% block navbar %}
+    <li><a href="/"><b>Valuation</b></a></li>
+    <li><a href="/property/"><b>Properties</b></a></li>
+    <li class="active"><a href="/recommendation/"><b>Recommendation</b></a></li>
+    <li><a href="/feedback/"><b>Feedback</b></a></li>
+{% endblock %}
 
 
     <script>

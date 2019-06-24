@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block navbar %}
-    <li><a href="/"><b>VALUATION</b></a></li>
-    <li class="active"><a href="/property/"><b>PROPERTY</b></a></li>
-    <li><a href="/feedback/"><b>FEEDBACK</b></a></li>
+
+    <li><a href="/"><b>Valuation</b></a></li>
+    <li class="active"><a href="/property/"><b>Properties</b></a></li>
+    <li><a href="/recommendation/"><b>Recommendation</b></a></li>
+    <li><a href="/feedback/"><b>Feedback</b></a></li>
 {% endblock %}
 
 {% block content %}
@@ -31,10 +33,9 @@
             <td>{{item.price_actual}}</td>
         </tr>
         {% endfor %}
-        <tr>
-            <td></td>
-            <td></td>
-            <td>
+
+    </table>
+    <center>
                 {% if loaded.has_previous %}
         <a href="?p={{ loaded.previous_page_number }}" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-arrow-left"></span>
@@ -44,16 +45,11 @@
           <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
                 {% endif %}
-            </td>
-            <td><b>{{ loaded }}</b></td>
-        <td>&nbsp;&nbsp;&nbsp;
+        <b class="message">{{ loaded }}</b>
             {% if loaded.has_next %}
         <a href="?p={{ loaded.next_page_number }}" id="right" class="btn btn-info btn-lg">
             <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
             {% endif %}
-        </td>
-            <td></td>
-        </tr>
-    </table>
 {% endblock %}
+    </center>
