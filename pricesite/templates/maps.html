@@ -18,7 +18,7 @@
             credentials: "Asc4YCjUop-bfjwQ-HQU7VBMah0qU2PyEySRtz9HhmNSTwL-MjezFcENnqMwCX3b"
         });
         //Request the user's location, 51.49869386764022, -0.17911445396727732
-        navigator.geolocation.getCurrentPosition(function (position) {
+
             var loc = new Microsoft.Maps.Location(
                 {{ latitude }},
                 {{ longitude }});
@@ -29,7 +29,7 @@
 
             //Center the map on the user's location.
             map.setView({ center: loc, zoom: 15 });
-        });
+        
     }
     </script>
     <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
