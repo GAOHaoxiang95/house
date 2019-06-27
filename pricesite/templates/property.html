@@ -8,47 +8,59 @@
 {% endblock %}
 
 {% block content %}
-
-    </br></br>
-    <table id="container" class="table table-hover table-striped">
+    </br>
+<center><b class="message">Marking more properties, our system will learn your preference</b></center>
+    </br>
+    <table name="fadeIn" id="container" class="table table-hover table-striped">
         <tr>
             <b>
+                <td>Postcode</td>
             <td>Bedrooms</td>
             <td>Bathrooms</td>
                 <td>Receptions</td>
-            <td>Postcode</td>
+
             <td>Property Type</td>
             <td>Furnished State</td>
             <td>Rental Price</td>
+                <td>Location</td>
+                <td>Level of interest</td>
             </b>
         </tr>
         {% for item in loaded %}
         <tr>
+            <td>{{item.postcode}}</td>
             <td>{{item.num_beds}}</td>
             <td>{{item.num_baths}}</td>
             <td>{{item.num_recepts}}</td>
-            <td>{{item.postcode}}</td>
+
             <td>{{item.property_type}}</td>
             <td>{{item.furnished_state}}</td>
-            <td>{{item.price_actual}}</td>
+            <td>{{item.price_actual}} pcm</td>
+            <td><a href="maps?postcode={{ item.postcode }}">Click to see</a></td>
+            <td>in</td>
         </tr>
         {% endfor %}
 
     </table>
+</br>
     <center>
-                {% if loaded.has_previous %}
+        {% if loaded.has_previous %}
         <a href="?p={{ loaded.previous_page_number }}" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
-                {% else %}
-                   <a href="#" class="btn btn-info btn-lg">
+        {% else %}
+        <a href="#" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
-                {% endif %}
+        {% endif %}
         <b class="message">{{ loaded }}</b>
             {% if loaded.has_next %}
         <a href="?p={{ loaded.next_page_number }}" id="right" class="btn btn-info btn-lg">
             <span class="glyphicon glyphicon-arrow-right"></span>
+        </a>
+        {% else %}
+                   <a href="#" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
             {% endif %}
 {% endblock %}

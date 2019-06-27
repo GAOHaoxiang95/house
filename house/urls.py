@@ -17,7 +17,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import staticfiles
 from django.contrib import admin
 from django.urls import path,re_path
-from pricesite.views import homepage, properties, result, enroll, login, logout, feedback, map_position, recommendation
+from pricesite.views import homepage, properties, result, enroll, login, logout, feedback, map_position, recommendation, maps
 from django.conf.urls import include, url
 from pricesite .urls import router
 
@@ -28,6 +28,7 @@ urlpatterns = [
     path('property/', properties),
     path('result/', result),
     path('register/', enroll),
+    path('property/maps/', maps),
     path('Login/', login),
     path('Logout/', logout),
     path('feedback/', feedback),

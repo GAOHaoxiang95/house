@@ -31,7 +31,7 @@ def properties(request):
         status = 'Login'
 
     all_properties = House.objects
-    p = Paginator(all_properties, 10)
+    p = Paginator(all_properties, 8)
     page_num = request.GET.get('p', 1)
     loaded = p.page(page_num)
 
@@ -174,3 +174,9 @@ def recommendation(request):
     else:
         status = 'Login'
     return render(request, 'recommendation.html', locals())
+
+
+def maps(request):
+    postcode = request.GET.get('postcode')
+    latitude, longitude = parsePostcode.parse_postcode(postcode)
+    return render(request, 'maps.html', locals())
