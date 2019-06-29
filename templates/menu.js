@@ -13,11 +13,12 @@ function setMarks(classname)
 {
     var selects = document.getElementsByClassName(classname);
     for(var j=0;j<=selects.length;j++){
+        select = selects[j];
         for(var i=0;i<=10;i++){
         var opt = document.createElement("option");
         opt.value=i;
         opt.innerHTML=i;
-        select = selects[j];
+
         select.appendChild(opt);
         }
     }
