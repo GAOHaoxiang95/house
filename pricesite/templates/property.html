@@ -11,6 +11,7 @@
     </br>
 <center><b class="message">Marking more properties, our system will learn your preference</b></center>
     </br>
+<form action="/result/" method="POST">
     <table name="fadeIn" id="container" class="table table-hover table-striped">
         <tr>
             <b>
@@ -39,10 +40,13 @@
             <td><a href="maps?postcode={{ item.postcode }}">Click to see</a></td>
             <td><select class="marks">
             </select></td>
+            <td><input type="submit" value="Save"></td>
         </tr>
         {% endfor %}
-
+        
     </table>
+</form>
+
     </br>
     <center>
         {% if loaded.has_previous %}

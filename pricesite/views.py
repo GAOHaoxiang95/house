@@ -23,6 +23,7 @@ def homepage(request):
     return render(request, 'main.html', locals())
 
 
+@login_required(login_url='/Login/')
 def properties(request):
     if request.user.is_authenticated:
         status = 'Logout'
