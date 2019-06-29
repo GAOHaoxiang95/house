@@ -28,14 +28,12 @@
             </b>
         </tr>
         {% for item in loaded %}
-        <form action="." method="POST">
-            {% csrf_token %}
+
         <tr>
             <td>{{item.postcode}}</td>
             <td>{{item.num_beds}}</td>
             <td>{{item.num_baths}}</td>
             <td>{{item.num_recepts}}</td>
-
             <td>{{item.property_type}}</td>
             <td>{{item.furnished_state}}</td>
             <td>{{item.price_actual}} pcm</td>
@@ -44,7 +42,6 @@
             </select></td>
             <td><input type="submit" value="Save"></td>
         </tr>
-        </form>
         {% endfor %}
 
     </table>
