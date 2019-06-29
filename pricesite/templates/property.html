@@ -37,12 +37,13 @@
             <td>{{item.furnished_state}}</td>
             <td>{{item.price_actual}} pcm</td>
             <td><a href="maps?postcode={{ item.postcode }}">Click to see</a></td>
-            <td>in</td>
+            <td><select class="marks">
+            </select></td>
         </tr>
         {% endfor %}
 
     </table>
-</br>
+    </br>
     <center>
         {% if loaded.has_previous %}
         <a href="?p={{ loaded.previous_page_number }}" class="btn btn-info btn-lg">
@@ -62,6 +63,9 @@
                    <a href="#" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
-            {% endif %}
-{% endblock %}
+        {% endif %}
     </center>
+    <script>
+        window.onload = setMarks('marks');
+    </script>
+    {% endblock %}
