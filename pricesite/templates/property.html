@@ -29,6 +29,7 @@
         </tr>
         {% for item in loaded %}
         <form action="." method="POST">
+            {% csrf_token %}
         <tr>
             <td>{{item.postcode}}</td>
             <td>{{item.num_beds}}</td>
