@@ -31,9 +31,9 @@
         {% csrf_token %}
         <table>
         <tr>
-            <td><input value={{item.postcode}}></td>
-            <td><input value={{item.num_beds}}></td>
-            <td><input value={{item.num_baths}}></td>
+            <td><input name="postcode" value={{item.postcode}}></td>
+            <td><input name="beds" value={{item.num_beds}}></td>
+            <td><input name="baths" value={{item.num_baths}}></td>
             <td><input value={{item.num_recepts}}></td>
             <td><input value={{item.property_type}}></td>
             <td><input value={{item.furnished_state}}></td>
