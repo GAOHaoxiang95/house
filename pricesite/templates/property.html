@@ -31,17 +31,17 @@
         {% csrf_token %}
 
         <tr>
-            <td><input name="postcode" value={{item.postcode}}></td>
-            <td><input name="beds" value={{item.num_beds}}></td>
-            <td><input name="baths" value={{item.num_baths}}></td>
-            <td><input value={{item.num_recepts}}></td>
-            <td><input value={{item.property_type}}></td>
-            <td><input value={{item.furnished_state}}></td>
-            <td><input value={{item.price_actual}}> pcm</td>
+            <td><input size=15 name="postcode" value={{item.postcode}}></td>
+            <td><input size=15 name="beds" value={{item.num_beds}}></td>
+            <td><input size=15 name="baths" value={{item.num_baths}}></td>
+            <td><input size=15 value={{item.num_recepts}}></td>
+            <td><input size=15 value={{item.property_type}}></td>
+            <td><input size=15 value={{item.furnished_state}}></td>
+            <td><input size=15 value={{item.price_actual}}> pcm</td>
             <td><a href="maps?postcode={{ item.postcode }}">Click to see</a></td>
             <td><select class="marks">
             </select></td>
-            <td><input type="submit" value="Save"></td>
+            <td><input size=15 type="submit" value="Save"></td>
         </tr>
 
         </form>
