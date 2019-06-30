@@ -25,11 +25,11 @@
                 <td>Level of interest</td>
             </b>
         </tr>
-    </table>
+
         {% for item in loaded %}
         <form action="/result/"  method="get">
         {% csrf_token %}
-        <table>
+
         <tr>
             <td><input name="postcode" value={{item.postcode}}></td>
             <td><input name="beds" value={{item.num_beds}}></td>
@@ -43,7 +43,7 @@
             </select></td>
             <td><input type="submit" value="Save"></td>
         </tr>
-        </table>
+        
         </form>
         {% endfor %}
 
