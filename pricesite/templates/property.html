@@ -11,24 +11,25 @@
     </br>
 <center><b class="message">Marking more properties, our system will learn your preference</b></center>
     </br>
-
     <table name="fadeIn" id="container" class="table table-hover table-striped">
         <tr>
             <b>
                 <td>Postcode</td>
-            <td>Bedrooms</td>
-            <td>Bathrooms</td>
+                <td>Bedrooms</td>
+                <td>Bathrooms</td>
                 <td>Receptions</td>
-
-            <td>Property Type</td>
-            <td>Furnished State</td>
-            <td>Rental Price</td>
+                <td>Property Type</td>
+                <td>Furnished State</td>
+                <td>Rental Price</td>
                 <td>Location</td>
                 <td>Level of interest</td>
             </b>
         </tr>
+    </table>
         {% for item in loaded %}
-
+        <form action="."  method="post">
+        {% csrf_token %}
+        <table>
         <tr>
             <td>{{item.postcode}}</td>
             <td>{{item.num_beds}}</td>
@@ -42,6 +43,8 @@
             </select></td>
             <td><input type="submit" value="Save"></td>
         </tr>
+        </table>
+        </form>
         {% endfor %}
 
     </table>
@@ -59,13 +62,13 @@
         </a>
         {% endif %}
         <b class="message">{{ loaded }}</b>
-            {% if loaded.has_next %}
+        {% if loaded.has_next %}
         <a href="?p={{ loaded.next_page_number }}" id="right" class="btn btn-info btn-lg">
             <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
         {% else %}
-                   <a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-arrow-right"></span>
+            <a href="#" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
         {% endif %}
     </center>
