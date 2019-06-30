@@ -31,7 +31,7 @@
         {% csrf_token %}
 
         <tr>
-            <td><input name="postcode" value={{item.postcode}}></td>
+            <td><input name="postcode" value="{{item.postcode}}"></td>
             <td><input name="beds" value={{item.num_beds}}></td>
             <td><input name="baths" value={{item.num_baths}}></td>
             <td><input value={{item.num_recepts}}></td>
@@ -43,7 +43,7 @@
             </select></td>
             <td><input type="submit" value="Save"></td>
         </tr>
-        
+
         </form>
         {% endfor %}
 
