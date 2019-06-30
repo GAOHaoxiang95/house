@@ -31,13 +31,13 @@
         {% csrf_token %}
         <table>
         <tr>
-            <td>{{item.postcode}}</td>
-            <td>{{item.num_beds}}</td>
-            <td>{{item.num_baths}}</td>
-            <td>{{item.num_recepts}}</td>
-            <td>{{item.property_type}}</td>
-            <td>{{item.furnished_state}}</td>
-            <td>{{item.price_actual}} pcm</td>
+            <td><input value={{item.postcode}}></td>
+            <td><input value={{item.num_beds}}></td>
+            <td><input value={{item.num_baths}}></td>
+            <td><input value={{item.num_recepts}}></td>
+            <td><input value={{item.property_type}}></td>
+            <td><input value={{item.furnished_state}}></td>
+            <td><input value={{item.price_actual}}> pcm</td>
             <td><a href="maps?postcode={{ item.postcode }}">Click to see</a></td>
             <td><select class="marks">
             </select></td>
