@@ -27,7 +27,7 @@
         </tr>
 
         {% for item in loaded %}
-        <form action="/result/"  method="get">
+        <form action="."  method="get">
         {% csrf_token %}
 
         <tr>
@@ -43,7 +43,7 @@
             </select></td>
             <td><input type="submit" value="Save"></td>
         </tr>
-        
+
         </form>
         {% endfor %}
 
