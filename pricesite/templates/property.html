@@ -27,15 +27,14 @@
         </tr>
 
         {% for item in loaded %}
-        <form action="."  method="get">
+        <form action="./?p={{ page_num }}"  method="post">
         {% csrf_token %}
-
         <tr>
             <td><input style="width:120px;" name="postcode" value="{{item.postcode}}"></td>
             <td><input style="width:120px;" name="beds" value={{item.num_beds}}></td>
             <td><input style="width:120px;" name="baths" value={{item.num_baths}}></td>
             <td><input style="width:120px;" name="recepts" value={{item.num_recepts}}></td>
-            <td><input style="width:120px;" name="pt" value={{item.property_type}}></td>
+            <td><input style="width:130px;" name="pt" value={{item.property_type}}></td>
             <td><input style="width:210px;" name="fs" value={{item.furnished_state}}></td>
             <td><input style="width:120px;" name="price" value={{item.price_actual}}> pcm</td>
             <td><a href="maps?postcode={{ item.postcode }}">Click to see</a></td>
