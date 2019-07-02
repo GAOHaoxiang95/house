@@ -31,17 +31,17 @@
         {% csrf_token %}
 
         <tr>
-            <td><input width="50%" name="postcode" value={{item.postcode}}></td>
-            <td><input width="50%" name="beds" value={{item.num_beds}}></td>
-            <td><input width="50%" name="baths" value={{item.num_baths}}></td>
-            <td><input width="50%" value={{item.num_recepts}}></td>
-            <td><input width="50%" value={{item.property_type}}></td>
-            <td><input width="50%" value={{item.furnished_state}}></td>
-            <td><input width="50%" value={{item.price_actual}}> pcm</td>
+            <td><input style="width:100px;" name="postcode" value={{item.postcode}}></td>
+            <td><input style="width:100px;" name="beds" value={{item.num_beds}}></td>
+            <td><input style="width:100px;" name="baths" value={{item.num_baths}}></td>
+            <td><input style="width:100px;" value={{item.num_recepts}}></td>
+            <td><input style="width:100px;" name="pt" value={{item.property_type}}></td>
+            <td><input style="width:100px;" name="fs" value={{item.furnished_state}}></td>
+            <td><input style="width:100px;" name="price" value={{item.price_actual}}> pcm</td>
             <td><a href="maps?postcode={{ item.postcode }}">Click to see</a></td>
             <td><select class="marks">
             </select></td>
-            <td><input width="50%" type="submit" value="Save"></td>
+            <td><input style="width:100px;" type="submit" value="Save"></td>
         </tr>
 
         </form>
