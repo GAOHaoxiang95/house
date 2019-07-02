@@ -27,7 +27,7 @@
         </tr>
 
         {% for item in loaded %}
-        <form action="./?p={{ page_num }}"  method="post">
+        <form action="."  method="post">
         {% csrf_token %}
         <tr>
             <td><input style="width:120px;" name="postcode" value="{{item.postcode}}"></td>
@@ -42,7 +42,6 @@
             </select></td>
             <td><input style="width:100px;" type="submit" value="Save"></td>
         </tr>
-
         </form>
         {% endfor %}
 

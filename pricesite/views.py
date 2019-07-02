@@ -29,11 +29,21 @@ def properties(request):
         name = request.user.username
     else:
         status = 'Login'
-
     all_properties = House.objects
     p = Paginator(all_properties, 8)
     page_num = request.GET.get('p', 1)
     loaded = p.page(page_num)
+
+    try:
+        num_beds = request.GET['beds']
+        num_baths = request.GET['baths']
+        postcode = request.GET['postcode']
+        fs = request.GET['fs']
+        pt = request.GET['pt']
+        price = request.GET['price']
+        messages.add_message(request, messages.SUCCESS, 'Save successfully!')
+    except:
+        messages.add_message(request, messages.WARNING, 'Enroll failed!')
 
     return render(request, 'property.html', locals())
 
@@ -128,7 +138,6 @@ def login(request):
             username = request.POST['name'].strip()
             password = request.POST['password']
             user = authenticate(username=username, password=password)
-
             if user is not None:
                 if user.is_active:
                     auth.login(request, user)
@@ -161,7 +170,6 @@ from .serializers import PreferenceSerializer
 
 
 class PreferenceViewSet(viewsets.ModelViewSet):
-
     queryset = Preference.objects.all().order_by('beds')
     serializer_class = PreferenceSerializer
 
