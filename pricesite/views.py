@@ -42,15 +42,13 @@ def properties(request):
         fs = request.GET['fs']
         pt = request.GET['pt']
         price = request.GET['price']
-
-        result = models.PreferenceHouses.objects.create(beds=num_beds, baths=num_baths, prefer='frank')
+        u = User.objects.get(name=name)
+        result = models.PreferenceHouses.objects.create(beds=num_beds, baths=num_baths, prefer=u)
         result.save()
         messages.add_message(request, messages.SUCCESS, 'Save successfully!')
     except:
-        try:
-            num_beds = request.GET['beds']
-        except:
-            messages.add_message(request, messages.WARNING, 'Save failed!')
+            #messages.add_message(request, messages.WARNING, 'Save failed!')
+            pass
     return render(request, 'property.html', locals())
 
 
