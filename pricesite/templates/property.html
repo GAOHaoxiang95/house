@@ -31,12 +31,12 @@
         {% csrf_token %}
 
         <tr>
-            <td><input style="width:120px;" name="postcode" value={{item.postcode}}></td>
+            <td><input style="width:120px;" name="postcode" value="{{item.postcode}}"></td>
             <td><input style="width:120px;" name="beds" value={{item.num_beds}}></td>
             <td><input style="width:120px;" name="baths" value={{item.num_baths}}></td>
             <td><input style="width:120px;" value={{item.num_recepts}}></td>
             <td><input style="width:120px;" name="pt" value={{item.property_type}}></td>
-            <td><input style="width:120px;" name="fs" value={{item.furnished_state}}></td>
+            <td><input style="width:200px;" name="fs" value={{item.furnished_state}}></td>
             <td><input style="width:120px;" name="price" value={{item.price_actual}}> pcm</td>
             <td><a href="maps?postcode={{ item.postcode }}">Click to see</a></td>
             <td><select class="marks">
