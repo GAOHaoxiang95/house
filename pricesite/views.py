@@ -30,6 +30,7 @@ def properties(request):
     else:
         status = 'Login'
         name = None
+
     all_properties = House.objects
     p = Paginator(all_properties, 8)
     page_num = request.GET.get('p', 1)
@@ -42,7 +43,9 @@ def properties(request):
         fs = request.GET['fs']
         pt = request.GET['pt']
         price = request.GET['price']
-        u = User.objects.get(name=name)
+        
+        u = User.objects.get(username=name)
+
         result = models.PreferenceHouses.objects.create(beds=num_beds, baths=num_baths, prefer=u)
         result.save()
         messages.add_message(request, messages.SUCCESS, 'Save successfully!')
