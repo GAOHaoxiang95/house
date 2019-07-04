@@ -36,9 +36,11 @@ def properties(request):
     p = Paginator(all_properties, 8)
     page_num = request.GET.get('p', 1)
     loaded = p.page(page_num)
-
+    
+    '''
     u = User.objects.get(username=name)
     a = recommendation.Recommendation(u)
+    '''
     try:
         num_beds = request.GET['beds']
         num_baths = request.GET['baths']
