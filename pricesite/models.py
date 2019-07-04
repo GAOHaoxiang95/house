@@ -38,6 +38,7 @@ class PreferenceHouses(models.Model):
     transport = models.DecimalField(default=0.0, max_digits=11, decimal_places=8)
     property_type = models.PositiveIntegerField(default=0)
     furniture_state = models.PositiveIntegerField(default=0)
+    interest = models.PositiveIntegerField(default=0)
     prefer = models.ForeignKey(u, on_delete=models.CASCADE)
 
 class Profile(models.Model):

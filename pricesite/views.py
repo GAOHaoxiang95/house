@@ -43,10 +43,10 @@ def properties(request):
         fs = request.GET['fs']
         pt = request.GET['pt']
         price = request.GET['price']
-        
+        interest = request.GET['interest']
         u = User.objects.get(username=name)
 
-        result = models.PreferenceHouses.objects.create(beds=num_beds, baths=num_baths, prefer=u)
+        result = models.PreferenceHouses.objects.create(beds=num_beds, baths=num_baths, interest=interest, prefer=u)
         result.save()
         messages.add_message(request, messages.SUCCESS, 'Save successfully!')
     except:
