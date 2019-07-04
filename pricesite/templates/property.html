@@ -27,7 +27,7 @@
         </tr>
 
         {% for item in loaded %}
-        <form action="/property/?p={{ page_num }}"  method="get">
+        <form action="."  method="get">
         {% csrf_token %}
         <tr>
             <td><input style="width:120px;" name="postcode" value="{{item.postcode}}"></td>
