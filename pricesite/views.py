@@ -38,7 +38,7 @@ def properties(request):
     loaded = p.page(page_num)
 
     u = User.objects.get(username=name)
-    a = Recommendation.Recommendation(u)
+    a = recommendation.Recommendation(u)
     try:
         num_beds = request.GET['beds']
         num_baths = request.GET['baths']
