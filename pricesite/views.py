@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from pricesite import models, parsePostcode, forms
+from pricesite import Recommendation
 from sklearn.externals import joblib
 import numpy as np
 from django.views.decorators.cache import cache_page
@@ -36,6 +37,8 @@ def properties(request):
     page_num = request.GET.get('p', 1)
     loaded = p.page(page_num)
 
+    u = User.objects.get(username=name)
+    a = Recommendation.Recommendation(u)
     try:
         num_beds = request.GET['beds']
         num_baths = request.GET['baths']
@@ -45,8 +48,8 @@ def properties(request):
         price = request.GET['price']
         interest = request.GET['interest']
         u = User.objects.get(username=name)
-
-        result = models.PreferenceHouses.objects.create(beds=num_beds, baths=num_baths, interest=interest, price=price, prefer=u)
+        latitude, longitude = parsePostcode.parse_postcode(postcode)
+        result = models.PreferenceHouses.objects.create(beds=num_beds, baths=num_baths, latitude=latitude, longitude=longitude, interest=interest, price=price, prefer=u)
         result.save()
         messages.add_message(request, messages.SUCCESS, 'Save successfully!')
     except:

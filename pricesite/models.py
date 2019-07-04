@@ -41,6 +41,7 @@ class PreferenceHouses(models.Model):
     interest = models.PositiveIntegerField(default=0)
     prefer = models.ForeignKey(u, on_delete=models.CASCADE)
 
+
 class Profile(models.Model):
     user = models.OneToOneField(u, on_delete=models.CASCADE)
     prefer = models.ForeignKey(Preference, on_delete=models.CASCADE, default=1)
