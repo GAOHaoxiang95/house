@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from pricesite import models, parsePostcode, forms
-from pricesite import Recommendation
+from pricesite import recommendation
 from sklearn.externals import joblib
 import numpy as np
 from django.views.decorators.cache import cache_page
