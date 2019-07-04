@@ -38,8 +38,8 @@
             <td><input style="width:210px;" name="fs" value={{item.furnished_state}}></td>
             <td><input style="width:120px;" name="price" value={{item.price_actual}}> pcm</td>
             <td><a href="maps?postcode={{ item.postcode }}">Click to see</a></td>
-            <td><select class="marks">
-            </select></td>
+            <td><input name="interest"><select class="marks">
+            </select></input></td>
             <td><input style="width:100px;" type="submit" value="Save"></td>
         </tr>
         </form>
@@ -70,6 +70,19 @@
         {% endif %}
     </center>
     <script>
+        function setMarks(classname)
+        {
+            var selects = document.getElementsByClassName(classname);
+            for(var j=0;j<=selects.length;j++){
+                select = selects[j];
+                for(var i=0;i<=10;i++){
+                    var opt = document.createElement("option");
+                    opt.value=i;
+                    opt.innerHTML=i;
+                    select.appendChild(opt);
+                }
+            }
+        }
         window.onload = setMarks('marks');
     </script>
     {% endblock %}
