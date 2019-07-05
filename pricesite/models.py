@@ -36,8 +36,8 @@ class PreferenceHouses(models.Model):
     baths = models.PositiveIntegerField(default=0)
     school = models.DecimalField(default=0.0, max_digits=11, decimal_places=8)
     transport = models.DecimalField(default=0.0, max_digits=11, decimal_places=8)
-    property_type = models.PositiveIntegerField(default=0)
-    furniture_state = models.PositiveIntegerField(default=0)
+    property_type = models.CharField(max_length=20, default="")
+    furniture_state = models.CharField(max_length=20, default="")
     interest = models.PositiveIntegerField(default=0)
     prefer = models.ForeignKey(u, on_delete=models.CASCADE)
 
