@@ -31,12 +31,12 @@ def properties(request):
     else:
         status = 'Login'
         name = None
-    '''
+
     all_properties = House.objects
     p = Paginator(all_properties, 9)
     page_num = request.GET.get('p', 1)
     loaded = p.page(page_num)
-    '''
+    
 
     u = User.objects.get(username=name)
     a = Recommendation(u)#recommendation Engine
