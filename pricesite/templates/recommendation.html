@@ -7,8 +7,9 @@
 {% endblock %}
 
 {% block content %}
-<center><b class="message">Marking more properties, the system will learn your preference</b><div id="myMap" style="position:relative;width:900px;height:400px;"></div></center>
-
+<center><b class="message">Marking more properties, the system will learn your preference</b></center>
+</br>
+<center><div id="myMap" style="position:relative;width:900px;height:400px;"></div></center>
 <script type='text/javascript'>
     function GetMap() {
         var map = new Microsoft.Maps.Map('#myMap', {
@@ -17,8 +18,8 @@
         //Request the user's location, 51.49869386764022, -0.17911445396727732
 
             var loc = new Microsoft.Maps.Location(
-                {{ latitude }},
-                {{ longitude }});
+                51.49869386764022,
+                -0.17911445396727732);
 
             //Add a pushpin at the user's location.
             var pin = new Microsoft.Maps.Pushpin(loc);
@@ -28,15 +29,8 @@
             map.setView({ center: loc, zoom: 15 });
 
     }
+    GetMap();
     </script>
     <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
 {% endblock %}
 
-    <script>
-        $(document).ready(function(){
-            $("#right").click(function(){
-                htmlobj=$.ajax({url:"/api/prefer/",async:false});
-                $("#div1").html(htmlobj.responseText);
-            });
-        });
-    </script>
