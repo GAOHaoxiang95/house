@@ -9,10 +9,10 @@ class Recommendation(object):
         self.user = user
         preference = models.PreferenceHouses.objects.filter(prefer=user)
         num_of_items = len(preference)
-        num_of_features = 6
+        num_of_features = 7
         self.featureVector = np.zeros((num_of_items, num_of_features))
-        furnished_state_dict = {'unfurnished': 0.0, 'furnished_or_unfurnished': 1.0, 'part_furnished': 1.0,
-                                'furnished': 2.0}
+        furnished_state_dict = {'unfurnished': 0.0, 'furnished_or_unfurnished': 1.0, 'part_furnished': 2.0,
+                                'furnished': 3.0}
         property_type_dict = {'detached': 0.0, 'semi_detached': 1.0, 'terraced': 2.0, 'end_terrace': 2.0,
                               'town_house': 3.0, 'bungalow': 4.0, 'detached_bungalow': 4.0,
                               'semi_detached_bungalow': 4.0, 'studio': 5.0, 'flat': 6.0, 'maisonette': 7.0}
@@ -34,6 +34,7 @@ class Recommendation(object):
             baths = preference[i].baths
             beds = preference[i].beds
             x = np.array([price, latitude, longitude, baths, beds, furnished_state, property_type])
+            self.featureVector[i,:] = x
 
     def computePreference(self):
         pass
