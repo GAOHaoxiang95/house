@@ -36,7 +36,7 @@ def properties(request):
     p = Paginator(all_properties, 9)
     page_num = request.GET.get('p', 1)
     loaded = p.page(page_num)
-
+    
 
     u = User.objects.get(username=name)
     a = Recommendation(u)#recommendation Engine
@@ -51,7 +51,8 @@ def properties(request):
         interest = request.GET['interest']
         u = User.objects.get(username=name)
         latitude, longitude = parsePostcode.parse_postcode(postcode)
-        result = models.PreferenceHouses.objects.create(beds=num_beds, baths=num_baths, latitude=latitude, longitude=longitude, property_type=pt, furnished_state=fs, interest=interest, price=price, prefer=u)
+        result = models.PreferenceHouses.objects.create(beds=num_beds, baths=num_baths, latitude=latitude,
+                                                        longitude=longitude,furniture_state=fs, property_type=pt, interest=interest, price=price, prefer=u)
         result.save()
         messages.add_message(request, messages.SUCCESS, 'Save successfully!')
     except:
