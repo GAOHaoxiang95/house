@@ -51,7 +51,7 @@ def properties(request):
         interest = request.GET['interest']
         u = User.objects.get(username=name)
         latitude, longitude = parsePostcode.parse_postcode(postcode)
-        result = models.PreferenceHouses.objects.create(beds=num_beds, baths=num_baths, latitude=latitude, longitude=longitude, interest=interest, price=price, prefer=u)
+        result = models.PreferenceHouses.objects.create(beds=num_beds, baths=num_baths, latitude=latitude, longitude=longitude, property_type=pt, furnished_state=fs, interest=interest, price=price, prefer=u)
         result.save()
         messages.add_message(request, messages.SUCCESS, 'Save successfully!')
     except:
