@@ -33,9 +33,8 @@
             <td><input readonly="readonly" style="width:120px;" name="postcode" value="{{item.postcode}}"></td>
             <td><input readonly="readonly" style="width:120px;" name="beds" value={{item.num_beds}}></td>
             <td><input readonly="readonly" style="width:120px;" name="baths" value={{item.num_baths}}></td>
-            <td><input readonly="readonly" style="width:120px;" name="recepts" value={{item.num_recepts}}></td>
-            <td><input readonly="readonly" style="width:130px;" name="pt" value={{item.property_type}}></td>
-            <td><input readonly="readonly" style="width:210px;" name="fs" value={{item.furnished_state}}></td>
+            <td><input readonly="readonly" style="width:130px;" name="pt" value="{{item.property_type}}"></td>
+            <td><input readonly="readonly" style="width:210px;" name="fs" value="{{item.furnished_state}}"></td>
             <td><input readonly="readonly" style="width:120px;" name="price" value={{item.price_actual}}> pcm</td>
             <td><a href="maps?postcode={{ item.postcode }}">Click to see</a></td>
             <td><select name="interest" class="marks"></select></td>
@@ -45,7 +44,6 @@
         {% endfor %}
     </table>
 
-    </br>
     <center>
         {% if loaded.has_previous %}
         <a href="?p={{ loaded.previous_page_number }}" class="btn btn-info btn-lg">
@@ -73,7 +71,7 @@
             var selects = document.getElementsByClassName(classname);
             for(var j=0;j<=selects.length;j++){
                 select = selects[j];
-                for(var i=1;i<=5;i++){
+                for(var i=0;i<=3;i++){
                     var opt = document.createElement("option");
                     opt.value=i;
                     opt.innerHTML=i;
