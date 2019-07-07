@@ -28,8 +28,9 @@
         {% for item in loaded %}
         <form action="."  method="get">
         {% csrf_token %}
+            
         <tr>
-            <td><input readonly="readonly" style="width:120px;" name="postcode" value="{{item.postcode}}"></td>
+            <td><b><a href="{{ item.URL }}"><input readonly="readonly" style="width:120px;" name="postcode" value="{{item.postcode}}"></a></b></td>
             <td><input readonly="readonly" style="width:120px;" name="beds" value={{item.num_beds}}></td>
             <td><input readonly="readonly" style="width:120px;" name="baths" value={{item.num_baths}}></td>
             <td><input readonly="readonly" style="width:130px;" name="pt" value={{item.property_type}}></td>
