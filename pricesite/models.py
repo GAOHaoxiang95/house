@@ -63,6 +63,7 @@ class House(mongoengine.Document):
     num_baths = mongoengine.IntField(default=0)
 
     transport = mongoengine.StringField()
+    URL = mongoengine.StringField()
     Water = mongoengine.StringField()
     Energy = mongoengine.StringField()
     Council_tax=mongoengine.StringField()
