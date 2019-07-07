@@ -54,7 +54,7 @@ mongoengine.connect('Houses',host = '127.0.0.1',port = 27017)
 class House(mongoengine.Document):
     postcode = mongoengine.StringField()
     price_actual = mongoengine.IntField(default=0)
-    meta = {'collection':'Features'}
+    meta = {'collection':'Regular'}
     is_retirement_home = mongoengine.StringField()
     num_recepts = mongoengine.IntField(default=0)
     property_type = mongoengine.StringField()
