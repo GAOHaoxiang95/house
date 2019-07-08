@@ -24,6 +24,7 @@ def homepage(request):
     return render(request, 'main.html', locals())
 
 
+@cache_page(60 * 15)
 def properties(request):
     if request.user.is_authenticated:
         status = 'Logout'
@@ -177,14 +178,17 @@ def map_position(request):
 
 
 from rest_framework import viewsets
-from .models import Preference
-from .serializers import PreferenceSerializer
+from .models import Preference, PreferenceHouses
+from .serializers import PreferenceSerializer, HouseSerializer
 
 
 class PreferenceViewSet(viewsets.ModelViewSet):
     queryset = Preference.objects.all().order_by('beds')
     serializer_class = PreferenceSerializer
 
+class HouseViewSet(viewsets.ModelViewSet):
+    queryset = PreferenceHouses.objects.all().order_by('beds')
+    serializer_class = HouseSerializer
 
 @login_required(login_url='/Login/')
 def recommendation(request):

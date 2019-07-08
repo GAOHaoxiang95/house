@@ -4,4 +4,4 @@ from django.conf.urls import include,url
 router = DefaultRouter()
 
 router.register(r'prefer', views.PreferenceViewSet)
-
+router.register(r'properties', views.HouseViewSet)
