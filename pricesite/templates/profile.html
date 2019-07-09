@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block navbar %}
+    <li><a href="/"><b>Valuation</b></a></li>
+    <li><a href="/property/"><b>Properties</b></a></li>
+    <li><a href="/recommendation/"><b>Recommendation</b></a></li>
+    <li><a href="/feedback/"><b>Feedback</b></a></li>
+{% endblock %}
+
+{% block content %}
+<center id="slogan">
+        <p><b>{{name}}'s preference setting</b></p>
+    </center>
+
+<center><b class="message">Click on the map to choose the location of your property</b><div id="myMap" style="position:relative;width:900px;height:400px;"></div></center>
+    <br/>
+    <form action="/result/" method="GET">
+    <table id="container" class="table table-hover table-striped">
+        <tr>
+            <th>Features</th>
+            <th></th>
+        </tr>
+                <tr>
+            <td>Expected Rental Price</td>
+            <td><input value={{price}} style="width:180px;" type="number" name="price"/></td>
+        </tr>
+        <tr>
+            <td>Number of bedrooms</td>
+            <td><select id="num_beds" name="num_beds"><option value ={{beds}} selected="selected">{{beds}}</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Number of bathrooms</td>
+            <td><select id="num_baths" name="num_baths">
+            </select></td>
+        </tr>
+        <tr>
+            <td>Postcode (optional)</td>
+            <td><input style="width:180px;" type="text" name="postcode"/></td>
+        </tr>
+        <tr hidden="hidden">
+            <td>Latitude</td>
+            <td><input style="width:180px;" type="text" name="latitude" value="51.49869386764022"/></td>
+        </tr>
+        <tr hidden="hidden">
+            <td>Longitude</td>
+            <td><input style="width:180px;" type="text" name="longitude" value="-0.17911445396727732"/></td>
+        </tr>
+        <tr>
+            <td>Property type</td>
+            <td><select id="property_type" name="pt">
+            </select></td>
+        </tr>
+        <tr>
+            <td>Furniture state</td>
+            <td><select id="furniture_state" name="fs">
+            </select></td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>London</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Save"></td>
+            <td></td>
+        </tr>
+    </table>
+    </form>
+    </br>
+    </br>
+    {% load static %}
+    <script src = "{% static 'menu.js' %}"></script>
+    <script type='text/javascript'>
+    function GetMap() {
+        var map = new Microsoft.Maps.Map('#myMap', {
+            credentials: "Asc4YCjUop-bfjwQ-HQU7VBMah0qU2PyEySRtz9HhmNSTwL-MjezFcENnqMwCX3b"
+        });
+        var loc = new Microsoft.Maps.Location(
+                51.49869386764022,
+                -0.17911445396727732
+                );
+
+            //Add a pushpin at the user's location.
+            var pin = new Microsoft.Maps.Pushpin(loc);
+            map.entities.push(pin);
+            map.setView({ center: loc, zoom: 12 });
+         Microsoft.Maps.Events.addHandler(map, 'click', displayEventInfo);
+    }
+    function displayEventInfo(e) {
+      if (e.targetType == "map") {
+        var point = new Microsoft.Maps.Point(e.getX(), e.getY());
+        var loc = e.target.tryPixelToLocation(point);
+
+        if (loc!=null)
+        {
+              //alert("The location " + loc.latitude + ", " + loc.longitude + " was clicked.");
+              var lat = document.getElementsByName("latitude")[0];
+              var lon = document.getElementsByName("longitude")[0];
+              lat.value = loc.latitude
+              lon.value = loc.longitude
+        }
+        var map = new Microsoft.Maps.Map('#myMap', {
+            credentials: "Asc4YCjUop-bfjwQ-HQU7VBMah0qU2PyEySRtz9HhmNSTwL-MjezFcENnqMwCX3b"
+        });
+        var loc = new Microsoft.Maps.Location(
+                loc.latitude,
+                loc.longitude
+                );
+
+            //Add a pushpin at the user's location.
+            var pin = new Microsoft.Maps.Pushpin(loc);
+            map.entities.push(pin);
+            map.setView({ center: loc, zoom: 15 });
+            Microsoft.Maps.Events.addHandler(map, 'click', displayEventInfo);
+      }
+    }
+
+    </script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+    <script>
+        window.onload = setMenu('num_beds');
+        window.onload = setMenu('num_baths');
+        window.onload = setProperty();
+        window.onload = setFurniture();
+    </script>
+
+{% endblock %}
+
+

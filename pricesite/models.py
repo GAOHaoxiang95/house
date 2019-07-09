@@ -8,10 +8,10 @@ import mongoengine
 
 class Preference(models.Model):
     price = models.PositiveIntegerField(default=0)
-    latitude = models.DecimalField(default=50.0, max_digits=11, decimal_places=8)
-    longitude = models.DecimalField(default=0.0, max_digits=11, decimal_places=8)
+    latitude = models.DecimalField(default=51.49869386764022, max_digits=11, decimal_places=8)
+    longitude = models.DecimalField(default=-0.17911445396727732, max_digits=11, decimal_places=8)
     beds = models.PositiveIntegerField(default=1)
-    baths = models.PositiveIntegerField(default=0)
+    baths = models.PositiveIntegerField(default=1)
     school = models.DecimalField(default=0.0, max_digits=11, decimal_places=8)
     transport = models.DecimalField(default=0.0, max_digits=11, decimal_places=8)
     property_type = models.PositiveIntegerField(default=0)

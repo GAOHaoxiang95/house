@@ -183,11 +183,11 @@ from .serializers import PreferenceSerializer, HouseSerializer
 
 
 class PreferenceViewSet(viewsets.ModelViewSet):
-    queryset = Preference.objects.all().order_by('beds')
+    queryset = Preference.objects.all()
     serializer_class = PreferenceSerializer
 
 class HouseViewSet(viewsets.ModelViewSet):
-    queryset = PreferenceHouses.objects.all().order_by('beds')
+    queryset = PreferenceHouses.objects.all().all()
     serializer_class = HouseSerializer
 
 @login_required(login_url='/Login/')
@@ -209,3 +209,21 @@ def maps(request):
     postcode = request.GET.get('postcode')
     latitude, longitude = parsePostcode.parse_postcode(postcode)
     return render(request, 'maps.html', locals())
+
+
+@login_required(login_url='/Login/')
+def profile(request):
+    if request.user.is_authenticated:
+        status = 'Logout'
+        name = request.user.username
+    else:
+        status = 'Login'
+    try:
+        user = User.objects.get(username=name)
+        userinfo = models.Profile.objects.get(user=user)
+        price=userinfo.prefer.price
+        beds=userinfo.prefer.beds
+        baths=userinfo.prefer.baths
+    except:
+        pass
+    return render(request, 'profile.html', locals())

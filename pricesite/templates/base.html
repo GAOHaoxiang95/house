@@ -25,14 +25,11 @@
             </ul>
         </div>
             <span id="greeting">
-                <i>
                     {% if status == 'Logout' %}
-                        <span class="glyphicon glyphicon-user"></span> {{ name }}
+                        <font title="Manage Profiles"><a href="/profile/"><span class="glyphicon glyphicon-user"></span> {{ name }}</a></font>
                     {% endif %}
-                </i>
             </span>
         </div>
-
     </nav>
    {% for i in messages %}
     <div class="alert alert-{{i.tags}}">
