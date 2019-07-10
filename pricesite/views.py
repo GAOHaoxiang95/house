@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from pricesite import models, parsePostcode, forms
-from pricesite.recommendation import Recommendation
+from pricesite.recommendation import Recommendation, ReccomendationContentBased
 from sklearn.externals import joblib
 import numpy as np
 from django.views.decorators.cache import cache_page
@@ -38,8 +38,7 @@ def properties(request):
     page_num = request.GET.get('p', 1)
     loaded = p.page(page_num)
 
-    u = User.objects.get(username=name)
-    a = Recommendation(u)#recommendation Engine
+
 
     try:
         num_beds = request.GET['beds']
@@ -197,6 +196,8 @@ def recommendation(request):
         name = request.user.username
     else:
         status = 'Login'
+    u = User.objects.get(username=name)
+    a = ReccomendationContentBased(u)#recommendation Engine
     return render(request, 'recommendation.html', locals())
 
 
@@ -248,7 +249,6 @@ def profile(request):
         price = request.GET['price']
 
         #latitude, longitude = parsePostcode.parse_postcode(postcode)
-
         userinfo.prefer.price=price
         userinfo.prefer.beds=beds
         userinfo.prefer.baths=baths

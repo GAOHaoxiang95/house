@@ -7,30 +7,77 @@
 {% endblock %}
 
 {% block content %}
-<center><b class="message">Marking more properties, the system will learn your preference</b></center>
-</br>
-<center><div id="myMap" style="position:relative;width:900px;height:400px;"></div></center>
-<script type='text/javascript'>
-    function GetMap() {
-        var map = new Microsoft.Maps.Map('#myMap', {
-            credentials: "Asc4YCjUop-bfjwQ-HQU7VBMah0qU2PyEySRtz9HhmNSTwL-MjezFcENnqMwCX3b"
-        });
-        //Request the user's location, 51.49869386764022, -0.17911445396727732
+    </br>
+    <center><b class="message">Rating more properties, our system will learn your preference</b></center>
+    </br>
+    <table name="fadeIn" id="container" class="table table-hover table-striped">
+        <tr>
+            <b>
+                <td>Postcode</td>
+                <td>Bedrooms</td>
+                <td>Bathrooms</td>
+                <td>Property Type</td>
+                <td>Furnished State</td>
+                <td>Rental Price</td>
+                <td>Location</td>
+                <td>Level of interest</td>
+            </b>
+        </tr>
 
-            var loc = new Microsoft.Maps.Location(
-                51.49869386764022,
-                -0.17911445396727732);
+        {% for item in loaded %}
+        <form action="."  method="get">
 
-            //Add a pushpin at the user's location.
-            var pin = new Microsoft.Maps.Pushpin(loc);
-            map.entities.push(pin);
-
-            //Center the map on the user's location.
-            map.setView({ center: loc, zoom: 15 });
-
-    }
-    GetMap();
+        <tr>
+            <td><b><a href="{{ item.URL }}"><input readonly="readonly" style="width:120px;" name="postcode" value="{{item.postcode}}"></a></b></td>
+            <td><input readonly="readonly" style="width:120px;" name="beds" value={{item.num_beds}}></td>
+            <td><input readonly="readonly" style="width:120px;" name="baths" value={{item.num_baths}}></td>
+            <td><input readonly="readonly" style="width:130px;" name="pt" value={{item.property_type}}></td>
+            <td><input readonly="readonly" style="width:210px;" name="fs" value={{item.furnished_state}}></td>
+            <td><input readonly="readonly" style="width:120px;" name="price" value={{item.price_actual}}> pcm</td>
+            <td><a href="maps?postcode={{ item.postcode }}">Click to see</a></td>
+            <td><select style="width:60px;" name="interest" class="marks"></select></td>
+            <td><input style="width:100px;" type="submit" value="Save"></td>
+        </tr>
+        </form>
+        {% endfor %}
+    </table>
+    </br>
+    <center>
+        {% if loaded.has_previous %}
+        <a href="?p={{ loaded.previous_page_number }}" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+        {% else %}
+        <a href="#" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+        {% endif %}
+        <b class="message">{{ loaded }}</b>
+        {% if loaded.has_next %}
+        <a href="?p={{ loaded.next_page_number }}" id="right" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-arrow-right"></span>
+        </a>
+        {% else %}
+            <a href="#" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-arrow-right"></span>
+        </a>
+        {% endif %}
+    </center>
+    <script>
+        function setMarks(classname)
+        {
+            var selects = document.getElementsByClassName(classname);
+            for(var j=0;j<=selects.length;j++){
+                select = selects[j];
+                for(var i=0;i<=3;i++){
+                    var opt = document.createElement("option");
+                    opt.value=i;
+                    opt.innerHTML=i;
+                    select.appendChild(opt);
+                }
+            }
+        }
+        window.onload = setMarks('marks');
     </script>
-    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
-{% endblock %}
+    {% endblock %}
 

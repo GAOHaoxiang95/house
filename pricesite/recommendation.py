@@ -4,6 +4,10 @@ import numpy as np
 from . import models
 
 
+def map_float(iterable):#make all elements in the list to float
+    return map(lambda x: float(x), iterable)
+
+
 class Recommendation(object):
     def __init__(self, user):
         self.user = user
@@ -39,4 +43,13 @@ class Recommendation(object):
     def computePreference(self):
         pass
 
+
+class ReccomendationContentBased:
+    def __init__(self, user):
+
+        preference = models.Profile.objects.get(user=user).prefer
+        x = [preference.price, preference.latitude, preference.longitude, preference.beds, preference.baths, preference.furniture_state, preference.property_type]
+        x = np.array(list(map_float(x)))
+
+        print(x)
 
