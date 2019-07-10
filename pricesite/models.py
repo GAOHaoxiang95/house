@@ -44,7 +44,7 @@ class PreferenceHouses(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(u, on_delete=models.CASCADE)
-    prefer = models.ForeignKey(Preference, on_delete=models.CASCADE, default=1)
+    prefer = models.ForeignKey(Preference, on_delete=models.CASCADE, default=6)
 
     def __str__(self):
         return self.user.username

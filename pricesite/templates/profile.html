@@ -47,12 +47,12 @@
         </tr>
         <tr>
             <td>Property type</td>
-            <td><select id="property_type" name="pt"><option value ={{pt}} selected="selected">{{pt}}</option>
+            <td><select id="property_type" name="pt"><option value ={{pt}} selected="selected">{{pt_string}}</option>
             </select></td>
         </tr>
         <tr>
             <td>Furniture state</td>
-            <td><select id="furniture_state" name="fs"><option value ={{fs}} selected="selected">{{fs}}</option>
+            <td><select id="furniture_state" name="fs"><option value ={{fs}} selected="selected">{{fs_string}}</option>
             </select></td>
         </tr>
         <tr>
@@ -118,7 +118,7 @@
     <script>
         window.onload = setMenu('num_beds');
         window.onload = setMenu('num_baths');
-        window.onload = setProperty();
+        window.onload = setPreference();
         window.onload = setFurniture();
     </script>
 

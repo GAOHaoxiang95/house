@@ -224,8 +224,12 @@ def profile(request):
         price=userinfo.prefer.price
         beds=userinfo.prefer.beds
         baths=userinfo.prefer.baths
-        pt = userinfo.prefer.property_type
-        fs = userinfo.prefer.furniture_state
+        pt = int(userinfo.prefer.property_type)
+        pt_list=['House', 'Bungalow', 'Studio', 'Flat']
+        pt_string = pt_list[pt]
+        fs = int(userinfo.prefer.furniture_state)
+        fs_list=['Unfurnished', 'Part furnished', 'Furnished']
+        fs_string=fs_list[fs]
         latitude= userinfo.prefer.latitude
         longitude=userinfo.prefer.longitude
     except:
@@ -237,8 +241,10 @@ def profile(request):
         postcode = request.GET['postcode']
         latitude=request.GET['latitude']
         longitude=request.GET['longitude']
-        fs = float(request.GET['fs'])
-        pt = float(request.GET['pt'])
+        fs = int(request.GET['fs'])
+        pt = int(request.GET['pt'])
+        pt_string = pt_list[pt]
+        fs_string=fs_list[fs]
         price = request.GET['price']
 
         #latitude, longitude = parsePostcode.parse_postcode(postcode)
