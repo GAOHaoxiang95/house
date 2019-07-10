@@ -14,8 +14,8 @@ class Recommendation(object):
         furnished_state_dict = {'unfurnished': 0.0, 'furnished_or_unfurnished': 1.0, 'part_furnished': 2.0,
                                 'furnished': 3.0}
         property_type_dict = {'detached': 0.0, 'semi_detached': 0.0, 'terraced': 0.0, 'end_terrace': 0.0,
-                              'town_house': 1.0, 'bungalow': 2.0, 'detached_bungalow': 2.0,
-                              'semi_detached_bungalow': 2.0, 'studio': 3.0, 'flat': 4.0, 'maisonette': 4.0}
+                              'town_house': 0.0, 'bungalow': 1.0, 'detached_bungalow': 1.0,
+                              'semi_detached_bungalow': 1.0, 'studio': 2.0, 'flat': 3.0, 'maisonette': 3.0}
         for i in range(num_of_items):
             price = preference[i].price
             latitude = preference[i].latitude

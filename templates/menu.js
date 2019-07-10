@@ -1,7 +1,7 @@
 function setMenu(id)
 {
     var select = document.getElementById(id);
-    for(var i=0;i<=10;i++){
+    for(var i=0;i<=8;i++){
     var opt = document.createElement("option");
     opt.value=i;
     opt.innerHTML=i;
@@ -27,6 +27,18 @@ function setProperty()
 {
     var select = document.getElementById('property_type');
     var items = ['Detached House', 'Semi-detached House', 'Terraced House', 'Townhouse', 'Bungalow', 'Studio', 'Flat', 'Maisonette']
+    for(var i=0;i<items.length;i++){
+        var opt = document.createElement("option");
+        opt.value=i;
+        opt.innerHTML=items[i];
+        select.appendChild(opt);
+    }
+}
+
+function setPreference()
+{
+    var select = document.getElementById('property_type');
+    var items = ['House','Bungalow', 'Studio', 'Flat']
     for(var i=0;i<items.length;i++){
         var opt = document.createElement("option");
         opt.value=i;

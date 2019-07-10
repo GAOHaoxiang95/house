@@ -11,9 +11,9 @@
         <p><b>{{name}}'s preference setting</b></p>
     </center>
 
-<center><b class="message">Click on the map to choose the location of your property</b><div id="myMap" style="position:relative;width:900px;height:400px;"></div></center>
+<center><b class="message">Click on the map to choose your ideal location</b><div id="myMap" style="position:relative;width:900px;height:400px;"></div></center>
     <br/>
-    <form action="/result/" method="GET">
+    <form action="." method="GET">
     <table id="container" class="table table-hover table-striped">
         <tr>
             <th>Features</th>
@@ -30,7 +30,7 @@
         </tr>
         <tr>
             <td>Number of bathrooms</td>
-            <td><select id="num_baths" name="num_baths">
+            <td><select id="num_baths" name="num_baths"><option value ={{baths}} selected="selected">{{baths}}</option>
             </select></td>
         </tr>
         <tr>
@@ -47,12 +47,12 @@
         </tr>
         <tr>
             <td>Property type</td>
-            <td><select id="property_type" name="pt">
+            <td><select id="property_type" name="pt"><option value ={{pt}} selected="selected">{{pt}}</option>
             </select></td>
         </tr>
         <tr>
             <td>Furniture state</td>
-            <td><select id="furniture_state" name="fs">
+            <td><select id="furniture_state" name="fs"><option value ={{fs}} selected="selected">{{fs}}</option>
             </select></td>
         </tr>
         <tr>
@@ -75,8 +75,8 @@
             credentials: "Asc4YCjUop-bfjwQ-HQU7VBMah0qU2PyEySRtz9HhmNSTwL-MjezFcENnqMwCX3b"
         });
         var loc = new Microsoft.Maps.Location(
-                51.49869386764022,
-                -0.17911445396727732
+                {{latitude}},
+                {{longitude}}
                 );
 
             //Add a pushpin at the user's location.
@@ -105,7 +105,6 @@
                 loc.latitude,
                 loc.longitude
                 );
-
             //Add a pushpin at the user's location.
             var pin = new Microsoft.Maps.Pushpin(loc);
             map.entities.push(pin);

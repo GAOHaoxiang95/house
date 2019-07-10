@@ -224,6 +224,36 @@ def profile(request):
         price=userinfo.prefer.price
         beds=userinfo.prefer.beds
         baths=userinfo.prefer.baths
+        pt = userinfo.prefer.property_type
+        fs = userinfo.prefer.furniture_state
+        latitude= userinfo.prefer.latitude
+        longitude=userinfo.prefer.longitude
     except:
         pass
+
+    try:
+        beds = request.GET['num_beds']
+        baths = request.GET['num_baths']
+        postcode = request.GET['postcode']
+        latitude=request.GET['latitude']
+        longitude=request.GET['longitude']
+        fs = float(request.GET['fs'])
+        pt = float(request.GET['pt'])
+        price = request.GET['price']
+
+        #latitude, longitude = parsePostcode.parse_postcode(postcode)
+
+        userinfo.prefer.price=price
+        userinfo.prefer.beds=beds
+        userinfo.prefer.baths=baths
+        userinfo.prefer.latitude=latitude
+        userinfo.prefer.longitude=longitude
+        userinfo.prefer.furniture_state=fs
+        userinfo.prefer.property_type=pt
+        userinfo.prefer.save()
+        messages.add_message(request, messages.SUCCESS, 'Save successfully!')
+    except:
+            #messages.add_message(request, messages.WARNING, 'Save failed!')
+            pass
+
     return render(request, 'profile.html', locals())
