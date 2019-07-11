@@ -179,14 +179,14 @@ def map_position(request):
 from rest_framework import viewsets
 from .models import Preference, PreferenceHouses, House
 from .serializers import PreferenceSerializer, HouseSerializer
-
+from rest_framework_mongoengine.viewsets import ModelViewSet
 
 class PreferenceViewSet(viewsets.ModelViewSet):
     queryset = Preference.objects.all()
     serializer_class = PreferenceSerializer
 
 
-class HouseViewSet(viewsets.ModelViewSet):
+class HouseViewSet(ModelViewSet):
     queryset = House.objects.all()[0:10]
     serializer_class = HouseSerializer
 
