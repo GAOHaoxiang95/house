@@ -13,7 +13,7 @@ class PreferenceSerializer(serializers.ModelSerializer):
 class HouseSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = PreferenceHouses
-        fields=('beds', 'baths')
+        model = House
+        fields=('num_beds', 'num_baths')
 
 
