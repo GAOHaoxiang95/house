@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework_mongoengine import serializers as s
 from .models import Preference, PreferenceHouses, House
 
 
@@ -10,7 +11,7 @@ class PreferenceSerializer(serializers.ModelSerializer):
         fields=('beds', 'baths')
 
 
-class HouseSerializer(serializers.ModelSerializer):
+class HouseSerializer(s.ModelSerializer):
 
     class Meta:
         model = House
