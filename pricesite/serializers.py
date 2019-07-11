@@ -11,10 +11,10 @@ class PreferenceSerializer(serializers.ModelSerializer):
         fields=('beds', 'baths')
 
 
-class HouseSerializer(s.DocumentSerializer):
+class HouseSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = House
-        fields=('num_beds', 'num_baths')
+        model = PreferenceHouses
+        fields=('beds', 'baths')
 
 

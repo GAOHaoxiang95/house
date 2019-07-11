@@ -186,8 +186,8 @@ class PreferenceViewSet(viewsets.ModelViewSet):
     serializer_class = PreferenceSerializer
 
 
-class HouseViewSet(ModelViewSet):
-    queryset = House.objects.all()[0:10]
+class HouseViewSet(viewsets.ModelViewSet):
+    queryset = PreferenceHouses.objects.all()
     serializer_class = HouseSerializer
 
 
