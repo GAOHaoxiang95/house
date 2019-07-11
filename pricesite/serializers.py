@@ -1,7 +1,7 @@
-from rest_framework import serializers
+
 from rest_framework_mongoengine import serializers as s
 from .models import Preference, PreferenceHouses, House
-
+from rest_framework import serializers
 
 
 class PreferenceSerializer(serializers.ModelSerializer):
