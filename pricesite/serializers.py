@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Preference, PreferenceHouses, House
 
 
+
 class PreferenceSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -12,7 +13,7 @@ class PreferenceSerializer(serializers.ModelSerializer):
 class HouseSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = House
-        fields=('num_beds', 'num_baths')
+        model = PreferenceHouses
+        fields=('beds', 'baths')
 
 
