@@ -50,6 +50,9 @@ class ReccomendationContentBased:
         preference = models.Profile.objects.get(user=user).prefer
         x = [preference.price, preference.latitude, preference.longitude, preference.beds, preference.baths, preference.furniture_state, preference.property_type]
         x = np.array(list(map_float(x)))
+        self.settings = x
+        #print(x)
 
-        print(x)
+    def get_recommended_properties(self):
+        pass
 

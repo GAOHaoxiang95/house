@@ -185,9 +185,11 @@ class PreferenceViewSet(viewsets.ModelViewSet):
     queryset = Preference.objects.all()
     serializer_class = PreferenceSerializer
 
+
 class HouseViewSet(viewsets.ModelViewSet):
-    queryset = PreferenceHouses.objects.all().all()
+    queryset = House.objects.all()
     serializer_class = HouseSerializer
+
 
 @login_required(login_url='/Login/')
 def recommendation(request):
