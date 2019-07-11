@@ -11,7 +11,7 @@ class PreferenceSerializer(serializers.ModelSerializer):
         fields=('beds', 'baths')
 
 
-class HouseSerializer(s.ModelSerializer):
+class HouseSerializer(s.DocumentSerializer):
 
     class Meta:
         model = House
