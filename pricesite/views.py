@@ -177,7 +177,7 @@ def map_position(request):
 
 
 from rest_framework import viewsets
-from .models import Preference, PreferenceHouses
+from .models import Preference, PreferenceHouses, House
 from .serializers import PreferenceSerializer, HouseSerializer
 
 
