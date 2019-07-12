@@ -4,9 +4,36 @@ import scipy
 #from pricesite import models
 from . import models
 import math
-
+import heapq
 def map_float(iterable):#make all elements in the list to float
     return map(lambda x: float(x), iterable)
+
+
+class Item:
+    def __init__(self, features, score):
+        self.features = features
+        self.score = score
+    def __gt__(self, other):
+        return self.score > other.score
+    def __lt__(self, other):
+        return self.score < other.score
+
+class MinHeap:
+    def __init__(self, k, items: Item):
+        self.heap = list()
+        self.k = k
+        self.items = items
+    def push(self, item):
+        if len(self.heap) >= self.k:
+            min_item = self.heap[0]
+            if item > min_item:
+                heapq.heapreplace(self.heap, item)
+        else:
+            heapq.heappush(self.heap, item)
+    def best_k(self):
+        for i in self.items:
+            self.push(i)
+        return self.heap
 
 
 class Recommendation(object):
@@ -54,13 +81,12 @@ class ReccomendationContentBased:
                               'semi_detached_bungalow': 1.0,
                               'studio': 2.0, 'flat': 3.0, 'maisonette': 3.0}
         preference = models.Profile.objects.get(user=user).prefer
-        x = [preference.price, preference.latitude, preference.longitude, preference.beds, preference.baths, preference.furniture_state, preference.property_type]
+        x = [preference.price, preference.latitude, preference.longitude, preference.baths, preference.furniture_state, preference.property_type]
         x = np.array(list(map_float(x)))
         self.settings = x
 
-        houses = models.House.objects.all()[0:100]
-        bestscore = 0
-        bestitem = None
+        houses = models.House.objects.all()[0:300]
+        self.items = list()
         for i in houses:
             if i.furnished_state == "":
                 fs = 1.0
@@ -71,20 +97,21 @@ class ReccomendationContentBased:
                 pt = 1.5
             else:
                 pt = property_type_dict[i.property_type]
-            y = np.array([i.price_actual, i.latitude, i.longitude, i.num_beds, i.num_baths, fs, pt])
+            y = np.array([i.price_actual, i.latitude, i.longitude, i.num_baths, fs, pt])
             #print(y)
             a = x.dot(y)
             b = math.sqrt(sum(x ** 2)) * math.sqrt(sum(y ** 2))
             score = a/b#cosine similarity
             #print(score)
-            if score > bestscore:
-                bestscore = score
-                bestitem = y
-        print("test")
-        print(bestitem)
-        print(bestscore)
-
+            if i.num_beds == preference.beds:
+                item = Item(y, score)
+                self.items.append(item)
 
     def get_recommended_properties(self):
-        pass
+        heap = MinHeap(5, self.items)
+        recommendations = heap.best_k()
+        print("test", recommendations)
+        print(recommendations[0].score)
+        print(recommendations[0].features)
+        return recommendations
 
