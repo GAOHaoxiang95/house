@@ -198,8 +198,12 @@ def recommendation(request):
         name = request.user.username
     else:
         status = 'Login'
-    u = User.objects.get(username=name)
-    a = ReccomendationContentBased(u)#recommendation Engine
+
+    try:
+        u = User.objects.get(username=name)
+        a = ReccomendationContentBased(u)#recommendation Engine
+    except:
+        pass
     return render(request, 'recommendation.html', locals())
 
 
