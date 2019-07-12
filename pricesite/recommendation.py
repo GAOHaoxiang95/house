@@ -3,7 +3,7 @@ import numpy as np
 import scipy
 #from pricesite import models
 from . import models
-
+import math
 
 def map_float(iterable):#make all elements in the list to float
     return map(lambda x: float(x), iterable)
@@ -71,8 +71,10 @@ class ReccomendationContentBased:
                 pt = property_type_dict[i.property_type]
             y = np.array([i.price_actual, i.latitude, i.longitude, i.num_beds, i.num_baths, fs, pt])
             #print(y)
-            print(sklearn.metrics.pairwise.cosine_similarity(x,y))
-
+            a = x.dot(y)
+            b = math.sqrt(sum(x ** 2)) * math.sqrt(sum(y ** 2))
+            score = a/b#cosine similarity
+            print(score)
     def get_recommended_properties(self):
         pass
 
