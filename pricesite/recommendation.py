@@ -1,5 +1,6 @@
 import sklearn
 import numpy as np
+import scipy
 #from pricesite import models
 from . import models
 
@@ -69,7 +70,8 @@ class ReccomendationContentBased:
             else:
                 pt = property_type_dict[i.property_type]
             y = np.array([i.price_actual, i.latitude, i.longitude, i.num_beds, i.num_baths, fs, pt])
-            print(y)
+            #print(y)
+            print(scipy.spatial.distance.cosine(x, y))
 
     def get_recommended_properties(self):
         pass
