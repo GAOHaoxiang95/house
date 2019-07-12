@@ -80,8 +80,10 @@ class ReccomendationContentBased:
             if score > bestscore:
                 bestscore = score
                 bestitem = y
+        print("test")
         print(bestitem)
         print(bestscore)
+
 
     def get_recommended_properties(self):
         pass
