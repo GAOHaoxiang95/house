@@ -59,6 +59,8 @@ class ReccomendationContentBased:
         self.settings = x
 
         houses = models.House.objects.all()[0:100]
+        bestscore = 0
+        bestitem = None
         for i in houses:
             if i.furnished_state == "":
                 fs = 1.0
@@ -74,7 +76,13 @@ class ReccomendationContentBased:
             a = x.dot(y)
             b = math.sqrt(sum(x ** 2)) * math.sqrt(sum(y ** 2))
             score = a/b#cosine similarity
-            print(score)
+            #print(score)
+            if score > bestscore:
+                bestscore = score
+                bestitem = y
+        print(bestitem)
+        print(bestscore)
+
     def get_recommended_properties(self):
         pass
 
