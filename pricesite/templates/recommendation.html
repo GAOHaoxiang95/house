@@ -24,18 +24,15 @@
         </tr>
 
         {% for item in properties %}
-        <form action="."  method="get">
         <tr>
             <td><b><a href="{{ item.url }}"><input readonly="readonly" style="width:120px;" name="postcode" value="A"></a></b></td>
             <td><input readonly="readonly" style="width:120px;" name="beds" value={{item.features}}></td>
-            <td><input readonly="readonly" style="width:120px;" name="baths" value={{item.features[3}}></td>
-            <td><input readonly="readonly" style="width:130px;" name="pt" value={{item.features[5}}></td>
-            <td><input readonly="readonly" style="width:210px;" name="fs" value={{item.features[4]}}></td>
-            <td><input readonly="readonly" style="width:120px;" name="price" value={{item.features[0]}}> pcm</td>
+            <td><input readonly="readonly" style="width:120px;" name="baths" value={{item.features.3}}></td>
+            <td><input readonly="readonly" style="width:130px;" name="pt" value={{item.features.5}}></td>
+            <td><input readonly="readonly" style="width:210px;" name="fs" value={{item.features.4}}></td>
+            <td><input readonly="readonly" style="width:120px;" name="price" value={{item.features.0}}> pcm</td>
             <td><a href="maps?postcode={{ item.postcode }}">Click to see</a></td>
-            <td><input style="width:100px;" type="submit" value="Save"></td>
         </tr>
-        </form>
         {% endfor %}
     </table>
     </br>
