@@ -29,6 +29,7 @@ urlpatterns = [
     path('result/', result),
     path('register/', enroll),
     path('property/maps/', maps),
+    path('recommendation/maps/', maps),
     path('Login/', login),
     path('Logout/', logout),
     path('feedback/', feedback),
