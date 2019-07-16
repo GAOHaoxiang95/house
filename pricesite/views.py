@@ -202,7 +202,7 @@ def recommendation(request):
     try:
         u = User.objects.get(username=name)
         a = ReccomendationContentBased(u)#recommendation Engine
-        a.get_recommended_properties()
+        properties = a.get_recommended_properties()
     except:
         pass
     return render(request, 'recommendation.html', locals())

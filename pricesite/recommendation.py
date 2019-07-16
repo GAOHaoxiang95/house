@@ -10,9 +10,10 @@ def map_float(iterable):#make all elements in the list to float
 
 
 class Item:
-    def __init__(self, features, score):
+    def __init__(self, features, score, url):
         self.features = features
         self.score = score
+        self.url = url
     def __gt__(self, other):
         return self.score > other.score
     def __lt__(self, other):
@@ -104,7 +105,7 @@ class ReccomendationContentBased:
             score = a/b#cosine similarity
             #print(score)
             if i.num_beds == preference.beds:
-                item = Item(y, score)
+                item = Item(y, score, i.URL)
                 self.items.append(item)
 
     def get_recommended_properties(self):
