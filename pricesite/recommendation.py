@@ -86,7 +86,7 @@ class ReccomendationContentBased:
         x = np.array(list(map_float(x)))
         self.settings = x
 
-        houses = models.House.objects.all()[0:1000]
+        houses = models.House.objects.all()[0:3000]
         self.items = list()
         for i in houses:
             if i.furnished_state == "":
