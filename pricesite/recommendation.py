@@ -104,7 +104,9 @@ class ReccomendationContentBased:
             a = x.dot(y)
             b = math.sqrt(sum(x ** 2)) * math.sqrt(sum(y ** 2))
             score = a/b#cosine similarity
-            #print(score)
+            y[1] = y[1]/100
+            y[2] = y[2]/100
+            
             if i.num_beds >= preference.beds:
                 item = Item(y, score, i.URL, i.num_beds)
                 self.items.append(item)
