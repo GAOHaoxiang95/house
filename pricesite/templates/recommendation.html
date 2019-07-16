@@ -31,7 +31,7 @@
             <td><input readonly="readonly" style="width:130px;" name="pt" value={{item.features.5}}></td>
             <td><input readonly="readonly" style="width:210px;" name="fs" value={{item.features.4}}></td>
             <td><input readonly="readonly" style="width:120px;" name="price" value={{item.features.0}}> pcm</td>
-            <td><a href="maps?postcode={{ item.postcode }}">Click to see</a></td>
+            <td><a href="maps?latitude={{ item.features.1 }}&longitude={{ item.features.2 }}">Click to see</a></td>
         </tr>
         {% endfor %}
     </table>

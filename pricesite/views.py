@@ -214,8 +214,17 @@ def maps(request):
         name = request.user.username
     else:
         status = 'Login'
-    postcode = request.GET.get('postcode')
-    latitude, longitude = parsePostcode.parse_postcode(postcode)
+    try:
+        postcode = request.GET.get('postcode')
+        latitude, longitude = parsePostcode.parse_postcode(postcode)
+    except:
+        pass
+
+    try:
+        latitude = request.GET.get('latitude')
+        longitude = request.GET.get('longitude')
+    except:
+        pass
     return render(request, 'maps.html', locals())
 
 
