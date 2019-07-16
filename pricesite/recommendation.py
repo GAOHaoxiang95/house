@@ -73,6 +73,7 @@ class Recommendation(object):
     def computePreference(self):
         pass
 
+
 class ReccomendationContentBased:
     def __init__(self, user):
         furnished_state_dict = {'unfurnished': 0.0, 'furnished_or_unfurnished': 0.0, 'part_furnished': 1.0,
@@ -104,7 +105,7 @@ class ReccomendationContentBased:
             score = a/b#cosine similarity
             y[1] = y[1]/100000
             y[2] = y[2]/100000
-            if i.num_beds >= preference.beds:
+            if i.num_beds == preference.beds:
                 item = Item(y, score, i.URL, i.num_beds)
                 self.items.append(item)
 
