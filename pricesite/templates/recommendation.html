@@ -20,64 +20,24 @@
                 <td>Furnished State</td>
                 <td>Rental Price</td>
                 <td>Location</td>
-                <td>Level of interest</td>
             </b>
         </tr>
 
-        {% for item in loaded %}
+        {% for item in properties %}
         <form action="."  method="get">
-
         <tr>
-            <td><b><a href="{{ item.URL }}"><input readonly="readonly" style="width:120px;" name="postcode" value="{{item.postcode}}"></a></b></td>
-            <td><input readonly="readonly" style="width:120px;" name="beds" value={{item.num_beds}}></td>
-            <td><input readonly="readonly" style="width:120px;" name="baths" value={{item.num_baths}}></td>
-            <td><input readonly="readonly" style="width:130px;" name="pt" value={{item.property_type}}></td>
-            <td><input readonly="readonly" style="width:210px;" name="fs" value={{item.furnished_state}}></td>
-            <td><input readonly="readonly" style="width:120px;" name="price" value={{item.price_actual}}> pcm</td>
+            <td><b><a href="{{ item.url }}"><input readonly="readonly" style="width:120px;" name="postcode" value="A"></a></b></td>
+            <td><input readonly="readonly" style="width:120px;" name="beds" value={{item.features}}></td>
+            <td><input readonly="readonly" style="width:120px;" name="baths" value={{item.features[3}}></td>
+            <td><input readonly="readonly" style="width:130px;" name="pt" value={{item.features[5}}></td>
+            <td><input readonly="readonly" style="width:210px;" name="fs" value={{item.features[4]}}></td>
+            <td><input readonly="readonly" style="width:120px;" name="price" value={{item.features[0]}}> pcm</td>
             <td><a href="maps?postcode={{ item.postcode }}">Click to see</a></td>
-            <td><select style="width:60px;" name="interest" class="marks"></select></td>
             <td><input style="width:100px;" type="submit" value="Save"></td>
         </tr>
         </form>
         {% endfor %}
     </table>
     </br>
-    <center>
-        {% if loaded.has_previous %}
-        <a href="?p={{ loaded.previous_page_number }}" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-arrow-left"></span>
-        </a>
-        {% else %}
-        <a href="#" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-arrow-left"></span>
-        </a>
-        {% endif %}
-        <b class="message">{{ loaded }}</b>
-        {% if loaded.has_next %}
-        <a href="?p={{ loaded.next_page_number }}" id="right" class="btn btn-info btn-lg">
-            <span class="glyphicon glyphicon-arrow-right"></span>
-        </a>
-        {% else %}
-            <a href="#" class="btn btn-info btn-lg">
-            <span class="glyphicon glyphicon-arrow-right"></span>
-        </a>
-        {% endif %}
-    </center>
-    <script>
-        function setMarks(classname)
-        {
-            var selects = document.getElementsByClassName(classname);
-            for(var j=0;j<=selects.length;j++){
-                select = selects[j];
-                for(var i=0;i<=3;i++){
-                    var opt = document.createElement("option");
-                    opt.value=i;
-                    opt.innerHTML=i;
-                    select.appendChild(opt);
-                }
-            }
-        }
-        window.onload = setMarks('marks');
-    </script>
     {% endblock %}
 
