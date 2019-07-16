@@ -10,10 +10,11 @@ def map_float(iterable):#make all elements in the list to float
 
 
 class Item:
-    def __init__(self, features, score, url):
+    def __init__(self, features, score, url, beds):
         self.features = features
         self.score = score
         self.url = url
+        self.beds = beds
     def __gt__(self, other):
         return self.score > other.score
     def __lt__(self, other):
@@ -86,7 +87,6 @@ class ReccomendationContentBased:
         x = np.array(list(map_float(x)))
         self.settings = x
 
-
         houses = models.House.objects.all()[0:500]
         self.items = list()
         for i in houses:
@@ -106,8 +106,9 @@ class ReccomendationContentBased:
             score = a/b#cosine similarity
             #print(score)
             if i.num_beds >= preference.beds:
-                item = Item(y, score, i.URL)
+                item = Item(y, score, i.URL, i.num_beds)
                 self.items.append(item)
+
 
     def get_recommended_properties(self):
         heap = MinHeap(5, self.items)
