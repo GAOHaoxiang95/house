@@ -73,7 +73,6 @@ class Recommendation(object):
     def computePreference(self):
         pass
 
-
 class ReccomendationContentBased:
     def __init__(self, user):
         furnished_state_dict = {'unfurnished': 0.0, 'furnished_or_unfurnished': 0.0, 'part_furnished': 1.0,
@@ -87,7 +86,7 @@ class ReccomendationContentBased:
         x = np.array(list(map_float(x)))
         self.settings = x
 
-        houses = models.House.objects.all()[0:500]
+        houses = models.House.objects.all()[0:1000]
         self.items = list()
         for i in houses:
             if i.furnished_state == "":
