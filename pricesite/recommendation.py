@@ -83,7 +83,7 @@ class ReccomendationContentBased:
                               'semi_detached_bungalow': 1.0,
                               'studio': 2.0, 'flat': 3.0, 'maisonette': 3.0}
         preference = models.Profile.objects.get(user=user).prefer
-        x = [preference.price, preference.latitude*100000, preference.longitude*100000, preference.baths, preference.furniture_state, preference.property_type]
+        x = [preference.price, preference.latitude*1000000, preference.longitude*1000000, preference.baths, preference.furniture_state, preference.property_type]
         x = np.array(list(map_float(x)))
         self.settings = x
 
@@ -98,20 +98,20 @@ class ReccomendationContentBased:
                 pt = 1.5
             else:
                 pt = property_type_dict[i.property_type]
-            y = np.array([i.price_actual, i.latitude*100000, i.longitude*100000, i.num_baths, fs, pt])
+            y = np.array([i.price_actual, i.latitude*1000000, i.longitude*1000000, i.num_baths, fs, pt])
 
             a = x.dot(y)
             b = math.sqrt(sum(x ** 2)) * math.sqrt(sum(y ** 2))
             score = a/b#cosine similarity
-            y[1] = y[1]/100000
-            y[2] = y[2]/100000
+            y[1] = y[1]/1000000
+            y[2] = y[2]/1000000
             if i.num_beds == preference.beds:
                 item = Item(y, score, i.URL, i.num_beds)
                 self.items.append(item)
 
 
     def get_recommended_properties(self):
-        heap = MinHeap(5, self.items)
+        heap = MinHeap(9, self.items)
         recommendations = heap.best_k()
         print("test", recommendations)
         print(recommendations[0].score)
