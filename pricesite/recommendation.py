@@ -100,13 +100,12 @@ class ReccomendationContentBased:
             else:
                 pt = property_type_dict[i.property_type]
             y = np.array([i.price_actual, i.latitude*10000, i.longitude*10000, i.num_baths, fs, pt])
-            #print(y)
+
             a = x.dot(y)
             b = math.sqrt(sum(x ** 2)) * math.sqrt(sum(y ** 2))
             score = a/b#cosine similarity
-            y[1] = y[1]/100
-            y[2] = y[2]/100
-
+            y[1] = y[1]/10000
+            y[2] = y[2]/10000
             if i.num_beds >= preference.beds:
                 item = Item(y, score, i.URL, i.num_beds)
                 self.items.append(item)
