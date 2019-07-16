@@ -86,7 +86,8 @@ class ReccomendationContentBased:
         x = np.array(list(map_float(x)))
         self.settings = x
 
-        houses = models.House.objects.all()[0:300]
+
+        houses = models.House.objects.all()[0:500]
         self.items = list()
         for i in houses:
             if i.furnished_state == "":
@@ -104,7 +105,7 @@ class ReccomendationContentBased:
             b = math.sqrt(sum(x ** 2)) * math.sqrt(sum(y ** 2))
             score = a/b#cosine similarity
             #print(score)
-            if i.num_beds == preference.beds:
+            if i.num_beds >= preference.beds:
                 item = Item(y, score, i.URL)
                 self.items.append(item)
 

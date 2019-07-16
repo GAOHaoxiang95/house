@@ -61,6 +61,6 @@ c = Item([1,2,1,1], 2)
 d = Item([6,6,6,6], 5)
 e = Item([3,3,3,3], 100)
 
-test = MinHeap(2, [a,b,c,d,e])
+test = MinHeap(4, [a,b,c,d,e])
 t = test.best_k()
-print(t[0].score, t[1].score)
+print(t)
