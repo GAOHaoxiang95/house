@@ -38,8 +38,6 @@ def properties(request):
     page_num = request.GET.get('p', 1)
     loaded = p.page(page_num)
 
-
-
     try:
         num_beds = request.GET['beds']
         num_baths = request.GET['baths']
@@ -112,7 +110,9 @@ def enroll(request):
             try:
                 user = User.objects.create_user(uname, email, password)
                 user.save()
-                profile = models.Profile.objects.create(user=user)
+                p = models.Preference.objects.create()
+                p.save()
+                profile = models.Profile.objects.create(user=user, prefer=p)
                 profile.save()
                 messages.add_message(request, messages.SUCCESS, 'Enroll successfully!')
                 return redirect('/')
@@ -122,7 +122,6 @@ def enroll(request):
             messages.add_message(request, messages.WARNING, 'Enroll failed!')
     else:
         post_form = forms.LoginForm()
-
     return render(request, 'sign_up.html', locals())
 
 
