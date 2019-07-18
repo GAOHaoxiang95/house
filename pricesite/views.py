@@ -205,14 +205,10 @@ def recommendation(request):
     properties = a.get_recommended_properties()
     ctr = 0
     for item in properties:
-        print("test")
-        print(properties[ctr].features)
-        print((item.features)[4])
-        print((properties[ctr].features)[4])
-        (properties[ctr].features)[4] = property_type_dict[str((item.features)[4])]
-
+        
+        (properties[ctr].features)[4] = furnished_state_dict[str((item.features)[4])]
         (properties[ctr].features)[5] = property_type_dict[str((item.features)[5])]
-        properties[ctr].beds = int(item.beds)
+
         ctr += 1
     return render(request, 'recommendation.html', locals())
 
