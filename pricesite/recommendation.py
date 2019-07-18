@@ -109,12 +109,8 @@ class ReccomendationContentBased:
                 item = Item(y, score, i.URL, i.num_beds)
                 self.items.append(item)
 
-
     def get_recommended_properties(self):
         heap = MinHeap(9, self.items)
         recommendations = heap.best_k()
-        print("test", recommendations)
-        print(recommendations[0].score)
-        print(recommendations[0].features)
         return recommendations
 
