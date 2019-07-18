@@ -211,6 +211,7 @@ def recommendation(request):
             print((item.features)[4])
             print((properties[ctr].features)[4])
             (properties[ctr].features)[4] = 'pppppp'
+            print('666666666666666')
             (properties[ctr].features)[5] = property_type_dict[str((item.features)[5])]
             properties[ctr].beds = int(item.beds)
             ctr += 1
