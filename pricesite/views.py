@@ -203,9 +203,10 @@ def recommendation(request):
         u = User.objects.get(username=name)
         a = ReccomendationContentBased(u)#recommendation Engine
         properties = a.get_recommended_properties()
+        ctr = 0
         for item in properties:
-            item[4] = furnished_state_dict[item[4]]
-            item[5] = property_type_dict[item[5]]
+            (item.features)[4] = furnished_state_dict[item[4]]
+            (item.features)[5] = property_type_dict[item[5]]
             item.beds = int(item.beds)
     except:
         pass
