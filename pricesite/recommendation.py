@@ -106,7 +106,7 @@ class ReccomendationContentBased:
             y[1] = y[1]/1000000
             y[2] = y[2]/1000000
             if i.num_beds == preference.beds:
-                item = Item(y, score, i.URL, i.num_beds)
+                item = Item(list(y), score, i.URL, i.num_beds)
                 self.items.append(item)
 
     def get_recommended_properties(self):
