@@ -197,11 +197,16 @@ def recommendation(request):
         name = request.user.username
     else:
         status = 'Login'
-
+    furnished_state_dict = {0.0:'unfurnished', 1.0: 'part_furnished', 2.0:'furnished'}
+    property_type_dict = {0.0:'house', 1.0:'bungalow', 2.0:'studio', 3.0:'flat'}
     try:
         u = User.objects.get(username=name)
         a = ReccomendationContentBased(u)#recommendation Engine
         properties = a.get_recommended_properties()
+        for item in properties:
+            item[4] = furnished_state_dict[item[4]]
+            item[5] = property_type_dict[item[5]]
+            item.beds = int(item.beds)
     except:
         pass
     return render(request, 'recommendation.html', locals())
