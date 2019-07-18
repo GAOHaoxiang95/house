@@ -208,7 +208,7 @@ def recommendation(request):
             print("test")
             print(properties[ctr].features)
             print((item.features)[4])
-            print(furnished_state_dict[2.0])
+            print(furnished_state_dict[(item.features)[4]])
             (properties[ctr].features)[4] = furnished_state_dict[(item.features)[4]]
             (properties[ctr].features)[5] = property_type_dict[(item.features)[5]]
             properties[ctr].beds = int(item.beds)
