@@ -198,7 +198,7 @@ def recommendation(request):
     else:
         status = 'Login'
 
-    furnished_state_dict = {'0.0': 'unfurnished', '1.0': 'part_furnished', '2.0': 'furnished'}
+    furnished_state_dict = {'0.0':'unfurnished', '1.0':'part_furnished', '2.0':'furnished'}
     property_type_dict = {'0.0': 'house', '1.0': 'bungalow', '2.0': 'studio', '3.0': 'flat'}
     u = User.objects.get(username=name)
     a = ReccomendationContentBased(u)#recommendation Engine

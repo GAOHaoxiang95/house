@@ -89,9 +89,9 @@ class ReccomendationContentBased:
 
         houses = models.House.objects.all()[0:3000]
         self.items = list()
-        for i in houses:
+        for i in houses:#论文可以吹 这么处理数据！！！！！！！！！！！！！！！！！！！！！
             if i.furnished_state == "":
-                fs = 1.0
+                fs = 0.0
             else:
                 fs = furnished_state_dict[i.furnished_state]
             if i.property_type=="" or i.property_type not in property_type_dict:
