@@ -238,8 +238,11 @@ def profile(request):
         name = request.user.username
     else:
         status = 'Login'
+    user = User.objects.get(username=name)
+    a = Recommendation(user)
     try:
         user = User.objects.get(username=name)
+
         userinfo = models.Profile.objects.get(user=user)
         price=userinfo.prefer.price
         beds=userinfo.prefer.beds
