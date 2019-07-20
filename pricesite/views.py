@@ -207,7 +207,6 @@ def recommendation(request):
     for item in properties:
         (properties[ctr].features)[4] = furnished_state_dict[str((item.features)[4])]
         (properties[ctr].features)[5] = property_type_dict[str((item.features)[5])]
-        (properties[ctr].features)[5] = int((properties[ctr].features)[5])
         ctr += 1
     return render(request, 'recommendation.html', locals())
 
