@@ -7,7 +7,7 @@ import mongoengine
 
 
 class Preference(models.Model):
-    price = models.PositiveIntegerField(default=0)
+    price = models.PositiveIntegerField(default=1500)
     latitude = models.DecimalField(default=51.49869386764022, max_digits=11, decimal_places=8)
     longitude = models.DecimalField(default=-0.17911445396727732, max_digits=11, decimal_places=8)
     beds = models.PositiveIntegerField(default=1)
