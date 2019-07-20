@@ -25,6 +25,7 @@ class MinHeap:
         self.heap = list()
         self.k = k
         self.items = items
+        
     def push(self, item):
         if len(self.heap) >= self.k:
             min_item = self.heap[0]
@@ -110,7 +111,7 @@ class ReccomendationContentBased:
                 self.items.append(item)
 
     def get_recommended_properties(self):
-        heap = MinHeap(9, self.items)
+        heap = MinHeap(10, self.items)
         recommendations = heap.best_k()
         return recommendations
 
