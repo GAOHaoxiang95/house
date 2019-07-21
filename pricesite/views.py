@@ -240,6 +240,8 @@ def profile(request):
         status = 'Login'
     user = User.objects.get(username=name)
     a = Recommendation(user)
+    i = a.get_recommendation()
+    print(i[0].score)
     try:
         user = User.objects.get(username=name)
 
