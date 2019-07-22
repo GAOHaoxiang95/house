@@ -58,7 +58,7 @@ def properties(request):
     return render(request, 'property.html', locals())
 
 
-@cache_page(60 * 15)
+@login_required(login_url='/Login/')
 def result(request):
     if request.user.is_authenticated:
         status = 'Logout'
@@ -208,6 +208,11 @@ def recommendation(request):
         (properties[ctr].features)[4] = furnished_state_dict[str((item.features)[4])]
         (properties[ctr].features)[5] = property_type_dict[str((item.features)[5])]
         ctr += 1
+    user = User.objects.get(username=name)
+    a = Recommendation(user)
+    i = a.get_recommendation()
+    i = sorted(i)
+    cof = i[-1]
     return render(request, 'recommendation.html', locals())
 
 
@@ -238,11 +243,7 @@ def profile(request):
         name = request.user.username
     else:
         status = 'Login'
-    user = User.objects.get(username=name)
-    a = Recommendation(user)
-    i = a.get_recommendation()
-    i = sorted(i)
-    print(i[-1].score, i[-2].score)
+
 
     try:
         user = User.objects.get(username=name)
