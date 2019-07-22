@@ -241,8 +241,7 @@ def profile(request):
     user = User.objects.get(username=name)
     a = Recommendation(user)
     i = a.get_recommendation()
-    print(i)
-
+    print(sorted(i))
     try:
         user = User.objects.get(username=name)
         userinfo = models.Profile.objects.get(user=user)
