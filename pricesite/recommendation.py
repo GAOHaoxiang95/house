@@ -100,7 +100,7 @@ class Recommendation(object):
                     #l = round(i.latitude, 6)
                     print(i.postcode)
 
-                    r = models.House.objects.find(postcode=i.postcode)
+                    r = models.House.objects.filter(postcode=i.postcode)
                     print(r.latitude)
 
                     pro = np.array([i.price, i.latitude * 1000000, i.longitude * 1000000, i.baths, i.furniture_state, i.property_type])
