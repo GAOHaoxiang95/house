@@ -242,9 +242,9 @@ def profile(request):
     a = Recommendation(user)
     i = a.get_recommendation()
     print(i)
+
     try:
         user = User.objects.get(username=name)
-
         userinfo = models.Profile.objects.get(user=user)
         price=userinfo.prefer.price
         beds=userinfo.prefer.beds
