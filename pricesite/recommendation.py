@@ -101,9 +101,10 @@ class Recommendation(object):
                     #print(i.postcode)
                     r = models.House.objects.filter(postcode=i.postcode)[0]
                     #print(r)
-                    pro = np.array([r.price_actual, r.latitude, r.longitude, i.num_baths, r.furnished_state, r.property_type])
+                    pro = np.array([r.price_actual, r.latitude, r.longitude, r.num_baths, r.furnished_state, r.property_type])
                     item = Item(list(pro), final_score, r.URL, r.num_beds)
                     self.reco.append(item)
+
 
     def get_recommendation(self):
         return self.reco
