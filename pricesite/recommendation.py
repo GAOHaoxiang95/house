@@ -93,12 +93,13 @@ class Recommendation(object):
                     score = score + cur
                     if j.prefer == user:
                         flag = False
+
                 if flag == True:
                     final_score = RS / score
                     #print(float(i.latitude))
                     #l = round(i.latitude, 6)
                     #print(i.postcode)
-                    r = models.House.objects.get(postcode=i.postcode)
+                    r = models.House.objects.filter(postcode=i.postcode)[0]
                     #print(r)
                     pro = np.array([r.price_actual, r.latitude, r.longitude, i.num_baths, r.furnished_state, r.property_type])
                     item = Item(list(pro), final_score, r.URL, r.num_beds)
