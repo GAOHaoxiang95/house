@@ -99,6 +99,7 @@ class Recommendation(object):
                     #print(float(i.latitude))
                     try:
                         r = models.House.objects.find(latitude=round(i.latitude, 6))
+                        print(r.latitude)
                     except:
                         pass
 
