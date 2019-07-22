@@ -54,12 +54,7 @@ class MinHeap:
 
 class Recommendation(object):
     def __init__(self, user):
-        furnished_state_dict = {'unfurnished': 0.0, 'furnished_or_unfurnished': 0.0, 'part_furnished': 1.0,
-                                'furnished': 2.0}
-        property_type_dict = {'detached': 0.0, 'semi_detached': 0.0, 'terraced': 0.0, 'end_terrace': 0.0,
-                              'town_house': 0.0, 'bungalow': 1.0, 'detached_bungalow': 1.0,
-                              'semi_detached_bungalow': 1.0,
-                              'studio': 2.0, 'flat': 3.0, 'maisonette': 3.0}
+
         #alluser = User.objects.all()
         allratedhouses = models.PreferenceHouses.objects.all()
         '''
@@ -93,7 +88,6 @@ class Recommendation(object):
                     score = score + cur
                     if j.prefer == user:
                         flag = False
-
                 if flag == True:
                     final_score = RS / score
                     #print(float(i.latitude))
@@ -131,7 +125,7 @@ class ReccomendationContentBased:
             else:
                 fs = furnished_state_dict[i.furnished_state]
             if i.property_type=="" or i.property_type not in property_type_dict:
-                pt = 1.5
+                pt = 2.0
             else:
                 pt = property_type_dict[i.property_type]
             y = np.array([i.price_actual, i.latitude*1000000, i.longitude*1000000, i.num_baths, fs, pt])
