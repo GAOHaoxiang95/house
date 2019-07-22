@@ -99,11 +99,9 @@ class Recommendation(object):
                     #print(float(i.latitude))
                     #l = round(i.latitude, 6)
                     print(i.postcode)
-                    try:
-                        r = models.House.objects.find(postcode=i.postcode)
-                        print(r.latitude)
-                    except:
-                        pass
+
+                    r = models.House.objects.find(postcode=i.postcode)
+                    print(r.latitude)
 
                     pro = np.array([i.price, i.latitude * 1000000, i.longitude * 1000000, i.baths, i.furniture_state, i.property_type])
                     item = Item(list(pro), final_score, None, i.beds)
