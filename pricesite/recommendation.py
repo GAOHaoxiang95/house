@@ -99,7 +99,6 @@ class Recommendation(object):
                     item = Item(list(pro), final_score, r.URL, r.num_beds)
                     self.reco.append(item)
 
-
     def get_recommendation(self):
         return self.reco
 
@@ -137,8 +136,9 @@ class ReccomendationContentBased:
                 item = Item(list(y), score, i.URL, i.num_beds)
                 self.items.append(item)
 
+
     def get_recommended_properties(self):
-        heap = MinHeap(10, self.items)
+        heap = MinHeap(6, self.items)
         recommendations = heap.best_k()
         return recommendations
 
