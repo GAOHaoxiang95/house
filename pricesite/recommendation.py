@@ -68,9 +68,9 @@ class Recommendation(object):
             print(i.longitude)
         '''
         preference = models.Profile.objects.get(user=user).prefer
-        y = np.array([preference.price, preference.latitude * 1000000, preference.longitude * 1000000,
+        y = ([preference.price, preference.latitude * 1000000, preference.longitude * 1000000,
              preference.beds, preference.baths, preference.furniture_state, preference.property_type])
-
+        y = np.array(list(map_float(y)))
         other = models.PreferenceHouses.objects.exclude(prefer=user)
         duplicate = set()
         self.reco = list()
@@ -84,8 +84,10 @@ class Recommendation(object):
                 for j in allpro:
                     #print(j.prefer)
                     preference = models.Profile.objects.get(user=j.prefer).prefer
-                    x = np.array([preference.price, preference.latitude * 1000000, preference.longitude * 1000000,
+                    x = ([preference.price, preference.latitude * 1000000, preference.longitude * 1000000,
                          preference.beds, preference.baths, preference.furniture_state, preference.property_type])
+
+                    x = np.array(list(map_float(x)))
                     cur = similarity(x, y)
                     RS = j.interest*cur + RS
                     score = score + cur
@@ -94,24 +96,14 @@ class Recommendation(object):
 
                 if flag == True:
                     final_score = RS / score
-
+                    r = models.House.objects.all()[0]
+                    print(r.latitude)
                     pro = np.array([i.price, i.latitude * 1000000, i.longitude * 1000000, i.baths, i.furniture_state, i.property_type])
                     item = Item(list(pro), final_score, None, i.beds)
                     self.reco.append(item)
 
     def get_recommendation(self):
         return self.reco
-
-
-
-        preference = models.Profile.objects.get(user=user).prefer
-        x = [preference.price, preference.latitude*1000000, preference.longitude*1000000, preference.baths, preference.furniture_state, preference.property_type]
-        x = np.array(list(map_float(x)))
-        self.settings = x
-
-
-    def computePreference(self):
-        pass
 
 
 class ReccomendationContentBased:
