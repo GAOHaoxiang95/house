@@ -15,7 +15,12 @@ filter: alpha(opacity=80); opacity: 0.85;
 font-size: 18px;
 }
 
-
+#container2 {
+margin: auto;
+background-color:white;
+filter: alpha(opacity=80); opacity: 0.85;
+font-size: 18px;
+}
 
 #greeting {
     float: right;
