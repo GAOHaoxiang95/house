@@ -98,12 +98,11 @@ class Recommendation(object):
                     final_score = RS / score
                     #print(float(i.latitude))
                     #l = round(i.latitude, 6)
-                    print(i.postcode)
-
+                    #print(i.postcode)
                     r = models.House.objects.filter(postcode=i.postcode)
-                    print(r)
-                    pro = np.array([i.price, i.latitude * 1000000, i.longitude * 1000000, i.baths, i.furniture_state, i.property_type])
-                    item = Item(list(pro), final_score, None, i.beds)
+                    #print(r)
+                    pro = np.array([r.price_actual, r.latitude, r.longitude, i.num_baths, r.furnished_state, r.property_type])
+                    item = Item(list(pro), final_score, r.URL, r.num_beds)
                     self.reco.append(item)
 
     def get_recommendation(self):

@@ -241,7 +241,7 @@ def profile(request):
     user = User.objects.get(username=name)
     a = Recommendation(user)
     i = a.get_recommendation()
-    print(i[0].score)
+    print(i)
     try:
         user = User.objects.get(username=name)
 
