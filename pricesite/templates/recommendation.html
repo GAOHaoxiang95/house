@@ -36,6 +36,32 @@
         {% endfor %}
     </table>
     </br>
+</br>
+    <center><b class="message">Suggestions based on your preference</b></center>
+    </br>
+    <table name="fadeIn" class="table table-hover table-striped">
+        <tr>
+            <b>
+                <td>Status</td>
+                <td>Bedrooms</td>
+                <td>Bathrooms</td>
+                <td>Property Type</td>
+                <td>Furnished State</td>
+                <td>Rental Price</td>
+                <td>Location</td>
+            </b>
+        </tr>
 
+        <tr>
+            <td><b><a href="{{ cof.url }}"><input readonly="readonly" style="width:120px;" name="Status" value="New"></a></b></td>
+            <td><input readonly="readonly" style="width:120px;" name="beds" value={{cof.beds}}></td>
+            <td><input readonly="readonly" style="width:120px;" name="baths" value={{cof.features.3}}></td>
+            <td><input readonly="readonly" style="width:130px;" name="pt" value={{cof.features.5}}></td>
+            <td><input readonly="readonly" style="width:210px;" name="fs" value={{cof.features.4}}></td>
+            <td><input readonly="readonly" style="width:120px;" name="price" value={{cof.features.0}}> pcm</td>
+            <td><a href="maps?latitude={{ cof.features.1 }}&longitude={{ cof.features.2 }}">Click to see</a></td>
+        </tr>
+
+    </table>
     {% endblock %}
 
