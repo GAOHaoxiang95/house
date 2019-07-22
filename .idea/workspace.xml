@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f03d2119-f107-4910-ac56-a5fb5984cf04" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/pricesite/recommendation.py" beforeDir="false" afterPath="$PROJECT_DIR$/pricesite/recommendation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pricesite/templates/recommendation.html" beforeDir="false" afterPath="$PROJECT_DIR$/pricesite/templates/recommendation.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,14 +31,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="recommendation.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="recommendation.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pricesite/recommendation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="139" lean-forward="true" selection-start-line="139" selection-end-line="139" />
+            <state relative-caret-position="175">
+              <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="property.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pricesite/templates/property.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="recommendation.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pricesite/templates/recommendation.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -98,6 +112,7 @@
         <option value="$PROJECT_DIR$/templates/_menu.js" />
         <option value="$PROJECT_DIR$/pricesite/templates/main.html" />
         <option value="$PROJECT_DIR$/pricesite/recommendation.py" />
+        <option value="$PROJECT_DIR$/pricesite/templates/recommendation.html" />
       </list>
     </option>
   </component>
@@ -332,11 +347,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pricesite/recommendation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="139" lean-forward="true" selection-start-line="139" selection-end-line="139" />
+        <state relative-caret-position="175">
+          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pricesite/templates/property.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pricesite/templates/recommendation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
         </state>
       </provider>
     </entry>
