@@ -103,6 +103,7 @@ class Recommendation(object):
                     except:
                         pass
 
+
                     pro = np.array([i.price, i.latitude * 1000000, i.longitude * 1000000, i.baths, i.furniture_state, i.property_type])
                     item = Item(list(pro), final_score, None, i.beds)
                     self.reco.append(item)
