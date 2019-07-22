@@ -97,8 +97,9 @@ class Recommendation(object):
                 if flag == True:
                     final_score = RS / score
                     #print(float(i.latitude))
+                    l = round(i.latitude, 6)
                     try:
-                        r = models.House.objects.find(latitude=round(i.latitude, 6))
+                        r = models.House.objects.find(latitude=l+0.000001)
                         print(r.latitude)
                     except:
                         pass
