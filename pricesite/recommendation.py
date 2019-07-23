@@ -117,7 +117,7 @@ class ReccomendationContentBased:
         self.settings = x
 
 
-        houses = models.House.objects.all()[0:1500]
+        houses = models.House.objects.all()[0:3000]
         self.items = list()
         for i in houses:#论文可以吹 这么处理数据！！！！！！！！！！！！！！！！！！！！！
             if i.furnished_state == "":
