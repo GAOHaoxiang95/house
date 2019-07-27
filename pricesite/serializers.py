@@ -8,13 +8,13 @@ class PreferenceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Preference
-        fields=('beds', 'baths')
+        fields=('beds', 'baths', 'pk')
 
 
 class HouseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PreferenceHouses
-        fields=('beds', 'baths')
+        fields=('beds', 'baths', 'price', 'postcode', 'interest', 'property_type', 'furniture_state', 'latitude', 'longitude')
 
 

@@ -180,6 +180,7 @@ from .models import Preference, PreferenceHouses, House
 from .serializers import PreferenceSerializer, HouseSerializer
 from rest_framework_mongoengine.viewsets import ModelViewSet
 
+
 class PreferenceViewSet(viewsets.ModelViewSet):
     queryset = Preference.objects.all()
     serializer_class = PreferenceSerializer
@@ -243,7 +244,6 @@ def profile(request):
         name = request.user.username
     else:
         status = 'Login'
-
 
     try:
         user = User.objects.get(username=name)

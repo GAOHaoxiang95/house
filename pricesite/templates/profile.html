@@ -66,6 +66,11 @@
     </table>
     </form>
     </br>
+        <center><b class="message">Any properties you have rated</b></center>
+    </br>
+    <table id="container2" class="table table-hover table-striped">
+
+    </table>
     </br>
     {% load static %}
     <script src = "{% static 'menu.js' %}"></script>
@@ -89,7 +94,6 @@
       if (e.targetType == "map") {
         var point = new Microsoft.Maps.Point(e.getX(), e.getY());
         var loc = e.target.tryPixelToLocation(point);
-
         if (loc!=null)
         {
               //alert("The location " + loc.latitude + ", " + loc.longitude + " was clicked.");
@@ -108,13 +112,26 @@
             //Add a pushpin at the user's location.
             var pin = new Microsoft.Maps.Pushpin(loc);
             map.entities.push(pin);
-            map.setView({ center: loc, zoom: 15 });
+            map.setView({ center: loc, zoom: 12 });
             Microsoft.Maps.Events.addHandler(map, 'click', displayEventInfo);
       }
     }
 
     </script>
     <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+    <script>
+    $(document).ready(function(){
+      htmlobj=$.ajax({url:"/api/properties",
+      dataType:"json",
+        success: function(data) {
+            var item = data.data;
+            var htm = "item[0].beds";
+
+            $("#container2").append(htm);
+        },
+      async:false});
+    });
+    </script>
     <script>
         window.onload = setMenu('num_beds');
         window.onload = setMenu('num_baths');
