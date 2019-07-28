@@ -58,13 +58,15 @@ def properties(request):
     return render(request, 'property.html', locals())
 
 
-@login_required(login_url='/Login/')
+@cache_page(60 * 15)
 def result(request):
     if request.user.is_authenticated:
         status = 'Logout'
         name = request.user.username
     else:
         status = 'Login'
+    import time
+    #time.sleep(10)
     try:
         num_beds = request.GET['num_beds']
         num_baths = request.GET['num_baths']
