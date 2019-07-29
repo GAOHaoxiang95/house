@@ -68,7 +68,7 @@
     </br>
         <center><b class="message">Any properties you have rated</b></center>
     </br>
-    <table id="container2" class="table table-hover table-striped">
+    <table border="1" id="container2" class="table table-hover table-striped">
 
     </table>
     </br>
@@ -83,11 +83,9 @@
                 {{latitude}},
                 {{longitude}}
                 );
-
-            //Add a pushpin at the user's location.
             var pin = new Microsoft.Maps.Pushpin(loc);
             map.entities.push(pin);
-            map.setView({ center: loc, zoom: 12 });
+            map.setView({ center: loc, zoom: 15 });
          Microsoft.Maps.Events.addHandler(map, 'click', displayEventInfo);
     }
     function displayEventInfo(e) {
@@ -96,7 +94,6 @@
         var loc = e.target.tryPixelToLocation(point);
         if (loc!=null)
         {
-              //alert("The location " + loc.latitude + ", " + loc.longitude + " was clicked.");
               var lat = document.getElementsByName("latitude")[0];
               var lon = document.getElementsByName("longitude")[0];
               lat.value = loc.latitude
@@ -109,20 +106,18 @@
                 loc.latitude,
                 loc.longitude
                 );
-            //Add a pushpin at the user's location.
             var pin = new Microsoft.Maps.Pushpin(loc);
             map.entities.push(pin);
-            map.setView({ center: loc, zoom: 12 });
+            map.setView({ center: loc, zoom: 15 });
             Microsoft.Maps.Events.addHandler(map, 'click', displayEventInfo);
       }
     }
-
     </script>
     <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
     <script>
     $(document).ready(function(){
-      htmlobj=$.ajax({url:"/api/properties",
-      dataType:"json",
+      htmlobj=$.ajax({url:"/api/properties/{{name}}",
+        dataType:"json",
         success: function(data) {
             var item = data;
             var htm = "<tr><b><td>Postcode</td><td>Bedrooms</td><td>Bathrooms</td><td>Property Type</td><td>Furnished State</td><td>Rental Price</td><td>Interest</td></b></tr>";
@@ -135,7 +130,6 @@
                         + item[i].price + '</td><td>'
                         + item[i].interest + '</td></tr>';
             }
-
             $("#container2").append(htm);
         },
       async:false});

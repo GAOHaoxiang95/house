@@ -24,7 +24,7 @@ def homepage(request):
     return render(request, 'main.html', locals())
 
 
-@cache_page(60 * 15)
+@login_required(login_url='/Login/')
 def properties(request):
     if request.user.is_authenticated:
         status = 'Logout'
@@ -173,24 +173,25 @@ def feedback(request):
     return render(request, 'feedback.html', locals())
 
 
-def map_position(request):
-    return render(request, 'test2.html', locals())
-
-
 from rest_framework import viewsets
 from .models import Preference, PreferenceHouses, House
 from .serializers import PreferenceSerializer, HouseSerializer
 from rest_framework_mongoengine.viewsets import ModelViewSet
-
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 class PreferenceViewSet(viewsets.ModelViewSet):
     queryset = Preference.objects.all()
     serializer_class = PreferenceSerializer
 
-
-class HouseViewSet(viewsets.ModelViewSet):
-    queryset = PreferenceHouses.objects.all()
-    serializer_class = HouseSerializer
+from rest_framework.decorators import api_view
+@api_view(['GET'])
+def snippet_list(request, name, format=None):
+    if request.method == 'GET':
+        u = User.objects.get(username=name)
+        item = PreferenceHouses.objects.filter(prefer=u)
+        serializer = HouseSerializer(item, many=True)
+        return Response(serializer.data)
 
 
 @login_required(login_url='/Login/')
@@ -263,7 +264,6 @@ def profile(request):
         longitude=userinfo.prefer.longitude
     except:
         pass
-
     try:
         beds = request.GET['num_beds']
         baths = request.GET['num_baths']
@@ -275,7 +275,6 @@ def profile(request):
         pt_string = pt_list[pt]
         fs_string=fs_list[fs]
         price = request.GET['price']
-
         #latitude, longitude = parsePostcode.parse_postcode(postcode)
         userinfo.prefer.price=price
         userinfo.prefer.beds=beds
