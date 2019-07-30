@@ -65,8 +65,9 @@ def result(request):
         name = request.user.username
     else:
         status = 'Login'
-    import time
-    #time.sleep(10)
+
+    ptd = {0:'Detached House', 1:'Semi-detached House', 2:'Terraced House', 3:'Townhouse', 4:'Bungalow', 5:'Studio', 6:'Flat', 7:'Maisonette'}
+    fsd = {0:'House',1:'Bungalow', 2:'Studio', 3:'Flat'}
     try:
         num_beds = request.GET['num_beds']
         num_baths = request.GET['num_baths']
@@ -84,11 +85,13 @@ def result(request):
         result = model.predict([[latitude, longitude, num_beds, num_baths, property_type, furniture_state]])
         # change later, property type is int
         price = '£' + str(int(np.exp(result)[0])) + ' pcm'
+        property_type = ptd[int(property_type)]
+        furniture_state = fsd[int(furniture_state)]
     except:
         num_beds = 0
         num_baths = 0
-        property_type = 0
-        furniture_state = 0
+        property_type = 'Unknown'
+        furniture_state = 'Unknown'
         latitude = 'Unknown'
         longitude = 'Unknown'
         price = 'Unknown'
@@ -247,7 +250,6 @@ def profile(request):
         name = request.user.username
     else:
         status = 'Login'
-
     try:
         user = User.objects.get(username=name)
         userinfo = models.Profile.objects.get(user=user)

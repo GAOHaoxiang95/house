@@ -5,7 +5,6 @@ from django.contrib.auth.models import User as u
 import mongoengine
 
 
-
 class Preference(models.Model):
     price = models.PositiveIntegerField(default=1500)
     latitude = models.DecimalField(default=51.49869386764022, max_digits=11, decimal_places=8)
