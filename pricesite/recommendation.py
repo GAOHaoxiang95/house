@@ -19,11 +19,12 @@ def map_float(iterable):#make all elements in the list to float
 
 
 class Item:
-    def __init__(self, features, score, url, beds):
+    def __init__(self, features, score, url, beds, postcode):
         self.features = features
         self.score = score
         self.url = url
         self.beds = beds
+        self.postcode = postcode
 
     def __gt__(self, other):
         return self.score > other.score
@@ -96,7 +97,7 @@ class Recommendation(object):
                     r = models.House.objects.filter(postcode=i.postcode)[0]
                     #print(r)
                     pro = np.array([r.price_actual, r.latitude, r.longitude, r.num_baths, r.furnished_state, r.property_type])
-                    item = Item(list(pro), final_score, r.URL, r.num_beds)
+                    item = Item(list(pro), final_score, r.URL, r.num_beds, r.postcode)
                     self.reco.append(item)
 
     def get_recommendation(self):
@@ -116,7 +117,6 @@ class ReccomendationContentBased:
         x = np.array(list(map_float(x)))
         self.settings = x
 
-
         houses = models.House.objects.all()[0:3000]
         self.items = list()
         for i in houses:#论文可以吹 这么处理数据！！！！！！！！！！！！！！！！！！！！！
@@ -134,7 +134,7 @@ class ReccomendationContentBased:
             y[1] = y[1]/1000000
             y[2] = y[2]/1000000
             if i.num_beds == preference.beds:
-                item = Item(list(y), score, i.URL, i.num_beds)
+                item = Item(list(y), score, i.URL, i.num_beds, i.postcode)
                 self.items.append(item)
 
     def get_recommended_properties(self):
