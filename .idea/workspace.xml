@@ -28,8 +28,8 @@
       <file leaf-file-name="recommendation.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pricesite/recommendation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-307">
-              <caret line="115" column="169" selection-start-line="115" selection-start-column="169" selection-end-line="115" selection-end-column="169" />
+            <state relative-caret-position="443">
+              <caret line="93" column="21" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -164,8 +164,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="11" />
-    <option name="y" value="22" />
+    <option name="x" value="655" />
+    <option name="y" value="72" />
     <option name="width" value="1223" />
     <option name="height" value="969" />
   </component>
@@ -579,8 +579,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pricesite/recommendation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-307">
-          <caret line="115" column="169" selection-start-line="115" selection-start-column="169" selection-end-line="115" selection-end-column="169" />
+        <state relative-caret-position="443">
+          <caret line="93" column="21" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
