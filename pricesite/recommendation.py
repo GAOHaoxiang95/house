@@ -65,7 +65,7 @@ class Recommendation(object):
         '''
         preference = models.Profile.objects.get(user=user).prefer
         y = ([preference.price, preference.latitude * 1000000, preference.longitude * 1000000,
-             preference.beds, preference.baths, preference.furniture_state, preference.property_type])
+             preference.beds*10, preference.baths*10, preference.furniture_state*10, preference.property_type*10])
         y = np.array(list(map_float(y)))
         other = models.PreferenceHouses.objects.exclude(prefer=user)
         duplicate = set()
@@ -81,7 +81,7 @@ class Recommendation(object):
                     #print(j.prefer)
                     preference = models.Profile.objects.get(user=j.prefer).prefer
                     x = ([preference.price, preference.latitude * 1000000, preference.longitude * 1000000,
-                         preference.beds, preference.baths, preference.furniture_state, preference.property_type])
+                         preference.beds*10, preference.baths*10, preference.furniture_state*10, preference.property_type*10])
 
                     x = np.array(list(map_float(x)))
                     cur = similarity(x, y)
@@ -89,15 +89,15 @@ class Recommendation(object):
                     score = score + cur
                     if j.prefer == user:
                         flag = False
-                if flag == True:
+                if flag is True:
                     final_score = RS / score
-                    #print(float(i.latitude))
-                    #l = round(i.latitude, 6)
-                    #print(i.postcode)
                     r = models.House.objects.filter(postcode=i.postcode)[0]
                     #print(r)
                     pro = np.array([r.price_actual, r.latitude, r.longitude, r.num_baths, r.furnished_state, r.property_type])
                     item = Item(list(pro), final_score, r.URL, r.num_beds, r.postcode)
+                    print(item.features)
+                    print(item.postcode)
+                    print(final_score)
                     self.reco.append(item)
 
     def get_recommendation(self):
@@ -128,11 +128,14 @@ class ReccomendationContentBased:
                 pt = 2.0
             else:
                 pt = property_type_dict[i.property_type]
-            y = np.array([i.price_actual, i.latitude*1000000, i.longitude*1000000, i.num_baths, fs, pt])
+            y = np.array([i.price_actual, i.latitude*1000000, i.longitude*1000000, i.num_baths*10, fs*10, pt*10])
             score = similarity(x, y)
             #cosine similarity
             y[1] = y[1]/1000000
             y[2] = y[2]/1000000
+            y[3] = y[3]/10
+            y[4] = y[4]/10
+            y[5] = y[5]/10
             if i.num_beds == preference.beds:
                 item = Item(list(y), score, i.URL, i.num_beds, i.postcode)
                 self.items.append(item)
