@@ -24,7 +24,7 @@
         </tr>
         {% for item in properties %}
         <tr>
-            <td><b><a href="{{ item.url }}"><input readonly="readonly" style="width:120px;" name="Status" value={{item.postcode}}></a></b></td>
+            <td><b><a href="{{ item.url }}"><input readonly="readonly" style="width:120px;" name="Status" value="{{item.postcode}}"></a></b></td>
             <td><input readonly="readonly" style="width:120px;" name="beds" value={{item.beds}}></td>
             <td><input readonly="readonly" style="width:120px;" name="baths" value={{item.features.3}}></td>
             <td><input readonly="readonly" style="width:130px;" name="pt" value={{item.features.5}}></td>
@@ -51,7 +51,7 @@
             </b>
         </tr>
         <tr>
-            <td><b><a href="{{ cof.url }}"><input readonly="readonly" style="width:120px;" name="Status" value="New"></a></b></td>
+            <td><b><a href="{{ cof.url }}"><input readonly="readonly" style="width:120px;" name="Postcode" value="{{cof.postcode}}"></a></b></td>
             <td><input readonly="readonly" style="width:120px;" name="beds" value={{cof.beds}}></td>
             <td><input readonly="readonly" style="width:120px;" name="baths" value={{cof.features.3}}></td>
             <td><input readonly="readonly" style="width:130px;" name="pt" value={{cof.features.5}}></td>
