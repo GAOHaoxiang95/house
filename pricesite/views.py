@@ -183,19 +183,26 @@ from rest_framework_mongoengine.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+
 class PreferenceViewSet(viewsets.ModelViewSet):
     queryset = Preference.objects.all()
     serializer_class = PreferenceSerializer
 
+
 from rest_framework.decorators import api_view
-@api_view(['GET'])
+
+
+@api_view(['GET', 'DELETE'])
 def snippet_list(request, name, format=None):
     if request.method == 'GET':
         u = User.objects.get(username=name)
         item = PreferenceHouses.objects.filter(prefer=u)
         serializer = HouseSerializer(item, many=True)
         return Response(serializer.data)
-
+    if request.method == 'DELETE':
+        postcode = request.DELETE['postcode']
+        PreferenceHouses.objects.filter(postcode=postcode).delete()
+        #messages.add_message(request, messages.SUCCESS, 'DELETE successfully!')
 
 @login_required(login_url='/Login/')
 def recommendation(request):

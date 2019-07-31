@@ -120,7 +120,7 @@
         dataType:"json",
         success: function(data) {
             var item = data;
-            var htm = "<tr><b><td>Postcode</td><td>Bedrooms</td><td>Bathrooms</td><td>Property Type</td><td>Furnished State</td><td>Rental Price</td><td>Interest</td></b></tr>";
+            var htm = "<tr><b><td>Postcode</td><td>Bedrooms</td><td>Bathrooms</td><td>Property Type</td><td>Furnished State</td><td>Rental Price</td><td>Interest</td><td></td></b></tr>";
             for(var i=0;i<item.length;i++){
                     htm += '<tr><td>' + item[i].postcode + '</td><td>'
                         + item[i].beds + '</td><td>'
@@ -128,7 +128,8 @@
                         + item[i].property_type + '</td><td>'
                         + item[i].furniture_state + '</td><td>'
                         + item[i].price + '</td><td>'
-                        + item[i].interest + '</td></tr>';
+                        + item[i].interest + '</td><td>'
+                        +'<a href='+  '"/api/properties/{{name}}?postcode='+ item[i].postcode +'">DELETE</a></td></tr>';
             }
             $("#container2").append(htm);
         },
