@@ -256,12 +256,13 @@ def profile(request):
     else:
         status = 'Login'
     try:
+        name = request.GET['name']
         postcode = request.GET['postcode']
-        PreferenceHouses.objects.filter(postcode=postcode).delete()
+        PreferenceHouses.objects.filter(name=name, postcode=postcode).delete()
         messages.add_message(request, messages.SUCCESS, 'Delete successfully!')
     except:
         pass
-    
+
     try:
         user = User.objects.get(username=name)
         userinfo = models.Profile.objects.get(user=user)
