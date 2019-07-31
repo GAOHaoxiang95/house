@@ -199,9 +199,7 @@ def snippet_list(request, name, format=None):
         item = PreferenceHouses.objects.filter(prefer=u)
         serializer = HouseSerializer(item, many=True)
         return Response(serializer.data)
-    if request.method == 'DELETE':
-        postcode = request.DELETE['postcode']
-        PreferenceHouses.objects.filter(postcode=postcode).delete()
+
         #messages.add_message(request, messages.SUCCESS, 'DELETE successfully!')
 
 @login_required(login_url='/Login/')
@@ -257,6 +255,13 @@ def profile(request):
         name = request.user.username
     else:
         status = 'Login'
+    try:
+        postcode = request.GET['postcode']
+        PreferenceHouses.objects.filter(postcode=postcode).delete()
+        messages.add_message(request, messages.SUCCESS, 'Delete successfully!')
+    except:
+        pass
+    
     try:
         user = User.objects.get(username=name)
         userinfo = models.Profile.objects.get(user=user)

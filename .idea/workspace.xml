@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f03d2119-f107-4910-ac56-a5fb5984cf04" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pricesite/recommendation.py" beforeDir="false" afterPath="$PROJECT_DIR$/pricesite/recommendation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pricesite/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/pricesite/templates/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pricesite/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/pricesite/views.py" afterDir="false" />
     </list>
@@ -43,8 +41,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pricesite/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="204" column="9" selection-start-line="204" selection-start-column="9" selection-end-line="204" selection-end-column="9" />
+            <state relative-caret-position="368">
+              <caret line="260" column="63" selection-start-line="260" selection-start-column="63" selection-end-line="260" selection-end-column="63" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -55,7 +53,7 @@
       <file leaf-file-name="recommendation.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pricesite/templates/recommendation.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="793">
+            <state relative-caret-position="343">
               <caret line="53" column="119" selection-start-line="53" selection-start-column="119" selection-end-line="53" selection-end-column="119" />
             </state>
           </provider>
@@ -64,8 +62,8 @@
       <file leaf-file-name="profile.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pricesite/templates/profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="131" column="97" selection-start-line="131" selection-start-column="97" selection-end-line="131" selection-end-column="97" />
+            <state relative-caret-position="3107">
+              <caret line="131" column="49" selection-start-line="131" selection-start-column="49" selection-end-line="131" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -160,8 +158,8 @@
         <option value="$PROJECT_DIR$/house/urls.py" />
         <option value="$PROJECT_DIR$/pricesite/models.py" />
         <option value="$PROJECT_DIR$/pricesite/templates/recommendation.html" />
-        <option value="$PROJECT_DIR$/pricesite/templates/profile.html" />
         <option value="$PROJECT_DIR$/pricesite/recommendation.py" />
+        <option value="$PROJECT_DIR$/pricesite/templates/profile.html" />
         <option value="$PROJECT_DIR$/pricesite/views.py" />
       </list>
     </option>
@@ -543,20 +541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pricesite/templates/recommendation.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="793">
-          <caret line="53" column="119" selection-start-line="53" selection-start-column="119" selection-end-line="53" selection-end-column="119" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pricesite/templates/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="131" column="97" selection-start-line="131" selection-start-column="97" selection-end-line="131" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pricesite/recommendation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="975">
@@ -567,10 +551,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pricesite/templates/recommendation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="53" column="119" selection-start-line="53" selection-start-column="119" selection-end-line="53" selection-end-column="119" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pricesite/templates/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3107">
+          <caret line="131" column="49" selection-start-line="131" selection-start-column="49" selection-end-line="131" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pricesite/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="204" column="9" selection-start-line="204" selection-start-column="9" selection-end-line="204" selection-end-column="9" />
+        <state relative-caret-position="368">
+          <caret line="260" column="63" selection-start-line="260" selection-start-column="63" selection-end-line="260" selection-end-column="63" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
