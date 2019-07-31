@@ -60,6 +60,7 @@ class Recommendation(object):
         y = ([preference.price, preference.latitude * 1000000, preference.longitude * 1000000,
              preference.beds*10, preference.baths*10, preference.furniture_state*10, preference.property_type*10])
         y = np.array(list(map_float(y)))
+        print(y)
         other = models.PreferenceHouses.objects.exclude(prefer=user)
         duplicate = set()
         self.reco = list()
@@ -88,9 +89,9 @@ class Recommendation(object):
                     #print(r)
                     pro = np.array([r.price_actual, r.latitude, r.longitude, r.num_baths, r.furnished_state, r.property_type])
                     item = Item(list(pro), final_score, r.URL, r.num_beds, r.postcode)
-                    print(item.features)
-                    print(item.postcode)
-                    print(final_score)
+                    #print(item.features)
+                    #print(item.postcode)
+                    #print(final_score)
                     self.reco.append(item)
 
     def get_recommendation(self):
