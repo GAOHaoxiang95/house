@@ -258,7 +258,8 @@ def profile(request):
     try:
         name = request.GET['name']
         postcode = request.GET['postcode']
-        PreferenceHouses.objects.filter(name=name, postcode=postcode).delete()
+        u = User.objects.get(username=name)
+        PreferenceHouses.objects.filter(prefer=u, postcode=postcode).delete()
         messages.add_message(request, messages.SUCCESS, 'Delete successfully!')
     except:
         pass
