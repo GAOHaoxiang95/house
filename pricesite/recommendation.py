@@ -56,13 +56,6 @@ class MinHeap:
 class Recommendation(object):
     def __init__(self, user):
 
-        #alluser = User.objects.all()
-        allratedhouses = models.PreferenceHouses.objects.all()
-        '''
-        for i in allratedhouses:
-            print(i.latitude)
-            print(i.longitude)
-        '''
         preference = models.Profile.objects.get(user=user).prefer
         y = ([preference.price, preference.latitude * 1000000, preference.longitude * 1000000,
              preference.beds*10, preference.baths*10, preference.furniture_state*10, preference.property_type*10])
@@ -113,7 +106,7 @@ class ReccomendationContentBased:
                               'semi_detached_bungalow': 1.0,
                               'studio': 2.0, 'flat': 3.0, 'maisonette': 3.0}
         preference = models.Profile.objects.get(user=user).prefer
-        x = [preference.price, preference.latitude*1000000, preference.longitude*1000000, preference.baths, preference.furniture_state, preference.property_type]
+        x = [preference.price, preference.latitude*1000000, preference.longitude*1000000, preference.baths*10, preference.furniture_state*10, preference.property_type*10]
         x = np.array(list(map_float(x)))
         self.settings = x
 
