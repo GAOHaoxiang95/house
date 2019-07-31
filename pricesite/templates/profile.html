@@ -129,7 +129,7 @@
                         + item[i].furniture_state + '</td><td>'
                         + item[i].price + '</td><td>'
                         + item[i].interest + '</td><td>'
-                        +'<a href='+  '"/profiles/{{name}}?postcode='+ item[i].postcode +'">DELETE</a></td></tr>';
+                        +'<a href='+  '"/profiles?name={{name}}&postcode='+ item[i].postcode +'">DELETE</a></td></tr>';
             }
             $("#container2").append(htm);
         },
