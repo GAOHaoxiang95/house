@@ -33,7 +33,7 @@ def properties(request):
         status = 'Login'
         name = None
 
-    all_properties = House.objects.all()
+    all_properties = House.objects.all().order_by('-id')
     p = Paginator(all_properties, 9)
     page_num = request.GET.get('p', 1)
     loaded = p.page(page_num)
