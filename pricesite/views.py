@@ -67,7 +67,8 @@ def result(request):
         status = 'Login'
 
     ptd = {0:'Detached House', 1:'Semi-detached House', 2:'Terraced House', 3:'Townhouse', 4:'Bungalow', 5:'Studio', 6:'Flat', 7:'Maisonette'}
-    fsd = {0:'House',1:'Bungalow', 2:'Studio', 3:'Flat'}
+    fsd = {0:'unfurnished', 1:'part_furnished', 2:'furnished'}
+    
     try:
         num_beds = request.GET['num_beds']
         num_baths = request.GET['num_baths']
