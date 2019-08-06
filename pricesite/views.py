@@ -34,7 +34,7 @@ def properties(request):
         name = None
 
     all_properties = House.objects.all().order_by('-id')
-    p = Paginator(all_properties, 9)
+    p = Paginator(all_properties, 10)
     page_num = request.GET.get('p', 1)
     loaded = p.page(page_num)
 
@@ -68,7 +68,7 @@ def result(request):
 
     ptd = {0:'Detached House', 1:'Semi-detached House', 2:'Terraced House', 3:'Townhouse', 4:'Bungalow', 5:'Studio', 6:'Flat', 7:'Maisonette'}
     fsd = {0:'unfurnished', 1:'part_furnished', 2:'furnished'}
-    
+
     try:
         num_beds = request.GET['num_beds']
         num_baths = request.GET['num_baths']
@@ -167,14 +167,13 @@ def login(request):
     return render(request, 'login.html', locals())
 
 
-@login_required(login_url='/Login/')
 def feedback(request):
     if request.user.is_authenticated:
         status = 'Logout'
         name = request.user.username
     else:
         status = 'Login'
-    return render(request, 'feedback.html', locals())
+    return redirect('https://docs.google.com/forms/d/1omEnqOOMWmJXIlR0DtMOSqZjFXWBqaz73oIiO8wjGK0/viewform?edit_requested=true')
 
 
 from rest_framework import viewsets
