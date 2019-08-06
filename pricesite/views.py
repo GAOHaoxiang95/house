@@ -166,7 +166,6 @@ def login(request):
         form = forms.AuthenticationForm()
     return render(request, 'login.html', locals())
 
-
 def feedback(request):
     if request.user.is_authenticated:
         status = 'Logout'
@@ -174,6 +173,8 @@ def feedback(request):
     else:
         status = 'Login'
     return redirect('https://docs.google.com/forms/d/1omEnqOOMWmJXIlR0DtMOSqZjFXWBqaz73oIiO8wjGK0/viewform?edit_requested=true')
+
+
 
 
 from rest_framework import viewsets
