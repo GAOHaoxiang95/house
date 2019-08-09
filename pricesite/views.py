@@ -236,6 +236,7 @@ def recommendation(request):
     return render(request, 'recommendation.html', locals())
 
 
+
 def maps(request):
     if request.user.is_authenticated:
         status = 'Logout'
@@ -247,7 +248,6 @@ def maps(request):
         latitude, longitude = parsePostcode.parse_postcode(postcode)
     except:
         pass
-
     try:
         latitude = request.GET.get('latitude')
         longitude = request.GET.get('longitude')
