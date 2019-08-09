@@ -192,17 +192,27 @@ class PreferenceViewSet(viewsets.ModelViewSet):
 
 
 from rest_framework.decorators import api_view
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+class HouseAllViewSet(APIView):
+    authentication_classes = [SessionAuthentication]
+    def get(self, request, format=None):
+        if request.user.is_authenticated:
+            snippets = PreferenceHouses.objects.all()
+            serializer = HouseSerializer(snippets, many=True)
+            return Response(serializer.data)
+        else:
+            return Http404
 
-
-@api_view(['GET', 'DELETE'])
-def snippet_list(request, name, format=None):
-    if request.method == 'GET':
-        u = User.objects.get(username=name)
-        item = PreferenceHouses.objects.filter(prefer=u)
-        serializer = HouseSerializer(item, many=True)
-        return Response(serializer.data)
-
-        #messages.add_message(request, messages.SUCCESS, 'DELETE successfully!')
+class HouseViewSet(APIView):
+    authentication_classes = [SessionAuthentication]
+    def get(self, request, name, format=None):
+        if request.user.is_authenticated:
+            u = User.objects.get(username=name)
+            item = PreferenceHouses.objects.filter(prefer=u)
+            serializer = HouseSerializer(item, many=True)
+            return Response(serializer.data)
+        else:
+            return Http404
 
 
 @login_required(login_url='/Login/')

@@ -27,6 +27,12 @@ class User(models.Model):
         return self.name
 
 
+class Recommendation(models.Model):
+    postcode = models.CharField(max_length=20, default="Tourist")
+    def __str__(self):
+        return self.postcode
+
+
 class PreferenceHouses(models.Model):
     price = models.PositiveIntegerField(default=0)
     latitude = models.DecimalField(default=50.0, max_digits=11, decimal_places=8)
@@ -73,3 +79,5 @@ class House(mongoengine.Document):
     Home_insurance = mongoengine.StringField()
     longitude = mongoengine.FloatField()
     latitude = mongoengine.FloatField()
+
+

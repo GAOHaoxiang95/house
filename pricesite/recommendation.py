@@ -130,7 +130,7 @@ class ReccomendationContentBased:
             y[3] = y[3]/10
             y[4] = y[4]/10
             y[5] = y[5]/10
-            if i.num_beds == preference.beds:
+            if i.num_beds >= preference.beds:
                 item = Item(list(y), score, i.URL, i.num_beds, i.postcode)
                 self.items.append(item)
 

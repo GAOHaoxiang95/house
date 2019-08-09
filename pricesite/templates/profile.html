@@ -116,7 +116,7 @@
     <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
     <script>
     $(document).ready(function(){
-      htmlobj=$.ajax({url:"/api/properties/{{name}}",
+      htmlobj=$.ajax({url:"/properties/{{name}}",
         dataType:"json",
         success: function(data) {
             var item = data;
