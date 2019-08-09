@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f03d2119-f107-4910-ac56-a5fb5984cf04" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/house/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/house/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/house/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/house/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pricesite/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/pricesite/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pricesite/recommendation.py" beforeDir="false" afterPath="$PROJECT_DIR$/pricesite/recommendation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pricesite/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/pricesite/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pricesite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pricesite/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pricesite/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/pricesite/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,8 +40,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pricesite/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="211" column="26" selection-start-line="211" selection-start-column="26" selection-end-line="211" selection-end-column="26" />
+            <state relative-caret-position="350">
+              <caret line="203" column="26" selection-start-line="203" selection-start-column="26" selection-end-line="203" selection-end-column="26" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -173,7 +166,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="28" />
     <option name="y" value="22" />
     <option name="width" value="1063" />
@@ -256,7 +249,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16589557" />
@@ -592,8 +585,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pricesite/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="211" column="26" selection-start-line="211" selection-start-column="26" selection-end-line="211" selection-end-column="26" />
+        <state relative-caret-position="350">
+          <caret line="203" column="26" selection-start-line="203" selection-start-column="26" selection-end-line="203" selection-end-column="26" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
