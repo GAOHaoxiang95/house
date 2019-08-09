@@ -63,7 +63,16 @@
             <td><input readonly="readonly" style="width:120px;" name="price" value={{cof.features.0}}> pcm</td>
             <td><a href="maps?latitude={{ cof.features.1 }}&longitude={{ cof.features.2 }}">Click to see</a></td>
         </tr>
-
+        <tr>
+            <td><font color="red"><span class="glyphicon glyphicon-fire"></span></font></td>
+            <td><b><a href="{{ cof2.url }}"><input readonly="readonly" style="width:120px;" name="Postcode" value="{{cof2.postcode}}"></a></b></td>
+            <td><input readonly="readonly" style="width:120px;" name="beds" value={{cof2.beds}}></td>
+            <td><input readonly="readonly" style="width:120px;" name="baths" value={{cof2.features.3}}></td>
+            <td><input readonly="readonly" style="width:130px;" name="pt" value={{cof2.features.5}}></td>
+            <td><input readonly="readonly" style="width:210px;" name="fs" value={{cof2.features.4}}></td>
+            <td><input readonly="readonly" style="width:120px;" name="price" value={{cof2.features.0}}> pcm</td>
+            <td><a href="maps?latitude={{ cof.features.1 }}&longitude={{ cof2.features.2 }}">Click to see</a></td>
+        </tr>
     </table>
     {% endblock %}
 

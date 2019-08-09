@@ -166,6 +166,7 @@ def login(request):
         form = forms.AuthenticationForm()
     return render(request, 'login.html', locals())
 
+
 def feedback(request):
     if request.user.is_authenticated:
         status = 'Logout'
@@ -203,6 +204,7 @@ def snippet_list(request, name, format=None):
 
         #messages.add_message(request, messages.SUCCESS, 'DELETE successfully!')
 
+
 @login_required(login_url='/Login/')
 def recommendation(request):
     if request.user.is_authenticated:
@@ -225,7 +227,12 @@ def recommendation(request):
     a = Recommendation(user)
     i = a.get_recommendation()
     i = sorted(i)
-    cof = i[-1]
+    try:
+        cof = i[-1]
+        cof2 = i[-2]
+    except:
+        pass
+
     return render(request, 'recommendation.html', locals())
 
 
