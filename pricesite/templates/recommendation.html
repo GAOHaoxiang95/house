@@ -25,9 +25,11 @@
         </tr>
         {% for item in properties %}
         <tr>
-            <td><font color="red">
+            <td>
                 {% if item.flag == 1 %}
-                <span class="glyphicon glyphicon-fire"></span></font></td>
+                <font color="red"><span class="glyphicon glyphicon-fire"></span></font></td>
+                {% else %}
+                <font color="blue"><span class="glyphicon glyphicon-eye-open"></span></font>
                 {% endif %}
             <td><b><a href="{{ item.url }}"><input readonly="readonly" style="width:120px;" name="Postcode" value="{{item.postcode}}"></a></b></td>
             <td><input readonly="readonly" style="width:120px;" name="beds" value={{item.beds}}></td>
