@@ -235,7 +235,8 @@ def recommendation(request):
     ctr = 0
     for item in properties:
         check = models.Hot.objects.filter(postcode=item.postcode, name=name)
-
+        print(check)
+        print('tttttttttttttttttt')
         if check == []:
             item.flag = 1
             result = models.Hot.objects.create(postcode=item.postcode, name=name)
