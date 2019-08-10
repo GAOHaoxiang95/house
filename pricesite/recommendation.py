@@ -25,7 +25,7 @@ class Item:
         self.url = url
         self.beds = beds
         self.postcode = postcode
-
+        self.flag = 0
     def __gt__(self, other):
         return self.score > other.score
 

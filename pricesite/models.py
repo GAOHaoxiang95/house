@@ -27,8 +27,9 @@ class User(models.Model):
         return self.name
 
 
-class Recommendation(models.Model):
+class Hot(models.Model):
     postcode = models.CharField(max_length=20, default="Tourist")
+    name = models.CharField(max_length=20, default="Tourist")
     def __str__(self):
         return self.postcode
 

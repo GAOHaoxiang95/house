@@ -193,6 +193,8 @@ class PreferenceViewSet(viewsets.ModelViewSet):
 
 from rest_framework.decorators import api_view
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+
+
 class HouseAllViewSet(APIView):
     authentication_classes = [SessionAuthentication]
     def get(self, request, format=None):
@@ -203,8 +205,10 @@ class HouseAllViewSet(APIView):
         else:
             return Http404
 
+
 class HouseViewSet(APIView):
     authentication_classes = [SessionAuthentication]
+
     def get(self, request, name, format=None):
         if request.user.is_authenticated:
             u = User.objects.get(username=name)
@@ -230,6 +234,13 @@ def recommendation(request):
     properties = a.get_recommended_properties()
     ctr = 0
     for item in properties:
+        check = models.Hot.objects.filter(postcode=item.postcode, name=name)
+
+        if check == []:
+            item.flag = 1
+            result = models.Hot.objects.create(postcode=item.postcode, name=name)
+            result.save()
+
         (properties[ctr].features)[4] = furnished_state_dict[str((item.features)[4])]
         (properties[ctr].features)[5] = property_type_dict[str((item.features)[5])]
         ctr += 1
@@ -242,7 +253,6 @@ def recommendation(request):
         cof2 = i[-2]
     except:
         pass
-
     return render(request, 'recommendation.html', locals())
 
 
@@ -274,7 +284,11 @@ def profile(request):
     else:
         status = 'Login'
     try:
-        name = request.GET['name']
+        name2 = request.GET['name']
+        if name2 != name: #safety check
+            return Http404
+        else:
+            name2 = name
         postcode = request.GET['postcode']
         u = User.objects.get(username=name)
         PreferenceHouses.objects.filter(prefer=u, postcode=postcode).delete()
