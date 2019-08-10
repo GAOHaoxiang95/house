@@ -237,10 +237,11 @@ def recommendation(request):
         check = models.Hot.objects.filter(postcode=item.postcode, name=name)
         print(check)
         print('tttttttttttttttttt')
-        if check == []:
+        if not check.exists():
             item.flag = 1
             result = models.Hot.objects.create(postcode=item.postcode, name=name)
             result.save()
+
 
         (properties[ctr].features)[4] = furnished_state_dict[str((item.features)[4])]
         (properties[ctr].features)[5] = property_type_dict[str((item.features)[5])]
