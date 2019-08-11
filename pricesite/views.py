@@ -192,11 +192,11 @@ class PreferenceViewSet(viewsets.ModelViewSet):
 
 
 from rest_framework.decorators import api_view
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+#from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
 
 class HouseAllViewSet(APIView):
-    authentication_classes = [SessionAuthentication]
+    #authentication_classes = [SessionAuthentication]
     def get(self, request, format=None):
         if request.user.is_authenticated:
             snippets = PreferenceHouses.objects.all()
@@ -204,11 +204,13 @@ class HouseAllViewSet(APIView):
             return Response(serializer.data)
         else:
             return Http404
+    def post(self, request, format=None):
+        return Http404
 
 
+from rest_framework import status
 class HouseViewSet(APIView):
-    authentication_classes = [SessionAuthentication]
-
+    #authentication_classes = [SessionAuthentication]
     def get(self, request, name, format=None):
         if request.user.is_authenticated:
             u = User.objects.get(username=name)
@@ -217,6 +219,20 @@ class HouseViewSet(APIView):
             return Response(serializer.data)
         else:
             return Http404
+
+    def delete(self, request, name, format=None):
+            try:
+                #name = request.GET['name']
+                postcode = request.GET['postcode']
+                u = request.user
+                print(u)
+                PreferenceHouses.objects.filter(prefer=u, postcode=postcode).delete()
+                item = PreferenceHouses.objects.filter(prefer=u)
+                serializer = HouseSerializer(item, many=True)
+                return Response(status=status.HTTP_204_NO_CONTENT)
+            except:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 @login_required(login_url='/Login/')
@@ -241,8 +257,6 @@ def recommendation(request):
             item.flag = 1
             result = models.Hot.objects.create(postcode=item.postcode, name=name)
             result.save()
-
-
         (properties[ctr].features)[4] = furnished_state_dict[str((item.features)[4])]
         (properties[ctr].features)[5] = property_type_dict[str((item.features)[5])]
         ctr += 1
@@ -256,7 +270,6 @@ def recommendation(request):
     except:
         pass
     return render(request, 'recommendation.html', locals())
-
 
 
 def maps(request):

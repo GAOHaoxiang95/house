@@ -118,6 +118,7 @@
     $(document).ready(function(){
       htmlobj=$.ajax({url:"/properties/{{name}}",
         dataType:"json",
+        async: true,
         success: function(data) {
             var item = data;
             var htm = "<tr><b><td>Postcode</td><td>Bedrooms</td><td>Bathrooms</td><td>Property Type</td><td>Furnished State</td><td>Rental Price</td><td>Interest</td><td></td></b></tr>";
@@ -129,13 +130,37 @@
                         + item[i].furniture_state + '</td><td>'
                         + item[i].price + '</td><td>'
                         + item[i].interest + '</td><td>'
-                        +'<a href='+  '"/profile?name={{name}}&postcode='+ item[i].postcode +'">DELETE</a></td></tr>';
+                        +'<a onclick='+  '"javascript:deleteData(\''+ item[i].postcode +'\');"' +'>DELETE</a></td></tr>';
             }
             $("#container2").append(htm);
         },
-      async:false});
+      });
     });
 
+    </script>
+    <script>
+    function deleteData(postcode) {
+        $.ajax({url:"/properties/{{name}}/?postcode=" + postcode,
+        type: 'DELETE',
+        dataType:"json",
+        async: true,
+        success: function(data) {
+            var item = data;
+            var htm = "<tr><b><td>Postcode</td><td>Bedrooms</td><td>Bathrooms</td><td>Property Type</td><td>Furnished State</td><td>Rental Price</td><td>Interest</td><td></td></b></tr>";
+            for(var i=0;i<item.length;i++){
+                    htm += '<tr><td>' + item[i].postcode + '</td><td>'
+                        + item[i].beds + '</td><td>'
+                        + item[i].baths + '</td><td>'
+                        + item[i].property_type + '</td><td>'
+                        + item[i].furniture_state + '</td><td>'
+                        + item[i].price + '</td><td>'
+                        + item[i].interest + '</td><td>'
+                        +'<a onclick='+  '"javascript:deleteData(\''+ item[i].postcode +'\');"' +'>DELETE</a></td></tr>';
+            }
+            $("#container2").append(htm);
+        },
+    });
+    }
     </script>
     <script>
         window.onload = setMenu('num_beds');
@@ -143,7 +168,6 @@
         window.onload = setPreference();
         window.onload = setFurniture();
     </script>
-
 {% endblock %}
 
 
