@@ -204,13 +204,23 @@ class HouseAllViewSet(APIView):
             return Response(serializer.data)
         else:
             return Http404
-    def post(self, request, format=None):
-        return Http404
 
 
 from rest_framework import status
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+
+class CsrfExemptSessionAuthentication(SessionAuthentication): #SHUT DOWN CSRF VERIFICATION
+
+    def enforce_csrf(self, request):
+        return
+
+
 class HouseViewSet(APIView):
-    #authentication_classes = [SessionAuthentication]
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (BasicAuthentication, CsrfExemptSessionAuthentication)
+
     def get(self, request, name, format=None):
         if request.user.is_authenticated:
             u = User.objects.get(username=name)
@@ -229,7 +239,7 @@ class HouseViewSet(APIView):
                 PreferenceHouses.objects.filter(prefer=u, postcode=postcode).delete()
                 item = PreferenceHouses.objects.filter(prefer=u)
                 serializer = HouseSerializer(item, many=True)
-                return Response(status=status.HTTP_204_NO_CONTENT)
+                return Response(serializer.data)
             except:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

@@ -139,6 +139,7 @@
 
     </script>
     <script>
+
     function deleteData(postcode) {
         $.ajax({url:"/properties/{{name}}/?postcode=" + postcode,
         type: 'DELETE',
@@ -157,10 +158,11 @@
                         + item[i].interest + '</td><td>'
                         +'<a onclick='+  '"javascript:deleteData(\''+ item[i].postcode +'\');"' +'>DELETE</a></td></tr>';
             }
-            $("#container2").append(htm);
+            $("#container2").html(htm);
         },
     });
     }
+
     </script>
     <script>
         window.onload = setMenu('num_beds');
