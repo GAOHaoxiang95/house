@@ -244,7 +244,6 @@ class HouseViewSet(APIView):
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 @login_required(login_url='/Login/')
 def recommendation(request):
     if request.user.is_authenticated:
@@ -277,6 +276,16 @@ def recommendation(request):
     try:
         cof = i[-1]
         cof2 = i[-2]
+        check = models.Hot.objects.filter(postcode=cof.postcode, name=name)
+        if not check.exists():
+            cof.flag = 1
+            result = models.Hot.objects.create(postcode=cof.postcode, name=name)
+            result.save()
+        check = models.Hot.objects.filter(postcode=cof2.postcode, name=name)
+        if not check.exists():
+            cof2.flag = 1
+            result = models.Hot.objects.create(postcode=cof2.postcode, name=name)
+            result.save()
     except:
         pass
     return render(request, 'recommendation.html', locals())
