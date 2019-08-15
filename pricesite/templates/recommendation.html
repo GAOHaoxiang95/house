@@ -58,7 +58,12 @@
             </b>
         </tr>
         <tr>
-            <td><font color="red"><span class="glyphicon glyphicon-fire"></span></font></td>
+            <td>
+                {% if cof.flag == 1 %}
+                <font color="red"><span class="glyphicon glyphicon-fire"></span></font></td>
+                {% else %}
+                <font color="blue"><span class="glyphicon glyphicon-eye-open"></span></font></td>
+                {% endif %}
             <td><b><a href="{{ cof.url }}"><input readonly="readonly" style="width:120px;" name="Postcode" value="{{cof.postcode}}"></a></b></td>
             <td><input readonly="readonly" style="width:120px;" name="beds" value={{cof.beds}}></td>
             <td><input readonly="readonly" style="width:120px;" name="baths" value={{cof.features.3}}></td>
@@ -68,7 +73,12 @@
             <td><a href="maps?latitude={{ cof.features.1 }}&longitude={{ cof.features.2 }}">Click to see</a></td>
         </tr>
         <tr>
-            <td><font color="red"><span class="glyphicon glyphicon-fire"></span></font></td>
+            <td>
+                {% if cof2.flag == 1 %}
+                <font color="red"><span class="glyphicon glyphicon-fire"></span></font></td>
+                {% else %}
+                <font color="blue"><span class="glyphicon glyphicon-eye-open"></span></font></td>
+                {% endif %}
             <td><b><a href="{{ cof2.url }}"><input readonly="readonly" style="width:120px;" name="Postcode" value="{{cof2.postcode}}"></a></b></td>
             <td><input readonly="readonly" style="width:120px;" name="beds" value={{cof2.beds}}></td>
             <td><input readonly="readonly" style="width:120px;" name="baths" value={{cof2.features.3}}></td>
