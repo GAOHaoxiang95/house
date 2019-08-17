@@ -82,6 +82,9 @@ def result(request):
 
         property_type = float(request.GET['pt'])
         furniture_state = float(request.GET['fs'])
+
+
+
      
         model = joblib.load("train_model.mt")
         print([[latitude, longitude, num_beds, num_baths, num_recepts, property_type]])
