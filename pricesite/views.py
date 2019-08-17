@@ -79,13 +79,9 @@ def result(request):
             longitude = float(request.GET['longitude'])
         else:
             latitude, longitude = parsePostcode.parse_postcode(postcode)
-
+        print('test')
         property_type = float(request.GET['pt'])
-        furniture_state = float(request.GET['fs'])
-
-
-
-     
+        #furniture_state = float(request.GET['fs'])
         model = joblib.load("train_model.mt")
         print([[latitude, longitude, num_beds, num_baths, num_recepts, property_type]])
         result = model.predict([[latitude, longitude, num_beds, num_baths, num_recepts, property_type]])
@@ -93,7 +89,7 @@ def result(request):
         # change later, property type is int
         price = '£' + str(int(np.exp(result)[0])) + ' pcm'
         property_type = ptd[int(property_type)]
-        furniture_state = fsd[int(furniture_state)]
+        #furniture_state = fsd[int(furniture_state)]
     except:
         num_beds = 0
         num_baths = 0
