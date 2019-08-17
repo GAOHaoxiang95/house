@@ -58,7 +58,7 @@ def properties(request):
     return render(request, 'property.html', locals())
 
 
-#@cache_page(60 * 15)
+@cache_page(60 * 15)
 def result(request):
     if request.user.is_authenticated:
         status = 'Logout'
@@ -70,20 +70,20 @@ def result(request):
     fsd = {0:'unfurnished', 1:'part_furnished', 2:'furnished'}
 
     try:
-        num_beds = request.GET['num_beds']
-        num_baths = request.GET['num_baths']
-        num_recepts = request.GET['num_recepts']
+        num_beds = float(request.GET['num_beds'])
+        num_baths = float(request.GET['num_baths'])
+        num_recepts = float(request.GET['num_recepts'])
         postcode = request.GET['postcode']
         if postcode == "":
             latitude = float(request.GET['latitude'])
             longitude = float(request.GET['longitude'])
         else:
             latitude, longitude = parsePostcode.parse_postcode(postcode)
-        print('test')
+
         property_type = float(request.GET['pt'])
         #furniture_state = float(request.GET['fs'])
         model = joblib.load("train_model.mt")
-        print([[latitude, longitude, num_beds, num_baths, num_recepts, property_type]])
+
         result = model.predict([[latitude, longitude, num_beds, num_baths, num_recepts, property_type]])
 
         # change later, property type is int

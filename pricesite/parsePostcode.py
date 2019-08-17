@@ -9,7 +9,7 @@ def parse_postcode(postcode):
     r = json.loads(text)
     longitude = r['result']['longitude']
     latitude = r['result']['latitude']
-    return latitude, longitude
+    return float(latitude), float(longitude)
 
 
 if __name__=='__main__':
