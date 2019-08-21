@@ -245,7 +245,7 @@ class HouseViewSet(APIView):
             except:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+@cache_page(60 * 15)
 @login_required(login_url='/Login/')
 def recommendation(request):
     if request.user.is_authenticated:
