@@ -55,6 +55,7 @@ class MinHeap:
             self.push(i)
         return self.heap
 
+
 a = Item([1,2,3,4], 3)
 b = Item([3,4,5,6], 9)
 c = Item([1,2,1,1], 2)
