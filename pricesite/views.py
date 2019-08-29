@@ -178,8 +178,6 @@ def feedback(request):
     return redirect('https://docs.google.com/forms/d/1omEnqOOMWmJXIlR0DtMOSqZjFXWBqaz73oIiO8wjGK0/viewform?edit_requested=true')
 
 
-
-
 from rest_framework import viewsets
 from .models import Preference, PreferenceHouses, House
 from .serializers import PreferenceSerializer, HouseSerializer
@@ -244,6 +242,7 @@ class HouseViewSet(APIView):
                 return Response(serializer.data)
             except:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @cache_page(60 * 15)
 @login_required(login_url='/Login/')
