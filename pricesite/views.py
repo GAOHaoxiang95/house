@@ -12,6 +12,7 @@ from django.contrib.auth import authenticate
 from django.contrib import auth
 from pricesite.models import House
 from django.core.paginator import Paginator
+import xgboost as xgb
 # Create your views here.
 
 
@@ -82,14 +83,19 @@ def result(request):
 
         property_type = float(request.GET['pt'])
         furniture_state = float(request.GET['fs'])
-        model = joblib.load("train_model.mt")
+        tar = xgb.Booster(model_file='train_model.mt')
 
-        result = model.predict([[latitude, longitude, num_beds, num_baths, num_recepts, property_type, furniture_state]])
+        x_test = xgb.DMatrix([[latitude, longitude, num_beds, num_baths, num_recepts, property_type, furniture_state]])
+        result = tar.predict(x_test)
 
+        #model = joblib.load("train_model.mt")
+
+        #result = model.predict([[latitude, longitude, num_beds, num_baths, num_recepts, property_type, furniture_state]])
+        #x = [latitude, longitude, num_beds, num_baths, num_recepts, property_type, furnished_state]
         # change later, property type is int
         price = '£' + str(int(np.exp(result)[0])) + ' pcm'
         property_type = ptd[int(property_type)]
-        #furniture_state = fsd[int(furniture_state)]
+        furniture_state = fsd[int(furniture_state)]
     except:
         num_beds = 0
         num_baths = 0
