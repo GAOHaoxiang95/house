@@ -82,10 +82,10 @@ def result(request):
             latitude, longitude = parsePostcode.parse_postcode(postcode)
 
         property_type = float(request.GET['pt'])
-        furniture_state = float(request.GET['fs'])
+        #furniture_state = float(request.GET['fs'])
         tar = xgb.Booster(model_file='train_model.mt')
 
-        x_test = xgb.DMatrix([[latitude, longitude, num_beds, num_baths, num_recepts, property_type, furniture_state]])
+        x_test = xgb.DMatrix([[latitude, longitude, num_beds, num_baths, num_recepts, property_type]])
         result = tar.predict(x_test)
 
         #model = joblib.load("train_model.mt")
@@ -95,7 +95,7 @@ def result(request):
         # change later, property type is int
         price = '£' + str(int(np.exp(result)[0])) + ' pcm'
         property_type = ptd[int(property_type)]
-        furniture_state = fsd[int(furniture_state)]
+        #furniture_state = fsd[int(furniture_state)]
     except:
         num_beds = 0
         num_baths = 0
