@@ -81,10 +81,10 @@ def result(request):
             latitude, longitude = parsePostcode.parse_postcode(postcode)
 
         property_type = float(request.GET['pt'])
-        #furniture_state = float(request.GET['fs'])
+        furniture_state = float(request.GET['fs'])
         model = joblib.load("train_model.mt")
 
-        result = model.predict([[latitude, longitude, num_beds, num_baths, num_recepts, property_type]])
+        result = model.predict([[latitude, longitude, num_beds, num_baths, num_recepts, property_type, furniture_state]])
 
         # change later, property type is int
         price = '£' + str(int(np.exp(result)[0])) + ' pcm'
