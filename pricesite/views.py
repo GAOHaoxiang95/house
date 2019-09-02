@@ -250,7 +250,7 @@ class HouseViewSet(APIView):
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@cache_page(60 * 15)
+
 @login_required(login_url='/Login/')
 def recommendation(request):
     if request.user.is_authenticated:
@@ -267,8 +267,7 @@ def recommendation(request):
     ctr = 0
     for item in properties:
         check = models.Hot.objects.filter(postcode=item.postcode, name=name)
-        print(check)
-        print('tttttttttttttttttt')
+
         if not check.exists():
             item.flag = 1
             result = models.Hot.objects.create(postcode=item.postcode, name=name)
@@ -305,15 +304,14 @@ def maps(request):
     else:
         status = 'Login'
     try:
-        postcode = request.GET.get('postcode')
+        postcode = request.GET['postcode']
         latitude, longitude = parsePostcode.parse_postcode(postcode)
     except:
-        pass
-    try:
-        latitude = request.GET.get('latitude')
-        longitude = request.GET.get('longitude')
-    except:
-        pass
+        try:
+            latitude = request.GET.get('latitude')
+            longitude = request.GET.get('longitude')
+        except:
+            pass
     return render(request, 'maps.html', locals())
 
 
