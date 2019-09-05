@@ -84,7 +84,6 @@
                 -0.17911445396727732
                 );
 
-            //Add a pushpin at the user's location.
             var pin = new Microsoft.Maps.Pushpin(loc);
             map.entities.push(pin);
             map.setView({ center: loc, zoom: 15 });
@@ -97,7 +96,6 @@
 
         if (loc!=null)
         {
-              //alert("The location " + loc.latitude + ", " + loc.longitude + " was clicked.");
               var lat = document.getElementsByName("latitude")[0];
               var lon = document.getElementsByName("longitude")[0];
               lat.value = loc.latitude
@@ -110,8 +108,6 @@
                 loc.latitude,
                 loc.longitude
                 );
-
-            //Add a pushpin at the user's location.
             var pin = new Microsoft.Maps.Pushpin(loc);
             map.entities.push(pin);
             map.setView({ center: loc, zoom: 15 });
