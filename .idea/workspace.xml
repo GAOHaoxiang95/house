@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f03d2119-f107-4910-ac56-a5fb5984cf04" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pricesite/recommendation.py" beforeDir="false" afterPath="$PROJECT_DIR$/pricesite/recommendation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pricesite/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/pricesite/tests.py" afterDir="false" />
-    </list>
+    <list default="true" id="f03d2119-f107-4910-ac56-a5fb5984cf04" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -158,7 +154,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="52" />
     <option name="y" value="71" />
     <option name="width" value="1599" />
@@ -267,7 +263,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1784534" />
       <window_info anchor="bottom" id="TODO" order="6" />
