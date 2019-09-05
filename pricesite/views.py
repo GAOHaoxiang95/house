@@ -296,7 +296,6 @@ def recommendation(request):
         pass
     return render(request, 'recommendation.html', locals())
 
-
 def maps(request):
     if request.user.is_authenticated:
         status = 'Logout'
@@ -375,5 +374,4 @@ def profile(request):
     except:
             #messages.add_message(request, messages.WARNING, 'Save failed!')
             pass
-
     return render(request, 'profile.html', locals())
