@@ -113,7 +113,7 @@ class ReccomendationContentBased:
 
         houses = models.House.objects.all().order_by('-id')[0:3000]
         self.items = list()
-        for i in houses:#论文可以吹 这么处理数据！！！！！！！！！！！！！！！！！！！！！
+        for i in houses:
             if i.furnished_state == "":
                 fs = 0.0
             else:

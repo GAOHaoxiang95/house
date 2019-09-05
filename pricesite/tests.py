@@ -65,3 +65,48 @@ e = Item([3,3,3,3], 100)
 test = MinHeap(4, [a,b,c,d,e])
 t = test.best_k()
 print(t)
+
+
+def quick_sort(numList, list2):
+    length = len(numList)
+    quick_sort_partial(numList,list2, 0, length - 1)
+
+
+def quick_sort_partial(numList, list2, i, j):
+    if i < j:
+        p = partition(numList,list2, i, j)
+        quick_sort_partial(numList, list2, i, p - 1)
+        quick_sort_partial(numList, list2, p + 1, j)
+
+
+def partition(numList, list2, i, j):
+    pivot = numList[i]
+    p2 = list2[i]
+    while i < j:
+        while i < j and numList[j] >= pivot:
+            j -= 1
+        numList[i] = numList[j]
+        list2[i] = list2[j]
+        while i < j and numList[i] <= pivot:
+            i += 1
+        numList[j] = numList[i]
+        list2[j] = list2[i]
+    numList[i] = pivot
+    list2[i] = p2
+    return i
+
+test1 = [6,5,4,3,2,1]
+test2 = [8,3,6,9,7,2]
+
+quick_sort(test1, test2)
+
+print(test1)
+print(test2)
+
+test3 = [1,4,2,8,5,7]
+test4 = [8,3,6,9,7,2]
+
+quick_sort(test3, test4)
+
+print(test3)
+print(test4)
